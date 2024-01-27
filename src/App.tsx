@@ -1,4 +1,4 @@
-import Footer from '@components/Footer';
+import Footer from 'src/layouts/Footer';
 import './index.css';
 
 const App = () => {

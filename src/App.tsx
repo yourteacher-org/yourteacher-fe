@@ -1,7 +1,12 @@
+import Footer from '@components/Footer';
 import './index.css';
 
 const App = () => {
-  return <div className="bg-red-200">App</div>;
+  return (
+    <div className="h-screen">
+      <Footer />
+    </div>
+  );
 };
 
 export default App;

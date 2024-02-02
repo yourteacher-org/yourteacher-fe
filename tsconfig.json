@@ -23,7 +23,8 @@
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@layouts/*": ["src/layouts/*"]
     }
   },
   "include": ["src", "postcss.config.js", "tailwind.config.js"],

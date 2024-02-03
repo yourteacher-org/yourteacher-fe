@@ -38,15 +38,15 @@ const buttonTextColor: ButtonTextColorType = {
 
 const buttonShape: ButtonShapeType = {
   rounded: '',
-  circle: 'p-[20px] w-[72px]',
+  circle: 'p-5 w-[4.5rem]',
 };
 
 const buttonSize: ButtonFontSizeType = {
-  xl: 'text-xl px-[60px] py-[12px]',
-  lg: 'text-2xl px-[45px] py-[20px]',
-  md: 'text-xl px-[45px] py-[12px]',
-  sm: 'text-xl px-[25px] py-[10px]',
-  xs: 'text-lg px-[25px] py-[12px]',
+  xl: 'text-xl px-14 py-3',
+  lg: 'text-2xl px-11 py-5',
+  md: 'text-xl px-11 py-3',
+  sm: 'text-xl px-6 py-2.5',
+  xs: 'text-lg px-6 py-3',
 };
 
 const Button = ({

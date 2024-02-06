@@ -60,7 +60,7 @@ const Button = ({
   return (
     <button
       className={`${buttonVariants[variants]} ${buttonTextColor[color]} ${buttonShape[shape]} ${buttonSize[size]}
-        rounded-full text-2xl text-white transition`}
+        rounded-full text-2xl transition`}
       {...props}
     >
       {children}

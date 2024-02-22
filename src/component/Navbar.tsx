@@ -7,7 +7,6 @@ import User from '@assets/img/user.png';
 import { SUB_MENUS, MENU_PAGE, MENUS, SUB_PAGE } from './Data';
 
 interface NavbarProps {}
-// 라는 빈 객체를 타입으로 갖는 인터페이스를 생성하여 Navbar 컴포넌트의 props에 대한 타입을 명시했습니다.
 
 const Navbar: React.FC<NavbarProps> = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -34,29 +33,24 @@ const Navbar: React.FC<NavbarProps> = () => {
           />
         </Link>
 
-        {/* 주메뉴와 서브메뉴를 묶는 ul 태그 */}
         <ul
           className="flex"
           onMouseEnter={handleHover}
           onMouseLeave={handleLeave}
         >
-          {/* 그리고 로고 같은 경우는 따로 떼어 놓는게 좋음 */}
-          {/* 그럼 이 둘을 묶는 태그를 만들어서 거기다 호버 이벤트 처리 */}
-          {/* 여기에서 map을 통해 각 주메뉴가 렌더링 */}
           {MENUS.map((menu) => (
             <li key={menu} className="relative">
               {MENU_PAGE[menu] && (
                 <Link
-                  to={`/${MENU_PAGE[menu].toLowerCase().replace(/\s/g, '')}`}
+                  to={`/${MENU_PAGE[menu]}`}
                   className="ml-1 mr-16 text-18 font-medium"
                 >
                   {menu}
                 </Link>
               )}
-              {/* 그리고 여기에서 그에 대한 서브메뉴가 렌더링 */}
+
               {isHovered && (
                 <ul className="absolute left-1 pt-8 space-y-3 text-16 font-medium">
-                  {/* margin을 사용하니 접근이 안 되고,padding을 이용하니 거리만 조절되고 접근이 됨 */}
                   {SUB_MENUS[MENU_PAGE[menu]] &&
                     SUB_MENUS[MENU_PAGE[menu]].map((subMenuItem) => (
                       <li key={subMenuItem}>
@@ -83,7 +77,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             </Link>
           </li>
           <li>
-            <Link to="/signut-up" className="mr-3 text-14 group relative">
+            <Link to="/sign-up" className="mr-3 text-14 group relative">
               회원가입
             </Link>
           </li>

@@ -47,5 +47,11 @@ module.exports = {
     'react/button-has-type': ['off'],
     'react/require-default-props': ['off'],
     'react/default-props-match-prop-types': ['off'],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
 };

@@ -1,14 +1,13 @@
-import Button from '@components/Button';
+import React from 'react';
+import Page from './component/Page';
 import './index.css';
-import ChevronButton from '@components/ChevronButton';
+import Footer from './layouts/Footer';
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <div className="p-[200px]">
-      <Button>소통방</Button>
-      <div className="mt-10">
-        <ChevronButton direction="right" />
-      </div>
+    <div className="font-pretendard h-screen">
+      <Page />
+      <Footer />
     </div>
   );
 };

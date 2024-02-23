@@ -1,10 +1,11 @@
+import React from 'react';
+import Page from './component/Page';
 import './index.css';
-import Home from './pages/Home/Home';
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <div>
-      <Home />
+    <div className="font-pretendard h-screen">
+      <Page />
     </div>
   );
 };

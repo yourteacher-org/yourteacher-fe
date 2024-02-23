@@ -14,6 +14,9 @@ export default {
         'gray-5': '#D9D9D9',
         'gray-6': '#DBDBDB',
         green: '#3ECE9E',
+        'green-1': '#011811',
+        'green-2': '#2B413A',
+        'green-3': '#788E88',
         yellow: '#FFD72E',
       },
       dropShadow: {

@@ -17,20 +17,6 @@ export default {
       dropShadow: {
         green: '5px 5px 10px #3ECE9E',
       },
-      animation: {
-        fadein: 'fadein 1s ease-in-out backward',
-        fadeout: 'fadeout 1s ease-in-out backward',
-      },
-      keyframes: {
-        fadein: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 },
-        },
-        fadeout: {
-          '0%': { opacity: 1 },
-          '100%': { opacity: 0 },
-        },
-      },
     },
   },
   plugins: [],

@@ -1,9 +1,9 @@
 import { HTMLAttributes } from 'react';
 
-import ChevronUp from '@assets/img/chevron-up.svg?react';
-import ChevronDown from '@assets/img/chevron-down.svg?react';
-import ChevronLeft from '@assets/img/chevron-left.svg?react';
-import ChevronRight from '@assets/img/chevron-right.svg?react';
+import ChevronUp from '@assets/icon/chevron-up.svg?react';
+import ChevronDown from '@assets/icon/chevron-down.svg?react';
+import ChevronLeft from '@assets/icon/chevron-left.svg?react';
+import ChevronRight from '@assets/icon/chevron-right.svg?react';
 
 interface ChevronButtonProps extends HTMLAttributes<HTMLButtonElement> {
   direction: 'up' | 'down' | 'left' | 'right';

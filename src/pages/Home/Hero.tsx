@@ -6,14 +6,18 @@ import { mainBackground } from 'src/data/main';
 
 import SlideDot from '@assets/img/slide-dot.svg?react';
 import ScrollArrow from '@assets/img/scroll-top-arrrow.svg?react';
+import { useNavigate } from 'react-router-dom';
 
 const DURATION = 3000;
 const ANIMATION_DURATION = 'duration-[2s]';
 
 const Hero = () => {
+  const navigate = useNavigate();
   const [index, setIndex] = useState<number>(0);
 
   const intervalBackground = (clidkedIndex: number) => setIndex(clidkedIndex);
+
+  const moveToCommunicationPage = () => navigate('/qna/communication');
 
   useEffect(() => {
     const intervalId = setInterval(
@@ -36,10 +40,10 @@ const Hero = () => {
           <img
             key={imgName}
             className={`
-              ${index === bgIndex ? 'opacity-100' : 'opacity-0'}
-              transition ${ANIMATION_DURATION}
-              absolute -top-[368px] left-[250px] -z-50
-          `}
+                ${index === bgIndex ? 'opacity-100' : 'opacity-0'}
+                transition ${ANIMATION_DURATION}
+                absolute -top-[368px] left-[250px] -z-50
+            `}
             src={imgSrc}
             alt={imgName}
           />
@@ -69,7 +73,7 @@ const Hero = () => {
             <b>유어티처</b>는 <b>어린이집 · 유치원 선생님</b>을 위한 <br />
             커뮤니티 플랫폼입니다.
           </p>
-          <Button>소통방으로 이동</Button>
+          <Button onClick={moveToCommunicationPage}>소통방으로 이동</Button>
         </article>
       </div>
     </Section>

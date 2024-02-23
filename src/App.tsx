@@ -5,7 +5,7 @@ import Page from '@components/Page';
 
 const App: React.FC = () => {
   return (
-    <div className="font-pretendard h-screen">
+    <div className="font-pretendard h-screen pb-[5000px]">
       <Page />
     </div>
   );

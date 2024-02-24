@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 const DURATION = 3000;
 const ANIMATION_DURATION = 'duration-[2s]';
 
-const Hero = () => {
+const HeroSection = () => {
   const navigate = useNavigate();
   const [index, setIndex] = useState<number>(0);
 
@@ -79,4 +79,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default HeroSection;

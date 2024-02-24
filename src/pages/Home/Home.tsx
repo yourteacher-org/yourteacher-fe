@@ -1,10 +1,10 @@
 import React from 'react';
-import Hero from './Hero';
+import HeroSection from './HeroSection';
 
 const Home: React.FC = () => {
   return (
     <div>
-      <Hero />
+      <HeroSection />
     </div>
   );
 };

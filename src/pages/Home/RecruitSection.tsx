@@ -27,7 +27,7 @@ const RecruitCard = ({ id, isStart, title, period }: RecruitCardProps) => {
         cursor-pointer ${isStart ? 'col-start-2' : ''}`}
     >
       <p className="mb-4">{String(id).padStart(2, '0')}</p>
-      <p className="mb-[3.75rem] text-xl leading-8 break-keep group-hover:font-bold">
+      <p className="mb-[3.75rem] text-xl leading-8 break-keep transition-all duration-300 group-hover:font-bold">
         {title}
       </p>
       <p className="mb-1 font-bold">기간</p>

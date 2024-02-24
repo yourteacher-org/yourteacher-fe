@@ -1,7 +1,12 @@
 import React from 'react';
+import NoticeSection from './NoticeSection';
 
 const Home: React.FC = () => {
-  return <div>메인 페이지</div>;
+  return (
+    <div>
+      <NoticeSection />
+    </div>
+  );
 };
 
 export default Home;

@@ -21,7 +21,7 @@ const Button = ({ children, size = 'lg', ...props }: ButtonProps) => {
   return (
     <button
       className={`${buttonSize[size]}
-        group border border-black rounded-full text-2xl relative`}
+        group border border-black rounded-full text-xl relative`}
       {...props}
     >
       {children}

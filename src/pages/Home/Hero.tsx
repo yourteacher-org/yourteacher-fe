@@ -16,7 +16,6 @@ const Hero = () => {
   const [index, setIndex] = useState<number>(0);
 
   const intervalBackground = (clidkedIndex: number) => setIndex(clidkedIndex);
-
   const moveToCommunicationPage = () => navigate('/qna/communication');
 
   useEffect(() => {
@@ -28,8 +27,8 @@ const Hero = () => {
   });
 
   return (
-    <Section as="section" className="relative mx-[260px] mb-[1000px]">
-      <div className="absolute -left-[165px] -bottom-[32px] cursor-default">
+    <Section as="section" className="relative mx-[16.25rem]">
+      <div className="absolute -left-[10.325rem] -bottom-[2rem] cursor-default">
         <span className="inline-block -rotate-90 absolute top-4 right-0">
           SCROLL
         </span>
@@ -42,13 +41,13 @@ const Hero = () => {
             className={`
                 ${index === bgIndex ? 'opacity-100' : 'opacity-0'}
                 transition ${ANIMATION_DURATION}
-                absolute -top-[368px] left-[250px] -z-50
+                absolute -top-[23rem] left-[15.625rem] -z-50
             `}
             src={imgSrc}
             alt={imgName}
           />
         ))}
-        <article className="pt-[375px]">
+        <article className="pt-[23.25rem]">
           <div className="flex items-center gap-3.5">
             {mainBackground.map(({ imgName }, bgIndex) =>
               index === bgIndex ? (
@@ -64,12 +63,12 @@ const Hero = () => {
             )}
           </div>
 
-          <h1 className="pt-[60px] text-[80px] text-white font-bold mix-blend-difference leading-[100px]">
+          <h1 className="pt-[3.75rem] text-[5rem] text-white font-bold mix-blend-difference leading-[6.25rem]">
             어린이집 · 유치원 선생님의 <br />
             소통 공간
           </h1>
 
-          <p className="pt-[30px] pb-[50px] text-[30px] text-white mix-blend-difference leading-[46px]">
+          <p className="pt-[1.875rem] pb-[3.125rem] text-[1.875rem] text-white mix-blend-difference leading-[2.875rem]">
             <b>유어티처</b>는 <b>어린이집 · 유치원 선생님</b>을 위한 <br />
             커뮤니티 플랫폼입니다.
           </p>

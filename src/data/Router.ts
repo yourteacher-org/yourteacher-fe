@@ -32,5 +32,5 @@ export const SUB_PAGE: { [key: string]: string } = {
   채용공고: 'hire',
   공지사항: 'notify',
   문의: 'inquiry',
-  FAQ: 'Faq',
+  FAQ: 'faq',
 };

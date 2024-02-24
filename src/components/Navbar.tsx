@@ -4,7 +4,7 @@ import Logo from '@assets/img/logo193.png';
 import Jong from '@assets/img/jong.png';
 import Search from '@assets/img/search.png';
 import User from '@assets/img/user.png';
-import { SUB_MENUS, MENU_PAGE, MENUS, SUB_PAGE } from './Data';
+import { SUB_MENUS, MENU_PAGE, MENUS, SUB_PAGE } from '../data/Router';
 
 interface NavbarProps {}
 

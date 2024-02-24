@@ -1,26 +1,25 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import Home from '@pages/Home/Home';
-import About from '@pages/About';
-import Content from '@pages/Content';
-import Login from '@pages/Login';
-import Info from '@pages/Info';
-import Context from '@pages/Context';
-import Edu from '@pages/Edu';
-import SignUp from '@pages/SignUp';
-import Search from '@pages/Search';
-import Data from '@pages/Data';
-import Faq from '@pages/Faq';
-import Hire from '@pages/Hire';
-import Inquire from '@pages/Inquire';
-import News from '@pages/News';
-import Notice from '@pages/Notice';
-import Share from '@pages/Share';
-import Teacher from '@pages/Teacher';
-import EduDate from '@pages/EduDate';
-import Program from '@pages/Program';
-import Communication from '@pages/Communication';
+import Share from '@pages/Share/Share';
+import Collection from '@pages/Share/Collection';
+import News from '@pages/Share/News';
+import Qna from '@pages/Qna/Qna';
+import Communication from '@pages/Qna/Communication';
+import Sharing from '@pages/Qna/Sharing';
+import Teacher from '@pages/Qna/Teacher';
+import Edu from '@pages/Edu/Edu';
+import Date from '@pages/Edu/Date';
+import Program from '@pages/Edu/Program';
+import Notice from '@pages/Notice/Notice';
+import Hire from '@pages/Notice/Hire';
+import Front from '@pages/Front/Front';
+import Faq from '@pages/Front/Faq';
+import Inquiry from '@pages/Front/Inquiry';
+import Notify from '@pages/Front/Notify';
+import Login from '@pages/Login/Login';
+import SignUp from '@pages/SignUp/SignUp';
+import Search from '@pages/Search/Search';
 import MainLayout from '@layouts/MainLayout';
 
 const Page: React.FC = () => {
@@ -29,25 +28,25 @@ const Page: React.FC = () => {
       <MainLayout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/content" element={<Content />} />
+          <Route path="/share" element={<Share />} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/qna" element={<Qna />} />
+          <Route path="/communication" element={<Communication />} />
+          <Route path="/sharing" element={<Sharing />} />
+          <Route path="/teacher" element={<Teacher />} />
           <Route path="/edu" element={<Edu />} />
-          <Route path="/context" element={<Context />} />
-          <Route path="/info" element={<Info />} />
+          <Route path="/date" element={<Date />} />
+          <Route path="/program" element={<Program />} />
+          <Route path="/notice" element={<Notice />} />
+          <Route path="/hire" element={<Hire />} />
+          <Route path="/front" element={<Front />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/inquiry" element={<Inquiry />} />
+          <Route path="/notify" element={<Notify />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/communication" element={<Communication />} />
-          <Route path="/data" element={<Data />} />
-          <Route path="/eduDate" element={<EduDate />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/hire" element={<Hire />} />
-          <Route path="/inquire" element={<Inquire />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/notice" element={<Notice />} />
-          <Route path="/program" element={<Program />} />
-          <Route path="/share" element={<Share />} />
-          <Route path="/teacher" element={<Teacher />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

@@ -3,11 +3,14 @@ import Button from '@components/Button';
 
 import Comma from '@assets/img/button_comma.svg?react';
 import TwoCircle from '@assets/icon/two-circle.svg?react';
+import { Link } from 'react-router-dom';
 
 const DATA = Array.from({ length: 5 }, (_, i) => ({
   id: i + 1,
-  title: 'OOOO어린이집 채용공고 유아부 교사 모집',
+  title:
+    'OOOO어린이집 채용공고 유아부 교사 모집 OOOO어린이집 채용공고 유아부 교사 모집 ',
   period: '2023.12.14 ~ 2023.10.31',
+  src: '/',
 }));
 
 interface RecruitCardProps {
@@ -15,29 +18,35 @@ interface RecruitCardProps {
   isStart: boolean;
   title: string;
   period: string;
+  src: string;
 }
 
-const RecruitCard = ({ id, isStart, title, period }: RecruitCardProps) => {
+const RecruitCard = ({ id, isStart, title, period, src }: RecruitCardProps) => {
   return (
-    <li
-      key={id}
-      className={`group relative
-        w-[18.375rem] aspect-square p-[1.875rem]
-        border border-black rounded-[1.875rem] text-[1.25rem]
-        cursor-pointer ${isStart ? 'col-start-2' : ''}`}
-    >
-      <p className="mb-4">{String(id).padStart(2, '0')}</p>
-      <p className="mb-[3.75rem] text-xl leading-8 break-keep transition-all duration-300 group-hover:font-bold">
-        {title}
-      </p>
-      <p className="mb-1 font-bold">기간</p>
-      <p>{period}</p>
-      <Comma
-        className="absolute -top-10 right-[1.875rem] 
+    <Link className={`${isStart ? 'col-start-2' : ''}`} to={src}>
+      <li
+        key={id}
+        className={`group relative
+          w-[18.375rem] aspect-square p-[1.875rem]
+          border border-black rounded-[1.875rem] text-[1.25rem]
+          cursor-pointer`}
+      >
+        <p className="mb-4">{String(id).padStart(2, '0')}</p>
+        <p
+          className="mb-[3.75rem] text-xl leading-8 break-keep line-clamp-2
+            transition-all duration-300 group-hover:font-bold"
+        >
+          {title}
+        </p>
+        <p className="mb-1 font-bold">기간</p>
+        <p>{period}</p>
+        <Comma
+          className="absolute -top-10 right-[1.875rem] 
         fill-yellow opacity-0 group-hover:opacity-100
-          transition duration-300"
-      />
-    </li>
+          transition-opacity duration-300"
+        />
+      </li>
+    </Link>
   );
 };
 

@@ -11,7 +11,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main className="xl:w-[1920px] lg:w-[1024px] mx-auto">{children}</main>
       <Footer />
     </>
   );

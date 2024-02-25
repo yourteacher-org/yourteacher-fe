@@ -31,16 +31,22 @@ const NoticeCard = ({
 }: NoticeCardProps) => {
   return (
     <Link key={id} to={src}>
-      <li className="group w-[290px] relative">
-        <p className="mb-5 text-lg">{id}</p>
-        <p className="mb-4 text-4xl font-bold line-clamp-1">{title}</p>
-        <p className="mb-[1.875rem] text-xl leading-9 line-clamp-2 break-keep">
+      <li className="group xl:w-[18.125rem] lg:w-[12.5rem] relative">
+        <p className="mb-5 xl:text-lg lg:text-[0.875rem]">{id}</p>
+        <p className="mb-4 xl:text-4xl lg:text-[1.625rem] font-bold line-clamp-1">
+          {title}
+        </p>
+        <p
+          className="mb-[1.875rem] xl:text-xl lg:text-[0.875rem]
+            xl:leading-9 lg:leading-[1.625rem] line-clamp-2 break-keep"
+        >
           {content}
         </p>
-        <p className="text-lg">{createdDate}</p>
+        <p className="xl:text-lg lg:text-[0.875rem]">{createdDate}</p>
         <Comma
           className="fill-yellow opacity-0
-            absolute -bottom-7 right-0 translate-y-28
+            xl:w-auto lg:w-[3.125rem]
+            absolute -bottom-7 right-0 xl:translate-y-28 lg:translate-y-20
             group-hover:translate-y-0 group-hover:opacity-100
             transition-all duration-[.6s] ease-out"
         />
@@ -54,24 +60,29 @@ const NoticeSection = () => {
   const moveToNotice = () => navigate('/front/notify');
 
   return (
-    <Section as="section" className="px-[16.25rem] py-32">
-      <div className="flex items-center justify-between mb-5">
+    <Section as="section" className="xl:px-[16.25rem] lg:px-[1.875rem] py-32">
+      <div className="flex items-center xl:justify-between justify-center xl:mb-5 lg:mb-[3.75rem]">
         <div>
-          <div className="flex items-center gap-x-2 mb-5">
-            <p className="text-xl text-green font-bold">Announcement</p>
+          <div className="flex items-center xl:justify-normal lg:justify-center gap-x-2 xl:mb-5 lg:mb-[0.875rem]">
+            <p className="xl:text-xl lg:text-[1rem] text-green font-bold">
+              Announcement
+            </p>
             <TwoCircles />
           </div>
-          <h1 className="mb-10 text-[60px] font-bold">공지사항</h1>
+          <h1 className="xl:mb-10 xl:text-[3.75rem] lg:text-[2.5rem] font-bold">
+            공지사항
+          </h1>
         </div>
-        <div>
+        <div className="xl:block lg:hidden">
           <Button onClick={moveToNotice}>더보기</Button>
         </div>
       </div>
-      <ul className="flex gap-[90px]">
+      <ul className="flex xl:gap-[5.625rem] lg:gap-[3.125rem]">
         {DATA.map((data) => (
           <NoticeCard key={data.id} {...data} />
         ))}
       </ul>
+      <Button onClick={moveToNotice}>더보기</Button>
     </Section>
   );
 };

@@ -27,9 +27,15 @@ const HeroSection = () => {
   });
 
   return (
-    <Section as="section" className="relative mx-[16.25rem]">
-      <div className="absolute -left-[10.325rem] -bottom-[2rem] cursor-default">
-        <span className="inline-block -rotate-90 absolute top-4 right-0">
+    <Section
+      as="section"
+      className="relative xl:mx-[16.25rem] lg:mx-[1.875rem] w-full m-auto"
+    >
+      <div
+        className="absolute xl:-left-[10.325rem] xl:-bottom-[2rem]
+          lg:right-14 lg:-bottom-5 cursor-default"
+      >
+        <span className="inline-block -rotate-90 absolute top-4 -left-7">
           SCROLL
         </span>
         <ScrollArrow className="rotate-180" />
@@ -39,15 +45,17 @@ const HeroSection = () => {
           <img
             key={imgName}
             className={`
-                ${index === bgIndex ? 'opacity-100' : 'opacity-0'}
-                transition ${ANIMATION_DURATION}
-                absolute -top-[23rem] left-[15.625rem] -z-50
+              ${index === bgIndex ? 'opacity-100' : 'opacity-0'}
+              xl:w-[1338px] lg:w-[785px]
+              transition ${ANIMATION_DURATION}
+              absolute xl:-top-[23rem] xl:left-[15.625rem] lg:-top-[10rem] lg:-right-[1.75rem]
+              -z-50
             `}
             src={imgSrc}
             alt={imgName}
           />
         ))}
-        <article className="pt-[23.25rem]">
+        <article className="xl:pt-[23.25rem] lg:pt-[12rem]">
           <div className="flex items-center gap-3.5">
             {mainBackground.map(({ imgName }, bgIndex) =>
               index === bgIndex ? (
@@ -63,12 +71,23 @@ const HeroSection = () => {
             )}
           </div>
 
-          <h1 className="pt-[3.75rem] text-[5rem] text-white font-bold mix-blend-difference leading-[6.25rem]">
+          <h1
+            className="xl:pt-[3.75rem] lg:pt-20
+              xl:text-[5rem] lg:text-[3.75rem]
+              xl:leading-[6.25rem] lg:leading-[4.75rem]
+            text-white font-bold mix-blend-difference"
+          >
             어린이집 · 유치원 선생님의 <br />
             소통 공간
           </h1>
 
-          <p className="pt-[1.875rem] pb-[3.125rem] text-[1.875rem] text-white mix-blend-difference leading-[2.875rem]">
+          <p
+            className="
+              xl:pt-[1.875rem] lg:pt-2.5 pb-[3.125rem]
+              xl:text-[1.875rem] lg:text-2xl
+              xl:leading-[2.875rem] lg:leading-10
+            text-white mix-blend-difference"
+          >
             <b>유어티처</b>는 <b>어린이집 · 유치원 선생님</b>을 위한 <br />
             커뮤니티 플랫폼입니다.
           </p>

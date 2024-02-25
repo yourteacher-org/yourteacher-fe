@@ -60,10 +60,13 @@ const NoticeSection = () => {
   const moveToNotice = () => navigate('/front/notify');
 
   return (
-    <Section as="section" className="xl:px-[16.25rem] lg:px-[1.875rem] py-32">
+    <Section
+      as="section"
+      className="flex lg:flex-col xl:items-stretch lg:items-center xl:px-[16.25rem] lg:px-[1.875rem] py-32"
+    >
       <div className="flex items-center xl:justify-between justify-center xl:mb-5 lg:mb-[3.75rem]">
         <div>
-          <div className="flex items-center xl:justify-normal lg:justify-center gap-x-2 xl:mb-5 lg:mb-[0.875rem]">
+          <div className="flex items-center xl:justify-normal lg:justify-center gap-x-2 xl:mb-5 lg:mb-[0.5rem]">
             <p className="xl:text-xl lg:text-[1rem] text-green font-bold">
               Announcement
             </p>
@@ -82,7 +85,10 @@ const NoticeSection = () => {
           <NoticeCard key={data.id} {...data} />
         ))}
       </ul>
-      <Button onClick={moveToNotice}>더보기</Button>
+
+      <Button className="xl:hidden mt-[5rem]" onClick={moveToNotice}>
+        더보기
+      </Button>
     </Section>
   );
 };

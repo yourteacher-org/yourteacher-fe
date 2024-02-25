@@ -74,7 +74,7 @@ const RecruitSection = () => {
           유어티처는 선생님들의 <br className="xl:block lg:hidden" />
           가치있는 도전을 응원합니다.
         </p>
-        <Button className="lg:hidden">더보기</Button>
+        <Button className="xl:block lg:hidden">더보기</Button>
       </div>
       <ul
         className="

@@ -1,7 +1,12 @@
 import React from 'react';
+import HeroSection from './HeroSection';
 
 const Home: React.FC = () => {
-  return <div>메인 페이지</div>;
+  return (
+    <div>
+      <HeroSection />
+    </div>
+  );
 };
 
 export default Home;

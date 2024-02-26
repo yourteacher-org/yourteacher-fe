@@ -7,7 +7,7 @@ const Footer = () => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="w-full absolute bottom-0">
+    <footer className="w-full">
       <div className=" relative h-[367px] mx-5 bg-green-1 rounded-t-[50px]">
         <Comma className="absolute -top-40 ml-16" />
         <button

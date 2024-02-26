@@ -49,7 +49,7 @@ const RecruitCard = ({ id, isStart, title, period, src }: RecruitCardProps) => {
         </p>
         <p className="xl:text-[1.25rem] lg:text-xs">{period}</p>
         <Comma
-          className="absolute -top-10 right-[1.875rem] 
+          className="xl:w-auto lg:w-16 absolute -top-10 right-[1.875rem]
           fill-yellow opacity-0 group-hover:opacity-100
             transition-opacity duration-300"
         />

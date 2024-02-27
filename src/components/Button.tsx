@@ -11,24 +11,30 @@ type ButtonFontSizeType = {
 
 const buttonSize: ButtonFontSizeType = {
   xl: 'text-xl px-14 py-3',
-  lg: 'text-2xl px-11 py-5 min-w-72',
+  lg: `xl:min-w-72 xl:px-11 xl:py-5 xl:text-2xl
+        lg:min-w-[10.875rem] lg:py-[0.875rem] lg:text-sm`,
   md: 'text-xl px-11 py-3',
   sm: 'text-xl px-6 py-2.5',
   xs: 'text-lg px-6 py-3',
 };
 
-const Button = ({ children, size = 'lg', ...props }: ButtonProps) => {
+const Button = ({
+  children,
+  size = 'lg',
+  className,
+  ...props
+}: ButtonProps) => {
   return (
     <button
-      className={`${buttonSize[size]}
+      className={`${buttonSize[size]} ${className}
         group border border-black rounded-full text-2xl relative`}
       {...props}
     >
       {children}
       <Comma
-        className="absolute top-0 -right-8 fill-green
+        className="xl:w-[4.625rem] lg:w-[3.125rem] absolute xl:top-0 lg:-top-[1rem] -right-8 fill-green
           transition duration-300
-          group-hover:translate-x-6 group-hover:drop-shadow-green"
+          xl:group-hover:translate-x-6 lg:group-hover:translate-x-3 group-hover:drop-shadow-green"
       />
     </button>
   );

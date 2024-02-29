@@ -63,7 +63,7 @@ const HeroSection = () => {
           />
         ))}
         <article className="xl:pt-[23.25rem] lg:pt-[12rem]">
-          <div className="flex items-center gap-3.5 lg:block sm:hidden">
+          <div className="lg:flex sm:hidden items-center gap-3.5 ">
             {mainBackground.map(({ imgName }, bgIndex) =>
               index === bgIndex ? (
                 <SlideDot key={imgName} />

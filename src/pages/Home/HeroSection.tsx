@@ -58,7 +58,7 @@ const HeroSection = () => {
               sm:top-[0.875rem] sm:-right-[1.5rem]
               -z-50
             `}
-            src={imgSrc}
+            srcSet={`${imgSrc[2]} 1024w, ${imgSrc[1]} 1920w, ${imgSrc[0]}`}
             alt={imgName}
           />
         ))}

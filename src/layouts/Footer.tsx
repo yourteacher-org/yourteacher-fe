@@ -22,7 +22,7 @@ const Footer = () => {
         />
         <button
           aria-label="scroll-top"
-          className="group w-10 absolute -top-48 right-[55px]"
+          className="group w-10 absolute -top-48 right-[55px] xl:block sm:hidden"
           onClick={scrollTop}
         >
           <TopArrow />

@@ -1,5 +1,5 @@
 #!/bin/sh
 cd ../
 mkdir output
-cp -R ./yourteacher-org/* ./output
-cp -R ./output ./yourteacher-org
+cp -R ./yourteacher-fe/* ./output
+cp -R ./output ./yourteacher-fe

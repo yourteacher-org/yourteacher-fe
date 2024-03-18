@@ -4,30 +4,64 @@ import ChevronButton from '@components/ChevronButton';
 
 import Comma from '@assets/img/button_comma.svg?react';
 import TwoCircles from '@assets/icon/two-circles.svg?react';
+import { useState } from 'react';
 
-const MOCK_SHARE_DATA = Array.from({ length: 5 }, (_, i) => ({
+const MOCK_SHARE_DATA = Array.from({ length: 20 }, (_, i) => ({
   id: i,
-  type: '자료공유',
+  type: `자료공유 ${i}`,
   title:
     '유교과 같이 스터디 하실 분 모집합니다. 유교과 같이 스터디 하실 분 모집합니다.',
   views: 684,
   createdAt: '2023.12.14.',
 }));
 
+const ANIMATION_DELAY = 500;
+const BOARD_UNIT = 5;
+
 const ShareDataSection = () => {
+  const [index, setIndex] = useState(0);
+  const [prevTrigger, setPrevTrigger] = useState(false);
+  const [nextTrigger, setNextTrigger] = useState(true);
+
+  const prevPage = () => {
+    setTimeout(
+      () =>
+        index < MOCK_SHARE_DATA.length / BOARD_UNIT - 1
+          ? setIndex(index + 1)
+          : setIndex(0),
+      ANIMATION_DELAY,
+    );
+
+    setPrevTrigger(true);
+    setTimeout(() => setPrevTrigger(false), ANIMATION_DELAY);
+  };
+
+  const nextPage = () => {
+    setTimeout(
+      () =>
+        index > 0
+          ? setIndex(index - 1)
+          : setIndex(MOCK_SHARE_DATA.length / BOARD_UNIT - 1),
+      ANIMATION_DELAY,
+    );
+
+    setNextTrigger(true);
+    setTimeout(() => setNextTrigger(false), ANIMATION_DELAY);
+  };
+
   return (
     <Section
       as="section"
       className="
         flex xl:flex-row sm:flex-col
-        xl:px-[16.25rem] lg:px-[1.875rem]
-        py-32
+        xl:px-[16.25rem] lg:px-[1.875rem] py-32
         xl:gap-[3.25rem]"
     >
       <div className="relative">
         <ChevronButton
           direction="left"
           className="absolute -left-[7.5rem] top-[50%] -translate-y-[50%]"
+          onClick={prevPage}
         />
 
         <div className="flex items-center xl:justify-normal sm:justify-center gap-x-2 lg:mb-[0.75rem]">
@@ -46,37 +80,48 @@ const ShareDataSection = () => {
         <Button>더 보기</Button>
       </div>
 
-      <ul className="flex xl:flex-col relative xl:gap-[1.875rem] xl:text-xl">
-        {MOCK_SHARE_DATA.map(({ id, type, title, views, createdAt }) => (
-          <li
-            key={id}
-            className="group flex justify-between relative 
-              xl:w-[60.625rem] xl:py-4 xl:px-[1.875rem]  
-              border border-gray-5 rounded-full
-              duration-200 cursor-pointer"
-          >
-            <p className="xl:mr-[5.625rem] group-hover:mr-[3.75rem] transition-[margin-right] duration-200">
-              {type}
-            </p>
-            <p className="flex-1 line-clamp-1 xl:pr-12">{title}</p>
-            <p>조회수: {views}</p>
-            <p className="xl:ml-[2.625rem] group-hover:mr-[5rem] transition-[margin-right] duration-200">
-              {createdAt}
-            </p>
+      <div className="relative">
+        <ul
+          className={`flex xl:flex-col relative xl:gap-[1.875rem] xl:text-xl
+            ${prevTrigger ? 'animate-fade-out-to-left' : 'animate-fade-in-to-left'}
+            ${nextTrigger ? 'animate-fade-out-to-right' : 'animate-fade-in-to-right'}
+          `}
+        >
+          {MOCK_SHARE_DATA.slice(
+            index * BOARD_UNIT,
+            (index + 1) * BOARD_UNIT,
+          ).map(({ id, type, title, views, createdAt }) => (
+            <li
+              key={id}
+              className="group flex justify-between relative 
+                xl:w-[60.625rem] xl:py-4 xl:px-[1.875rem]  
+                border border-gray-5 rounded-full
+                duration-200 cursor-pointer"
+            >
+              <p className="xl:mr-[5.625rem] group-hover:mr-[3.75rem] transition-[margin-right] duration-200">
+                {type}
+              </p>
+              <p className="flex-1 line-clamp-1 xl:pr-12">{title}</p>
+              <p>조회수: {views}</p>
+              <p className="xl:ml-[2.625rem] group-hover:mr-[5rem] transition-[margin-right] duration-200">
+                {createdAt}
+              </p>
 
-            <Comma
-              className="block
-                xl:w-[4.75rem] absolute -top-10 right-2
-              fill-yellow opacity-0 group-hover:opacity-100
-                transition-opacity duration-200"
-            />
-          </li>
-        ))}
+              <Comma
+                className="block
+                  xl:w-[4.75rem] absolute -top-10 right-2
+                fill-yellow opacity-0 group-hover:opacity-100
+                  transition-opacity duration-200"
+              />
+            </li>
+          ))}
+        </ul>
         <ChevronButton
           direction="right"
           className="absolute -right-[7.5rem] top-[50%] -translate-y-[50%]"
+          onClick={nextPage}
         />
-      </ul>
+      </div>
     </Section>
   );
 };

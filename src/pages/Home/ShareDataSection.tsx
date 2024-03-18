@@ -11,7 +11,9 @@ const MOCK_SHARE_DATA = Array.from({ length: 20 }, (_, i) => ({
   type: `자료공유 ${i + 1}`,
   title:
     '유교과 같이 스터디 하실 분 모집합니다. 유교과 같이 스터디 하실 분 모집합니다.',
-  views: 684,
+  views: new Intl.NumberFormat('ko-kr', { notation: 'standard' }).format(
+    Math.floor(Math.random() * 100000),
+  ),
   createdAt: '2023.12.14.',
 }));
 
@@ -27,14 +29,14 @@ const ANIMATION = {
 
 const ShareDataSection = () => {
   const [index, setIndex] = useState(0);
-  const [trigger, setTrigger] = useState(ANIMATION.FADE_IN_LEFT);
+  const [trigger, setTrigger] = useState('');
 
   const CURRENT_INDEX_MOCK_DATA = MOCK_SHARE_DATA.slice(
     index * BOARD_UNIT,
     (index + 1) * BOARD_UNIT,
   );
 
-  const prevPage = () => {
+  const handleClickPrevPage = () => {
     setTimeout(
       () =>
         index < MOCK_SHARE_DATA.length / BOARD_UNIT - 1
@@ -47,7 +49,7 @@ const ShareDataSection = () => {
     setTimeout(() => setTrigger(ANIMATION.FADE_IN_LEFT), ANIMATION_DELAY);
   };
 
-  const nextPage = () => {
+  const handleClickNextPage = () => {
     setTimeout(
       () =>
         index > 0
@@ -72,7 +74,7 @@ const ShareDataSection = () => {
         <ChevronButton
           direction="left"
           className="absolute -left-[7.5rem] top-[50%] -translate-y-[50%]"
-          onClick={prevPage}
+          onClick={handleClickPrevPage}
         />
 
         <div className="flex items-center xl:justify-normal sm:justify-center gap-x-2 lg:mb-[0.75rem]">
@@ -99,25 +101,24 @@ const ShareDataSection = () => {
             ({ id, type, title, views, createdAt }) => (
               <li
                 key={id}
-                className="group flex justify-between relative 
-                xl:w-[60.625rem] xl:py-4 xl:px-[1.875rem]  
-                border border-gray-5 rounded-full
-                duration-200 cursor-pointer"
+                className="group relative flex items-center justify-between
+                  xl:w-[60.625rem] xl:h-[4.375rem] xl:px-[1.875rem]  
+                  border border-gray-5 rounded-full
+                  cursor-pointer"
               >
                 <p className="xl:mr-[5.625rem] group-hover:mr-[3.75rem] transition-[margin-right] duration-200">
                   {type}
                 </p>
                 <p className="flex-1 line-clamp-1 xl:pr-12">{title}</p>
-                <p>조회수: {views}</p>
+                <p className="text-left">조회수: {views}</p>
                 <p className="xl:ml-[2.625rem] group-hover:mr-[5rem] transition-[margin-right] duration-200">
                   {createdAt}
                 </p>
 
                 <Comma
-                  className="block
-                  xl:w-[4.75rem] absolute -top-10 right-2
-                fill-yellow opacity-0 group-hover:opacity-100
-                  transition-opacity duration-200"
+                  className="xl:w-[4.75rem] absolute -top-6 right-2
+                  fill-yellow opacity-0 group-hover:opacity-100
+                    transition-opacity duration-200"
                 />
               </li>
             ),
@@ -126,7 +127,7 @@ const ShareDataSection = () => {
         <ChevronButton
           direction="right"
           className="absolute -right-[7.5rem] top-[50%] -translate-y-[50%]"
-          onClick={nextPage}
+          onClick={handleClickNextPage}
         />
       </div>
     </Section>

@@ -100,32 +100,32 @@ const ShareDataSection = () => {
 
       <div className="relative">
         <ul
-          className={`flex flex-col relative xl:gap-[1.875rem] lg:gap-[1rem] sm:gap-[0.625rem]
+          className={`flex flex-col relative 2xl:gap-[1.875rem] xl:gap-[1.45vw] lg:gap-[1rem] sm:gap-[0.625rem]
             xl:mb-auto lg:mb-[2.5rem] sm:mb-[1.875rem]
-            xl:text-xl lg:text-sm sm:text-[0.625rem] ${trigger}`}
+            2xl:text-xl xl:text-[0.975vw] lg:text-sm sm:text-[0.625rem] ${trigger}`}
         >
           {CURRENT_INDEX_MOCK_DATA.map(
             ({ id, type, title, views, createdAt }) => (
               <li
                 key={id}
                 className="group relative flex items-center justify-between
-                  xl:w-[60.625rem]
-                  xl:h-[4.375rem] lg:h-[3.125rem] sm:h-12
-                  lg:px-[1.875rem] sm:px-4
+                  2xl:w-[60.625rem] xl:w-[100%]
+                  2xl:h-[4.375rem] xl:h-[3.85vw] lg:h-[3.125rem] sm:h-12
+                  2xl:px-[1.875rem] xl:px-[1.4vw] lg:px-[1.875rem] sm:px-4
                   border border-gray-5 rounded-full
                   cursor-pointer"
               >
                 <p
-                  className="xl:mr-[5.625rem] lg:mr-[6.25rem] sm:mr-[0.625rem]
+                  className="2xl:mr-[5.625rem] xl:mr-[4.25vw] lg:mr-[6.25rem] sm:mr-[0.625rem]
                     lg:group-hover:mr-[3.75rem]
                     transition-[margin-right] duration-200"
                 >
                   {type}
                 </p>
-                <p className="flex-1 line-clamp-1 xl:pr-12 sm:pr-2">{title}</p>
+                <p className="flex-1 xl:pr-12 sm:pr-2 line-clamp-1">{title}</p>
                 <p
-                  className="xl:w-[8.25rem] lg:w-[6.25rem] sm:w-[4.25rem]
-                    xl:mr-[2.625rem] lg:mr-[3.75rem] sm:mr-[0.625rem]
+                  className="2xl:w-[8.25rem] xl:w-[6.5vw] lg:w-[6.25rem] sm:w-[4.25rem]
+                    2xl:mr-[2.625rem] xl:mr-[2vw] lg:mr-[3.75rem] sm:mr-[0.625rem]
                     text-left"
                 >
                   조회수: {numberFormatter(views)}

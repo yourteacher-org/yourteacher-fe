@@ -41,7 +41,8 @@ const ChevronButton = ({
     <button
       className={`
         ${className} ${borderColorSet[borderColor]}
-        group border border-gray-6 rounded-full w-12 h-12
+        group border border-gray-6 rounded-full
+        lg:w-12 sm:w-[2.125rem] aspect-square
         grid place-content-center
         transition duration-300 hover:bg-green hover:border-green
       `}
@@ -50,6 +51,7 @@ const ChevronButton = ({
       <Chevron
         className={`
           ${borderColorSet[borderColor]}
+          lg:w-auto sm:w-[0.375rem]
           transition duration-300 stroke-gray-6 group-hover:stroke-white
         `}
       />

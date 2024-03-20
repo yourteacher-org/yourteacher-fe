@@ -3,6 +3,8 @@ export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      screens: { sm: '390px' },
+      screens: { '2xl': '1921px', sm: '390px' },
       fontFamily: {
         pretendard: ['Pretendard', 'sans-serif'],
       },
@@ -13,6 +15,7 @@ export default {
         'gray-4': '#B3B3B3',
         'gray-5': '#D9D9D9',
         'gray-6': '#DBDBDB',
+        'gray-7': '#ECECEC',
         green: '#3ECE9E',
         'green-1': '#011811',
         'green-2': '#2B413A',

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EduDate: React.FC = () => {
+const Date: React.FC = () => {
   return (
     <div>
       <h2>Date</h2>
@@ -8,4 +8,4 @@ const EduDate: React.FC = () => {
   );
 };
 
-export default EduDate;
+export default Date;

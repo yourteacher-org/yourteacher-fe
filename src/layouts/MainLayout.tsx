@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
 import Navbar from '@components/Navbar';
-import SearchwordSection from '@pages/Home/SearchwordSection';
 // import Footer from './Footer';
 
 interface MainLayoutProps {
@@ -13,7 +12,6 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <>
       <Navbar />
       <main>{children}</main>
-      <SearchwordSection />
       {/* <Footer /> */}
     </>
   );

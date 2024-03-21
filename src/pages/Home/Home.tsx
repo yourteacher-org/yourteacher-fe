@@ -1,5 +1,5 @@
 import React from 'react';
-
+import SearchwordSection from './SearchwordSection';
 import NoticeSection from './NoticeSection';
 import RecruitSection from './RecruitSection';
 import HeroSection from './HeroSection';
@@ -10,8 +10,10 @@ const Home: React.FC = () => {
       <HeroSection />
       <RecruitSection />
       <NoticeSection />
+      <SearchwordSection />;
     </div>
   );
+
 };
 
 export default Home;

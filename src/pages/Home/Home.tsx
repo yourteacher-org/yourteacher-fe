@@ -3,13 +3,13 @@ import React from 'react';
 import NoticeSection from './NoticeSection';
 import RecruitSection from './RecruitSection';
 import HeroSection from './HeroSection';
-import ShareDataSection from './ShareDataSection';
+import CommunitySection from './CommunitySection';
 
 const Home: React.FC = () => {
   return (
     <div>
       <HeroSection />
-      <ShareDataSection />
+      <CommunitySection />
       <RecruitSection />
       <NoticeSection />
     </div>

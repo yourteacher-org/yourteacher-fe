@@ -14,4 +14,22 @@ const mainBackground = [
   { imgName: 'background-3', imgSrc: [XL_BG3, LG_BG3, SM_BG3] },
 ];
 
-export { mainBackground };
+const MOCK_SHARE_DATA = Array.from({ length: 5 }, (_, i) => ({
+  id: i,
+  type: `자료공유 ${i + 1}`,
+  title:
+    '유교과 같이 스터디 하실 분 모집합니다. 유교과 같이 스터디 하실 분 모집합니다.',
+  views: Math.floor(Math.random() * 100000),
+  createdAt: '2023.12.14.',
+}));
+
+const MOCK_COMMUNITY_DATA = Array.from({ length: 5 }, (_, i) => ({
+  id: i,
+  type: `소통방 ${i + 1}`,
+  title:
+    '유교과 같이 스터디 하실 분 모집합니다. 유교과 같이 스터디 하실 분 모집합니다.',
+  views: Math.floor(Math.random() * 100000),
+  createdAt: '2023.12.14.',
+}));
+
+export { mainBackground, MOCK_SHARE_DATA, MOCK_COMMUNITY_DATA };

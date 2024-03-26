@@ -31,20 +31,21 @@ const NoticeCard = ({
 }: NoticeCardProps) => {
   return (
     <Link key={id} to={src} className="w-fit">
-      <li className="group xl:w-[18.125rem] lg:w-[12.5rem] sm:w-[9rem] relative">
+      <li className="group xl:w-[14vw] lg:w-[12.5rem] sm:w-[9rem] relative">
         <p className="mb-5 xl:text-lg lg:text-[0.875rem] sm:text-[0.625rem]">
           {id}
         </p>
         <p
-          className="mb-4 xl:text-4xl lg:text-[1.625rem] sm:text-lg
+          className="xl:text-[1.8vw] lg:text-[1.625rem] sm:text-lg
+            xl:leading-[2vw]
             xl:mb-5 lg:mb-4 sm:mb-2.5 font-bold line-clamp-1"
         >
           {title}
         </p>
         <p
-          className="mb-[1.875rem] lg:mb-8 sm:mb-[1.125rem]
-            xl:text-xl lg:text-[0.875rem] sm:text-[0.625rem] 
-            xl:leading-9 lg:leading-[1.625rem] line-clamp-2 break-keep"
+          className="mb-[1.5vw] lg:mb-8 sm:mb-[1.125rem]
+            xl:text-[0.975vw] lg:text-[0.875rem] sm:text-[0.625rem] 
+            xl:leading-[1.75vw] lg:leading-[1.625rem] line-clamp-2 break-keep"
         >
           {content}
         </p>
@@ -76,7 +77,7 @@ const NoticeSection = () => {
         flex flex-col
         xl:items-stretch sm:items-center
         xl:px-[16.25rem] lg:px-[1.875rem]
-        py-32"
+        py-32 mb-[5rem]"
     >
       <div className="flex items-center xl:justify-between justify-center xl:mb-5 lg:mb-[3.75rem] sm:mb-[2.25rem]">
         <div>
@@ -96,9 +97,10 @@ const NoticeSection = () => {
       </div>
       <ul
         className="lg:w-full sm:w-72
-          flex flex-wrap
+          flex
           lg:justify-normal sm:justify-center
-          xl:gap-[5rem] lg:gap-[3.125rem] sm:[1.875rem]"
+          xl:gap-[5rem] lg:gap-[3.125rem] sm:[1.875rem]
+          xl:text-lg"
       >
         {DATA.map((data) => (
           <NoticeCard key={data.id} {...data} />

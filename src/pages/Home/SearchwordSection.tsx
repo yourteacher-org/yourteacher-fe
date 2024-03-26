@@ -11,9 +11,10 @@ const SearchwordSection = () => {
   const TOTAL_ITEMS = MOCK_DATA.length;
   const VISIBLE_ITEMS_COUNT = 5;
 
+
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setActiveItem((prevItem) => (prevItem % TOTAL_ITEMS) + 1);
+      setActiveItem((prevItem) => (prevItem % totalItems) + 1);
       setIsZoom(true);
     }, 3000);
 
@@ -26,11 +27,13 @@ const SearchwordSection = () => {
 
   const handlePrevButtonClick = () => {
     setActiveItem((prevItem) => (prevItem === 1 ? TOTAL_ITEMS : prevItem - 1));
+
   };
 
   const handleZoomButonClick = () => {
     setIsZoom(true);
   };
+
 
   const items = RenderItems(activeItem, VISIBLE_ITEMS_COUNT, TOTAL_ITEMS);
 
@@ -67,7 +70,6 @@ const SearchwordSection = () => {
         </div>
       </div>
       <ul className="relative ml-[12rem]">
-        {/* items 배열을 매핑하여 항목을 렌더링합니다. */}
         {items.map(({ itemNumber, isActive }) => (
           <li
             key={itemNumber}

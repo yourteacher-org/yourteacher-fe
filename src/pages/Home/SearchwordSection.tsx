@@ -5,7 +5,7 @@ import { MOCK_DATA } from '@data/Search';
 import RenderItems from '@data/Render';
 import ChevronButton from '@components/ChevronButton';
 
-import Zoom from '@assets/img/zoom.svg';
+import Zoom from '@assets/img/zoom.svg?react';
 
 const SearchwordSection = () => {
   const [activeItem, setActiveItem] = useState(1);
@@ -91,12 +91,9 @@ const SearchwordSection = () => {
               <button
                 onClick={handleZoomButonClick}
                 className="absolute right-[1.25rem]"
+                aria-label="링크 아이콘"
               >
-                <img
-                  src={Zoom}
-                  alt="링크 아이콘"
-                  className="rounded-full h-20 ml-14 xl:-translate-y-1 lg:-translate-y-9 sm:-translate-y-6 xl:w-[4rem] lg:w-[3.75rem] sm:w-[1.875rem]"
-                />
+                <Zoom className="rounded-full h-20 ml-14 xl:-translate-y-1 lg:-translate-y-9 sm:-translate-y-6 xl:w-[4rem] lg:w-[3.75rem] sm:w-[1.875rem]" />
               </button>
             )}
           </li>

@@ -2,6 +2,11 @@
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    screens: {
+      sm: '390px', // 모바일 화면
+      lg: '1024px', // 데스크톱 화면
+      xl: '1280px', // 대형 데스크톱 화면
+    },
     extend: {
       keyframes: {
         'fade-in-to-left': {

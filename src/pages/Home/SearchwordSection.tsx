@@ -1,9 +1,11 @@
-import Section from '@layouts/Section';
 import { useState, useEffect } from 'react';
-import Zoom from '@assets/img/zoom.svg';
+
+import Section from '@layouts/Section';
+import { MOCK_DATA } from '@data/Search';
+import RenderItems from '@data/Render';
 import ChevronButton from '@components/ChevronButton';
-import { MOCK_DATA } from 'src/data/Search';
-import RenderItems from 'src/data/Render';
+
+import Zoom from '@assets/img/zoom.svg?react';
 
 const SearchwordSection = () => {
   const [activeItem, setActiveItem] = useState(1);
@@ -11,10 +13,9 @@ const SearchwordSection = () => {
   const TOTAL_ITEMS = MOCK_DATA.length;
   const VISIBLE_ITEMS_COUNT = 5;
 
-
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setActiveItem((prevItem) => (prevItem % totalItems) + 1);
+      setActiveItem((prevItem) => (prevItem % TOTAL_ITEMS) + 1);
       setIsZoom(true);
     }, 3000);
 
@@ -27,13 +28,11 @@ const SearchwordSection = () => {
 
   const handlePrevButtonClick = () => {
     setActiveItem((prevItem) => (prevItem === 1 ? TOTAL_ITEMS : prevItem - 1));
-
   };
 
   const handleZoomButonClick = () => {
     setIsZoom(true);
   };
-
 
   const items = RenderItems(activeItem, VISIBLE_ITEMS_COUNT, TOTAL_ITEMS);
 
@@ -43,7 +42,7 @@ const SearchwordSection = () => {
       className="w-full flex xl:flex-row sm:flex-col
         xl:items-center sm:items-center
         xl:px-[16.25rem] lg:mx-w-[80rem] sm:mx-w-[24.375rem]
-         py-[6.25rem]
+        py-[6.25rem]
         xl:mb-40 lg:mb-32 sm:mb-20"
     >
       <div className="flex flex-col justify-center items-center min-w-[25rem]">
@@ -92,12 +91,9 @@ const SearchwordSection = () => {
               <button
                 onClick={handleZoomButonClick}
                 className="absolute right-[1.25rem]"
+                aria-label="링크 아이콘"
               >
-                <img
-                  src={Zoom}
-                  alt="링크 아이콘"
-                  className="rounded-full h-20 ml-14 xl:-translate-y-1 lg:-translate-y-9 sm:-translate-y-6 xl:w-[4rem] lg:w-[3.75rem] sm:w-[1.875rem]"
-                />
+                <Zoom className="rounded-full h-20 ml-14 xl:-translate-y-1 lg:-translate-y-9 sm:-translate-y-6 xl:w-[4rem] lg:w-[3.75rem] sm:w-[1.875rem]" />
               </button>
             )}
           </li>

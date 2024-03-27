@@ -17,15 +17,15 @@ const HeroSection = () => {
   return (
     <Section
       as="section"
-      className=" w-full relative
-        xl:mx-[16.25rem] lg:mx-[1.875rem] sm:mx-[1.125rem]
+      className="relative
+        xl:px-0 lg:px-[1.875rem] sm:px-[1.125rem]
         xl:mb-60 lg:mb-40 sm:mb-32"
     >
       <div
         className="absolute
-          xl:-left-[10.325rem] xl:-bottom-[2rem]
-          lg:right-5 lg:-bottom-5
-          sm:right-8 sm:-bottom-0
+          xl:left-[4.25rem] xl:-bottom-[2.75rem]
+          lg:right-5 lg:bottom-2
+          sm:right-2 sm:bottom-0
           cursor-default"
       >
         <span className="inline-block -rotate-90 absolute top-4 -left-7">
@@ -33,7 +33,10 @@ const HeroSection = () => {
         </span>
         <ScrollArrow className="lg:h-auto sm:h-[100px] rotate-180" />
       </div>
-      <div className="relative lg:w-auto sm:min-w-[440px] xl:pt-[23.25rem] lg:pt-[12rem]">
+      <div
+        className="relative lg:w-auto sm:min-w-[440px]
+          xl:pl-[16.25rem] xl:pt-[23.25rem] lg:pt-[12rem]"
+      >
         <Slide duration={3000}>
           {({ index, changeIndex }) => (
             <>
@@ -44,7 +47,7 @@ const HeroSection = () => {
                     ${index === bgIndex ? 'opacity-100' : 'opacity-0'}
                     xl:w-[1338px] lg:w-[785px] sm:w-[440px]
                     absolute transition ${ANIMATION_DURATION}
-                    xl:-top-[23rem] xl:left-[15.625rem]
+                    xl:-top-[23rem] xl:left-[31.875rem]
                     lg:-top-[10rem] lg:-right-[5.375rem]
                     sm:top-[0.875rem] sm:-right-[1.5rem]
                     -z-50

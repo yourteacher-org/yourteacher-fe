@@ -84,7 +84,7 @@ const RecruitSection = () => {
         xl:mb-40 lg:mb-32 sm:mb-20"
     >
       <div
-        className="xl:flex-none lg:flex-1
+        className="lg:flex-1
           xl:w-[25rem] xl:text-left sm:text-center xl:mb-0 lg:mb-10"
       >
         <div

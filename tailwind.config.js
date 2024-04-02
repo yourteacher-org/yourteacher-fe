@@ -69,6 +69,9 @@ export default {
         'green-2': '#2B413A',
         'green-3': '#788E88',
         yellow: '#FFD72E',
+        'kakao-yellow': '#FAE100',
+        'google-gray': '#F3F3F3',
+        'naver-green': '#1EC800',
       },
       dropShadow: {
         green: '5px 5px 10px #3ECE9E',

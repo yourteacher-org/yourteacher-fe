@@ -1,7 +1,12 @@
 import React from 'react';
+import SchedulSection from './SchedulSection';
 
 const Home: React.FC = () => {
-  return <div>메인 페이지</div>;
+  return (
+    <div>
+      <SchedulSection />
+    </div>
+  );
 };
 
 export default Home;

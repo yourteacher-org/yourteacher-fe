@@ -46,7 +46,7 @@ const LoginComma = ({ type }: LoginCommaProps) => {
 
 const Login = () => {
   return (
-    <div className="h-[70vh] xl:mx-[25rem] mt-24 text-center">
+    <div className="xl:h-[70vh] sm:h-[57.5vh] xl:mx-[25rem] mt-24 text-center">
       <h1
         className="
           2xl:mb-8 xl:mb-[1.125vw] lg:mb-[1.5rem] sm:mb-[0.5rem]

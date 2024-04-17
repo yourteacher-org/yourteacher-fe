@@ -1,23 +1,25 @@
-import { useState, Fragment } from 'react';
+import { useState } from 'react';
 import Section from '@layouts/Section';
 import ChevronButton from '@components/ChevronButton';
 import schedule from '@assets/img/schedule.png';
-import Edu from '@assets/img/Edu.svg?react';
-import Date from '@assets/img/Date.svg?react';
+import Button from '@components/Button';
+import Edu from '@assets/icon/edu.svg?react';
+import Date from '@assets/icon/date.svg?react';
+import { MOCKAG_SCHEDUL_DATA } from '@data/Schedul';
 
-const DATA = Array.from({ length: 5 }, (_, i) => ({
-  id: i + 1,
-  title: '2023년 보육교사 자격기준 설명회',
-  contents: [
-    '보육교사 자격기준 세부사항 안내',
-    '보육실습 기준 세부 사항 안내',
-    '보육교사 국가자격증 단체신청 안내',
-  ],
-  applyStartDate: '2023-10-25',
-  applyEndDate: '2023-11-15',
-  eduStartDate: '2023-11-17',
-  eduEndDate: '2023-12-20',
-}));
+// const DATA = Array.from({ length: 5 }, (_, i) => ({
+//   id: i + 1,
+//   title: '2023년 보육교사 자격기준 설명회',
+//   contents: [
+//     '보육교사 자격기준 세부사항 안내',
+//     '보육실습 기준 세부 사항 안내',
+//     '보육교사 국가자격증 단체신청 안내',
+//   ],
+//   applyStartDate: '2023-10-25',
+//   applyEndDate: '2023-11-15',
+//   eduStartDate: '2023-11-17',
+//   eduEndDate: '2023-12-20',
+// }));
 
 interface ScheduleDateProps {
   title: string;
@@ -27,6 +29,24 @@ interface ScheduleDateProps {
   eduStartDate: string;
   eduEndDate: string;
 }
+
+const extractDate = (
+  dateString: string,
+): { year: number; month: number; day: number } => {
+  const [year, month, day] = dateString.split('-').map(Number);
+  return { year, month, day };
+};
+const formatDate = (dateString: string): string => {
+  const { year, month, day } = extractDate(dateString);
+  return `${year}년 ${month}월 ${day}일`;
+};
+
+// 날짜 문자열을 '-'를 기준으로 분할하고, 각 부분을 숫자로 변환하여 년, 월, 일을 추출합니다.
+// 그런 다음 추출된 값을 사용하여 원하는 형식으로 날짜를 포맷합니다.
+// 이 방법을 사용하면 Date 객체를 사용하는 대신 문자열에서 직접 날짜를 추출하여 처리할 수 있습니다.
+// split 함수는 문자열을 특정 구분자를 기준으로 나누어 배열로 반환
+// '2023-10-25'라는 문자열이 있다면 split 함수를 사용하면 ['2023', '10', '25']와 같은 배열이 생성됩니다.
+
 const ScheduleDate = ({
   title,
   contents,
@@ -36,39 +56,60 @@ const ScheduleDate = ({
   eduEndDate,
 }: ScheduleDateProps) => {
   return (
-    <ul
+    <div
       className="w-[59.625rem] h-[24rem] pt-[5rem]
       border rounded-[3rem] shadow-lg text-center bg-white"
     >
       <h2 className="text-[2rem] pb-2">{title}</h2>
       {contents.map((content) => (
-        <Fragment key={content}>
-          <li>{content}</li>
-        </Fragment>
+        <p key={content}>{content}</p>
       ))}
-      <li>
-        <Date className="absolute ml-[17rem]" />
-        신청일자: {applyStartDate} ~ {applyEndDate}
-      </li>
-      <li>
-        <Edu className="absolute ml-[21.2rem]" />
-        교육일자: {eduStartDate} ~ {eduEndDate}
-      </li>
-      {/*  contents 배열의 각 항목을 <li> 요소로 매핑하여 리스트를 생성, 네모 생성 및 스타일 */}
-    </ul>
+      <p className="flex-col">. . .</p>
+      <p>
+        <Date className="absolute ml-[16.5rem]" />
+        신청일자: {formatDate(applyStartDate)} ~ {formatDate(applyEndDate)}
+      </p>
+      <p>
+        <Edu className="absolute ml-[16.5rem]" />
+        교육일자: {formatDate(eduStartDate)} ~ {formatDate(eduEndDate)}
+      </p>
+    </div>
   );
 };
+// 제목, 내용, 신청일자, 교육일자와 같은 항목들은 독립적인 항목으로 보이지 않고 하나의 섹션에 속하는 내용이다.
+// <ul>과 <li> 항목, 할 일 목록 등이 이에 해당
+//  제목, 내용, 신청일자, 교육일자와 같은 항목들은 일반적으로 목록으로 나열되지 않는다.
+// 이러한 정보들은 하나의 섹션 안에 표시되는 것이 일반적이다.
+// 따라서 <div>를 사용하여 섹션을 나타내는 것이 더 적합.
 
 const SchedulSection = () => {
   const [startIdx, setStartIdx] = useState(0);
+  const [renderingData, setRenderingData] = useState(MOCKAG_SCHEDUL_DATA);
 
   const prevButton = () => {
-    setStartIdx((prevIdx) => (prevIdx === 0 ? DATA.length - 1 : prevIdx - 1));
+    const nextRenderingData = [
+      renderingData[renderingData.length - 1],
+      ...renderingData.slice(1, 4),
+    ];
+
+    setRenderingData(nextRenderingData);
+    setStartIdx((prevIdx) => (prevIdx === 0 ? 4 : prevIdx - 1));
+    // startIdx 값이 0일 때, 즉 첫 번째 네모일 때를 확인합니다.
+    // 만약 첫 번째 네모라면, 다음 네모로 이동하는 것이 아니라 마지막 네모로 이동하게 됩니다.
+    // 그렇지 않은 경우에는 이전 네모로 이동합니다.
   };
 
   const nextButton = () => {
-    setStartIdx((prevIdx) => (prevIdx === DATA.length - 1 ? 0 : prevIdx + 1));
+    const nextRenderingData = [...renderingData.slice(1, 4), renderingData[0]];
+
+    setRenderingData(nextRenderingData);
+    setStartIdx((prevIdx) => (prevIdx === 4 ? 0 : prevIdx + 1));
+    // 현재 startIdx 값이 4일 때, 즉 마지막 네모일 때를 확인합니다.
+    // 만약 마지막 네모라면, 다음 네모로 이동하는 것이 아니라 첫 번째 네모로 이동하게 됩니다.
+    // 그렇지 않은 경우에는 다음 네모로 이동합니다.
   };
+
+  const movement = `translateX(calc(-10.375% - ${startIdx * 1034}px))`;
 
   return (
     <Section as="section" className="">
@@ -80,13 +121,15 @@ const SchedulSection = () => {
           어린이집 유치원 선생님들을 응원합니다
         </p>
         <div className="relative w-[100%] h-[34rem] left-0 bottom-[7rem] overflow-hidden">
-          <div className="absolute flex w-[150vw] left-[50%] top-0 -translate-x-[50%]  gap-[5rem]">
-            {DATA.slice(startIdx, startIdx + 3).map((data) => (
-              <ScheduleDate key={data.id} {...data} />
+          <div
+            className="absolute flex top-0 gap-[5rem] transition-transform duration-700 ease-in-out"
+            style={{ transform: movement }}
+          >
+            {renderingData.map((scheduleData) => (
+              <ScheduleDate key={scheduleData.id} {...scheduleData} />
             ))}
           </div>
         </div>
-
         <div className="flex justify-between">
           <ChevronButton
             onClick={prevButton}
@@ -100,10 +143,18 @@ const SchedulSection = () => {
           />
         </div>
       </div>
-      {/* 렌더링
-      {...data}는 spread 연산자를 사용하여 data 객체의 모든 속성을 ScheduleDate 컴포넌트에 전달합니다. 
-      이것은 ScheduleDate 컴포넌트의 props로 id, title, contents 등의 속성을 전달합니다. 따라서 ScheduleDate 컴포넌트는 이러한 속성을 받아서 해당 데이터를 렌더링하게 됩니다. 
-    이를 통해 코드를 더 간결하고 유지보수가 쉽도록 만듭니다. */}
+      <Button className="-translate-y-[9rem] translate-x-[53rem]">
+        더보기
+      </Button>
+      <div className="absolute -translate-y-[20rem] translate-x-[60rem] flex item-center">
+        {MOCKAG_SCHEDUL_DATA.map((data) => (
+          <div
+            key={data.id}
+            className={`w-2 h-2 rounded-full mx-1 ${startIdx === data.id - 1 ? 'bg-green' : 'bg-gray-100'}`}
+          />
+          // 'mx-[value]'는 좌우 여백을 '[value]'만큼 설정s
+        ))}
+      </div>
     </Section>
   );
 };

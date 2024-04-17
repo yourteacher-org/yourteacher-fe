@@ -1,10 +1,16 @@
 import React from 'react';
 
+import Section from '@layouts/Section';
+import PageNav from '@components/PageNav';
+
 const User: React.FC = () => {
   return (
-    <div>
-      <h2>user</h2>
-    </div>
+    <Section as="section">
+      <PageNav>
+        <li>마이페이지</li>
+      </PageNav>
+      <h1>마이페이지</h1>
+    </Section>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import Section from '@layouts/Section';
 import PageNav from '@components/PageNav';
@@ -9,28 +9,9 @@ import Pencil from '@assets/icon/pencil.svg?react';
 import Check from '@assets/icon/check.svg?react';
 import Exclamation from '@assets/icon/exclamation.svg?react';
 
-interface ProfileIconProps {
-  children?: ReactNode;
-  color?: 'red' | 'gray' | 'green';
-}
-
-const ProfileIcon = ({ children, color = 'gray' }: ProfileIconProps) => {
-  const colorSet = {
-    red: 'bg-red',
-    gray: 'bg-gray-7',
-    green: 'bg-green',
-  };
-
-  return (
-    <i
-      className={`w-[1.75rem] aspect-square
-                  flex items-center justify-center
-                  rounded-full ${colorSet[color]}`}
-    >
-      {children}
-    </i>
-  );
-};
+import UserInformation from './UserInformation';
+import UserInformationIcon from './UserInformationIcon';
+import UserAction from './UserAction';
 
 const UserPage: React.FC = () => {
   return (
@@ -62,87 +43,46 @@ const UserPage: React.FC = () => {
       <div className="mb-[3.75rem]">
         <h2 className="mb-5 text-4xl font-bold">개인정보</h2>
         <div
-          className="flex items-center w-[100%] h-[16rem] rounded-[2.5rem]
+          className="flex items-center w-[100%] h-[12.5vw] rounded-[2.5rem]
             shadow-[6px_6px_20px_1px_rgba(0,0,0,0.15)]"
         >
-          <div className="flex-1 flex flex-col items-center justify-center px-[5.625rem]">
-            <p className="flex gap-2 items-center mb-8 text-[1vw]">
-              닉네임
-              <ProfileIcon>
-                <Pencil />
-              </ProfileIcon>
-            </p>
-            <p className="text-[2.25vw] font-bold">유어티처</p>
-          </div>
-          <div className="w-1 h-20 border-r-[1px] border-gray-5" />
-          <div className="flex-1 flex flex-col items-center justify-center px-[5.625rem]">
-            <p className="flex gap-2 items-center mb-8 text-[1.25rem]">
-              본인인증
-              <ProfileIcon color="green">
-                <Check />
-              </ProfileIcon>
-            </p>
-            <p className="text-[3rem] font-bold">인증완료</p>
-          </div>
-          <div className="w-1 h-20 border-r-[1px] border-gray-5" />
-          <div className="flex-1 flex flex-col items-center justify-center px-[5.625rem]">
-            <p className="flex gap-2 items-center mb-8 text-[1.25rem]">
-              교사인증
-              <ProfileIcon color="red">
-                <Exclamation />
-              </ProfileIcon>
-            </p>
-            <p className="text-[3rem] font-bold">인증필요</p>
-          </div>
-          <div className="w-1 h-20 border-r-[1px] border-gray-5" />
-          <div className="flex-1 flex flex-col items-center justify-center px-[5.625rem]">
-            <p className="flex gap-2 items-center mb-8 text-[1.25rem]">
-              SNS 연동
-              <ProfileIcon color="green">
-                <Check />
-              </ProfileIcon>
-            </p>
-            <p className="text-[3rem] font-bold">연동완료</p>
-          </div>
+          <UserInformation
+            name="닉네임"
+            icon={<UserInformationIcon icon={<Pencil />} />}
+          >
+            유어티처
+          </UserInformation>
+          <UserInformation
+            name="본인인증"
+            icon={<UserInformationIcon color="green" icon={<Check />} />}
+            borderLeft
+          >
+            인증완료
+          </UserInformation>
+          <UserInformation
+            name="교사인증"
+            icon={<UserInformationIcon color="red" icon={<Exclamation />} />}
+            borderLeft
+          >
+            인증필요
+          </UserInformation>
+          <UserInformation
+            name="SNS 연동"
+            icon={<UserInformationIcon color="green" icon={<Check />} />}
+            borderLeft
+          >
+            연동완료
+          </UserInformation>
         </div>
       </div>
 
       <div className="mb-20">
         <h2 className="mb-5 text-4xl font-bold">나의 활동</h2>
         <div className="border-y-2 border-black">
-          <div
-            className="flex items-center justify-between py-[1.875rem] pl-10 pr-20
-              border-b-2 border-gray-5"
-          >
-            <span className="text-[1.625rem]">내가 쓴 글</span>
-            <span className="text-[1.25rem]">
-              <em className="mr-2 text-4xl font-bold not-italic">254</em>개
-            </span>
-          </div>
-          <div
-            className="flex items-center justify-between py-[1.875rem] pl-10 pr-20
-              border-b-2 border-gray-5"
-          >
-            <span className="text-[1.625rem]">내가 쓴 댓글</span>
-            <span className="text-[1.25rem]">
-              <em className="mr-2 text-4xl font-bold not-italic">254</em>개
-            </span>
-          </div>
-          <div
-            className="flex items-center justify-between py-[1.875rem] pl-10 pr-20
-              border-b-2 border-gray-5"
-          >
-            <span className="text-[1.625rem]">내가 찜한 글</span>
-            <span className="text-[1.25rem]">
-              <em className="mr-2 text-4xl font-bold not-italic">254</em>개
-            </span>
-          </div>
-          <div className="flex items-center justify-between py-[1.875rem] pl-10 pr-20">
-            <span className="text-[1.625rem]">내가 좋아요 한 글</span>
-            <span className="text-[1.25rem]">
-              <em className="mr-2 text-4xl font-bold not-italic">254</em>개
-            </span>
-          </div>
+          <UserAction title="내가 쓴 글" count="254" borderBottom />
+          <UserAction title="내가 쓴 댓글" count="254" borderBottom />
+          <UserAction title="내가 찜한 글" count="254" borderBottom />
+          <UserAction title="내가 좋아요 한 글" count="254" />
         </div>
       </div>
 

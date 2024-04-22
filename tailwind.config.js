@@ -6,6 +6,7 @@ export default {
       sm: '390px', // 모바일 화면
       lg: '1024px', // 데스크톱 화면
       xl: '1280px', // 대형 데스크톱 화면
+      '2xl': '1921px', // 와이드 데스크톱 화면
     },
     extend: {
       keyframes: {
@@ -52,7 +53,6 @@ export default {
         'move-up': 'move-up 2s ease-in-out forwards',
         'move-up-target': 'move-up-target 2s ease-in-out forwards',
       },
-      screens: { '2xl': '1921px', sm: '390px' },
       fontFamily: {
         pretendard: ['Pretendard', 'sans-serif'],
       },
@@ -69,6 +69,9 @@ export default {
         'green-2': '#2B413A',
         'green-3': '#788E88',
         yellow: '#FFD72E',
+        'kakao-yellow': '#FAE100',
+        'google-gray': '#F3F3F3',
+        'naver-green': '#1EC800',
       },
       dropShadow: {
         green: '5px 5px 10px #3ECE9E',

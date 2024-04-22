@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import Section from '@layouts/Section';
 import PageNav from '@components/PageNav';
@@ -9,7 +9,30 @@ import Pencil from '@assets/icon/pencil.svg?react';
 import Check from '@assets/icon/check.svg?react';
 import Exclamation from '@assets/icon/exclamation.svg?react';
 
-const User: React.FC = () => {
+interface ProfileIconProps {
+  children?: ReactNode;
+  color?: 'red' | 'gray' | 'green';
+}
+
+const ProfileIcon = ({ children, color = 'gray' }: ProfileIconProps) => {
+  const colorSet = {
+    red: 'bg-red',
+    gray: 'bg-gray-7',
+    green: 'bg-green',
+  };
+
+  return (
+    <i
+      className={`w-[1.75rem] aspect-square
+                  flex items-center justify-center
+                  rounded-full ${colorSet[color]}`}
+    >
+      {children}
+    </i>
+  );
+};
+
+const UserPage: React.FC = () => {
   return (
     <Section as="section" className="px-[16.25rem] mt-[9.5rem]">
       <PageNav>
@@ -43,29 +66,21 @@ const User: React.FC = () => {
             shadow-[6px_6px_20px_1px_rgba(0,0,0,0.15)]"
         >
           <div className="flex-1 flex flex-col items-center justify-center px-[5.625rem]">
-            <p className="flex gap-2 items-center mb-8 text-[1.25rem]">
+            <p className="flex gap-2 items-center mb-8 text-[1vw]">
               닉네임
-              <i
-                className="w-[1.75rem] aspect-square
-                  flex items-center justify-center
-                  rounded-full bg-gray-7"
-              >
+              <ProfileIcon>
                 <Pencil />
-              </i>
+              </ProfileIcon>
             </p>
-            <p className="text-[3rem] font-bold">유어티처</p>
+            <p className="text-[2.25vw] font-bold">유어티처</p>
           </div>
           <div className="w-1 h-20 border-r-[1px] border-gray-5" />
           <div className="flex-1 flex flex-col items-center justify-center px-[5.625rem]">
             <p className="flex gap-2 items-center mb-8 text-[1.25rem]">
               본인인증
-              <i
-                className="w-[1.75rem] aspect-square
-                  flex items-center justify-center
-                  rounded-full bg-green"
-              >
+              <ProfileIcon color="green">
                 <Check />
-              </i>
+              </ProfileIcon>
             </p>
             <p className="text-[3rem] font-bold">인증완료</p>
           </div>
@@ -73,13 +88,9 @@ const User: React.FC = () => {
           <div className="flex-1 flex flex-col items-center justify-center px-[5.625rem]">
             <p className="flex gap-2 items-center mb-8 text-[1.25rem]">
               교사인증
-              <i
-                className="w-[1.75rem] aspect-square
-                  flex items-center justify-center
-                  rounded-full bg-red"
-              >
+              <ProfileIcon color="red">
                 <Exclamation />
-              </i>
+              </ProfileIcon>
             </p>
             <p className="text-[3rem] font-bold">인증필요</p>
           </div>
@@ -87,13 +98,9 @@ const User: React.FC = () => {
           <div className="flex-1 flex flex-col items-center justify-center px-[5.625rem]">
             <p className="flex gap-2 items-center mb-8 text-[1.25rem]">
               SNS 연동
-              <i
-                className="w-[1.75rem] aspect-square
-                  flex items-center justify-center
-                  rounded-full bg-green"
-              >
+              <ProfileIcon color="green">
                 <Check />
-              </i>
+              </ProfileIcon>
             </p>
             <p className="text-[3rem] font-bold">연동완료</p>
           </div>
@@ -149,4 +156,4 @@ const User: React.FC = () => {
   );
 };
 
-export default User;
+export default UserPage;

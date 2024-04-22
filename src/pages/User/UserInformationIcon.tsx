@@ -17,9 +17,10 @@ const UserInformationIcon = ({
 
   return (
     <i
-      className={`w-[1.75rem] aspect-square
-                  flex items-center justify-center
-                  rounded-full ${colorSet[color]}`}
+      className={`xl:w-7 lg:w-6 sm:w-3
+        aspect-square
+        flex items-center justify-center
+        rounded-full ${colorSet[color]}`}
     >
       {icon}
     </i>

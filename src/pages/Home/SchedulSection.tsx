@@ -107,6 +107,7 @@ const SchedulSection = () => {
       startIdx === 0 ? MOCKAG_SCHEDUL_DATA.length - 1 : startIdx - 1;
     updateDataAfterAnimation(newIdx, ANIMATION_DIRECTION.PREV);
   };
+
   const nextButton = () => {
     const newIdx =
       startIdx === MOCKAG_SCHEDUL_DATA.length - 1 ? 0 : startIdx + 1;

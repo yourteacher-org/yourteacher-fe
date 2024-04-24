@@ -38,17 +38,16 @@ const ScheduleDate = ({
 }: ScheduleDateProps) => {
   return (
     <div
-      className="xl:w-[59.625rem] lg:w-[38.875rem] sm:w-[20.875rem] xl:h-[24rem] lg:h-[20.625rem] sm:h-[15rem] xl:pt-[2.5rem] lg:pt-[2.5rem] sm:pt-[1.5rem]
+      className="xl:w-[59.625rem] lg:w-[38.875rem] sm:w-[20.875rem] xl:h-[24rem] lg:h-[20.625rem] sm:h-[15rem] xl:pt-[2.7rem] lg:pt-[2.5rem] sm:pt-[1.5rem]
       border rounded-[3rem] shadow-lg text-center bg-white"
     >
-      <h2 className="xl:text-[2rem] lg:text-[1.625rem] sm:text-[1.125rem] font-bold xl:mb-[1rem] lg:mb-[1rem] sm:mb-[1rem]">
+      <h2 className="xl:text-[2rem] lg:text-[1.625rem] sm:text-[1.125rem] font-bold xl:mb-[0.8rem] lg:mb-[1.5rem] sm:mb-[1rem]">
         {title}
       </h2>
       {contents.map((content) => (
         <p
           key={content}
-          className="xl:text-[1.25rem] lg:text-[0.875rem] sm:text-[0.625rem] xl:letter-spacing: mb-[0.53rem] lg:letter-spacing: mb-[0.8rem] sm:letter-spacing: mb-[0.009rem]
-          >"
+          className="xl:text-[1.25rem] lg:text-[0.875rem] sm:text-[0.625rem] xl:letter-spacing: mt-[0.15rem] lg:letter-spacing: mb-[0.4rem] sm:letter-spacing: mb-[0.01rem]"
         >
           {content}
         </p>

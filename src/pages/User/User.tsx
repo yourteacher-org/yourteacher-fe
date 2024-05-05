@@ -5,9 +5,6 @@ import PageNav from '@components/PageNav';
 
 import CirclePencil from '@assets/img/circle-pencil.png';
 import ProfileExample from '@assets/img/profile-example.png';
-import Pencil from '@assets/icon/pencil.svg?react';
-import Check from '@assets/icon/check.svg?react';
-import Exclamation from '@assets/icon/exclamation.svg?react';
 
 import UserInformation from './UserInformation';
 import UserInformationIcon from './UserInformationIcon';
@@ -95,66 +92,27 @@ const UserPage: React.FC = () => {
         >
           <UserInformation
             name="닉네임"
-            icon={
-              <UserInformationIcon
-                icon={
-                  <Pencil
-                    className="2xl:w-5 xl:w-5 lg:w-4 sm:w-2
-                      2xl:h-5 xl:h-5 lg:h-4 sm:h-2"
-                  />
-                }
-              />
-            }
+            icon={<UserInformationIcon color="gray" icon="pencil" />}
           >
             유어티처
           </UserInformation>
           <UserInformation
             name="본인인증"
-            icon={
-              <UserInformationIcon
-                color="green"
-                icon={
-                  <Check
-                    className="2xl:w-5 xl:w-5 lg:w-4 sm:w-2
-                      2xl:h-5 xl:h-5 lg:h-4 sm:h-2"
-                  />
-                }
-              />
-            }
+            icon={<UserInformationIcon color="green" icon="check" />}
             borderLeft
           >
             인증완료
           </UserInformation>
           <UserInformation
             name="교사인증"
-            icon={
-              <UserInformationIcon
-                color="red"
-                icon={
-                  <Exclamation
-                    className="2xl:w-5 xl:w-5 lg:w-4 sm:w-2
-                      2xl:h-5 xl:h-5 lg:h-4 sm:h-2"
-                  />
-                }
-              />
-            }
             borderLeft
+            icon={<UserInformationIcon color="red" icon="exclamation" />}
           >
             인증필요
           </UserInformation>
           <UserInformation
             name="SNS 연동"
-            icon={
-              <UserInformationIcon
-                color="green"
-                icon={
-                  <Check
-                    className="2xl:w-5 xl:w-5 lg:w-4 sm:w-2
-                      2xl:h-5 xl:h-5 lg:h-4 sm:h-2"
-                  />
-                }
-              />
-            }
+            icon={<UserInformationIcon color="green" icon="check" />}
             borderLeft
           >
             연동완료

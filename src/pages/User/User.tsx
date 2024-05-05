@@ -2,13 +2,13 @@ import React from 'react';
 
 import Section from '@layouts/Section';
 import PageNav from '@components/PageNav';
+import SVGIcon from '@components/SVGIcon';
 
-import CirclePencil from '@assets/img/circle-pencil.png';
 import ProfileExample from '@assets/img/profile-example.png';
 
+import UserAction from './UserAction';
 import UserInformation from './UserInformation';
 import UserInformationIcon from './UserInformationIcon';
-import UserAction from './UserAction';
 
 const UserPage: React.FC = () => {
   return (
@@ -43,17 +43,16 @@ const UserPage: React.FC = () => {
           <div className="w-[100%] aspect-square rounded-full bg-gray-100 overflow-hidden">
             <img src={ProfileExample} alt="profile" />
           </div>
-          <div
+          <button
+            type="button"
+            aria-label="profile_image_edit_button"
             className="absolute
-              lg:-right-2 sm:-right-2
-              lg:-bottom-2 sm:-bottom-2"
+              p-2 pt-2.5
+              -right-0 -bottom-0
+              bg-green rounded-full"
           >
-            <img
-              className="lg:w-20 sm:w-16"
-              src={CirclePencil}
-              alt="pencil-icon"
-            />
-          </div>
+            <SVGIcon type="Pencil" className="lg:w-9 sm:w-6 stroke-white" />
+          </button>
         </div>
         <div>
           <p
@@ -84,7 +83,6 @@ const UserPage: React.FC = () => {
         </h2>
         <div
           className="flex items-center
-            w-[100%]
             xl:h-[12.5vw] lg:h-36 sm:h-20
             lg:px-0 sm:px-2
             lg:rounded-[2.5rem] sm:rounded-[1.25rem]
@@ -92,14 +90,22 @@ const UserPage: React.FC = () => {
         >
           <UserInformation
             name="닉네임"
-            icon={<UserInformationIcon color="gray" icon="Pencil" />}
+            icon={
+              <UserInformationIcon
+                color="gray"
+                icon="Pencil"
+                className="xl:w-[1.25rem] lg:w-[1.125rem] sm:w-2
+                  aspect-square sm:h-2 
+                  stroke-gray-1"
+              />
+            }
           >
             유어티처
           </UserInformation>
           <UserInformation
             name="본인인증"
-            icon={<UserInformationIcon color="green" icon="Check" />}
             borderLeft
+            icon={<UserInformationIcon color="green" icon="Check" />}
           >
             인증완료
           </UserInformation>
@@ -112,8 +118,8 @@ const UserPage: React.FC = () => {
           </UserInformation>
           <UserInformation
             name="SNS 연동"
-            icon={<UserInformationIcon color="green" icon="Check" />}
             borderLeft
+            icon={<UserInformationIcon color="green" icon="Check" />}
           >
             연동완료
           </UserInformation>

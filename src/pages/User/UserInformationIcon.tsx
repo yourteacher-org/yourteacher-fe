@@ -1,6 +1,8 @@
 import SVGIcon, { IconType } from '@components/SVGIcon';
+import { SVGProps } from 'react';
 
-interface UserInformationIconProps {
+interface UserInformationIconProps
+  extends Omit<SVGProps<SVGSVGElement>, 'type'> {
   icon: IconType;
   color?: 'red' | 'gray' | 'green';
 }
@@ -14,6 +16,8 @@ const ICON_COLOR_SET = {
 const UserInformationIcon = ({
   icon,
   color = 'gray',
+  className,
+  ...props
 }: UserInformationIconProps) => {
   return (
     <i
@@ -24,8 +28,9 @@ const UserInformationIcon = ({
     >
       <SVGIcon
         type={icon}
-        className="2xl:w-5 xl:w-5 lg:w-4 sm:w-2
-          2xl:h-5 xl:h-5 lg:h-4 sm:h-2"
+        className={`xl:w-4 lg:w-3 sm:w-2
+          xl:h-4 lg:h-3 sm:h-2 ${className}`}
+        {...props}
       />
     </i>
   );

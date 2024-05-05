@@ -92,13 +92,13 @@ const UserPage: React.FC = () => {
         >
           <UserInformation
             name="닉네임"
-            icon={<UserInformationIcon color="gray" icon="pencil" />}
+            icon={<UserInformationIcon color="gray" icon="Pencil" />}
           >
             유어티처
           </UserInformation>
           <UserInformation
             name="본인인증"
-            icon={<UserInformationIcon color="green" icon="check" />}
+            icon={<UserInformationIcon color="green" icon="Check" />}
             borderLeft
           >
             인증완료
@@ -106,13 +106,13 @@ const UserPage: React.FC = () => {
           <UserInformation
             name="교사인증"
             borderLeft
-            icon={<UserInformationIcon color="red" icon="exclamation" />}
+            icon={<UserInformationIcon color="red" icon="Exclamation" />}
           >
             인증필요
           </UserInformation>
           <UserInformation
             name="SNS 연동"
-            icon={<UserInformationIcon color="green" icon="check" />}
+            icon={<UserInformationIcon color="green" icon="Check" />}
             borderLeft
           >
             연동완료

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Section from '@layouts/Section';
 import PageNav from '@components/PageNav';
@@ -11,6 +12,16 @@ import UserInformation from './UserInformation';
 import UserInformationIcon from './UserInformationIcon';
 
 const UserPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleWithdraw = () => {
+    // eslint-disable-next-line no-restricted-globals, no-alert
+    const isAgreeToWithdraw = confirm('정말로 유어티처를 탈퇴하시겠습니까?');
+    if (isAgreeToWithdraw) {
+      navigate('/withdraw');
+    }
+  };
+
   return (
     <Section
       as="section"
@@ -150,9 +161,13 @@ const UserPage: React.FC = () => {
           gap-[0.625rem] pb-[15rem] text-[1rem]"
       >
         <p>회원탈퇴를 원하신다면 탈퇴하기를 클릭해주세요.</p>
-        <p className="text-red cursor-pointer">
+        <button
+          type="button"
+          className="text-red cursor-pointer"
+          onClick={handleWithdraw}
+        >
           <u>탈퇴하기</u> {'>'}
-        </p>
+        </button>
       </div>
     </Section>
   );

@@ -2,7 +2,7 @@ import Section from '@layouts/Section';
 import Button from '@components/Button';
 
 import Comma from '@assets/img/button_comma.svg?react';
-import TwoCircle from '@assets/icon/two-circle.svg?react';
+import TwoCircle from '@assets/icon/two-circles.svg?react';
 import { Link } from 'react-router-dom';
 
 const DATA = Array.from({ length: 5 }, (_, i) => ({

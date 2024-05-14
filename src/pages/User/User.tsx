@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import {
+  AUTHENTICATED_STATUS,
+  CONNECTED_STATUS,
+  MOCK_DATA_USER,
+} from '@data/User';
 import Section from '@layouts/Section';
 import PageNav from '@components/PageNav';
-import SVGIcon from '@components/SVGIcon';
-
-import ProfileExample from '@assets/img/profile-example.png';
 
 import UserAction from './UserAction';
 import UserInformation from './UserInformation';
-import UserInformationIcon from './UserInformationIcon';
+import UserProfile from './UserProfile';
 
 const UserPage: React.FC = () => {
+  const [userData] = useState(MOCK_DATA_USER);
+
   const navigate = useNavigate();
 
   const handleWithdraw = () => {
@@ -39,50 +43,18 @@ const UserPage: React.FC = () => {
         마이페이지
       </h1>
 
-      <div
-        className="flex items-center
-        xl:gap-10 lg:gap-8 sm:gap-6
-        xl:mb-[3.75rem] lg:mb-12 sm:mb-8"
-      >
-        <div
-          className="relative
-            xl:w-[12rem] lg:w-[11rem] sm:w-[8.75rem]
-            aspect-square
-            lg:p-[0.625rem] sm:p-[0.5rem]
-            border rounded-full"
-        >
-          <div className="w-[100%] aspect-square rounded-full bg-gray-100 overflow-hidden">
-            <img src={ProfileExample} alt="profile" />
-          </div>
-          <button
-            type="button"
-            aria-label="profile_image_edit_button"
-            className="absolute
-              p-2 pt-2.5
-              -right-0 -bottom-0
-              bg-green rounded-full"
-          >
-            <SVGIcon type="Pencil" className="lg:w-9 sm:w-6 stroke-white" />
-          </button>
-        </div>
+      <UserProfile>
+        <UserProfile.Image>
+          <img src={userData.profileSrc} alt="profile" />
+        </UserProfile.Image>
         <div>
-          <p
-            className="xl:text-[3.125rem] lg:text-[2.75rem] sm:text-[2rem]
-              font-bold"
-          >
-            유어티처
-          </p>
-          <div
-            className="flex gap-4
-              lg:text-[1.25rem] sm:text-[1rem]
-              text-black-2"
-          >
-            <span>김유어</span>
-            <span className="text-gray-5">|</span>
-            <span>유아어린이집 교사</span>
-          </div>
+          <UserProfile.Nickname>{userData.nickname}</UserProfile.Nickname>
+          <UserProfile.NameAndJob
+            username={userData.username}
+            job={userData.job}
+          />
         </div>
-      </div>
+      </UserProfile>
 
       <div className="lg:mb-[3.75rem] sm:mb-12">
         <h2
@@ -99,40 +71,57 @@ const UserPage: React.FC = () => {
             lg:rounded-[2.5rem] sm:rounded-[1.25rem]
             shadow-[6px_6px_20px_1px_rgba(0,0,0,0.15)]"
         >
-          <UserInformation
-            name="닉네임"
-            icon={
-              <UserInformationIcon
+          <UserInformation>
+            <UserInformation.SubTitle>
+              <UserInformation.Label>닉네임</UserInformation.Label>
+              <UserInformation.Icon
+                type="Pencil"
                 color="gray"
-                icon="Pencil"
-                className="xl:w-[1.25rem] lg:w-[1.125rem] sm:w-2
-                  aspect-square sm:h-2 
-                  stroke-gray-1"
+                className="group-hover:bg-green
+                stroke-gray-1 group-hover:stroke-white
+                  transition-all duration-300"
               />
-            }
-          >
-            유어티처
+            </UserInformation.SubTitle>
+            <UserInformation.Status>{userData.nickname}</UserInformation.Status>
           </UserInformation>
-          <UserInformation
-            name="본인인증"
-            borderLeft
-            icon={<UserInformationIcon color="green" icon="Check" />}
-          >
-            인증완료
+
+          <UserInformation>
+            <UserInformation.SubTitle>
+              <UserInformation.Label>본인인증</UserInformation.Label>
+              <UserInformation.Icon
+                type={AUTHENTICATED_STATUS[userData.isAuthenticated].iconType}
+                color={AUTHENTICATED_STATUS[userData.isAuthenticated].iconColor}
+              />
+            </UserInformation.SubTitle>
+            <UserInformation.Status>
+              {AUTHENTICATED_STATUS[userData.isAuthenticated].status}
+            </UserInformation.Status>
           </UserInformation>
-          <UserInformation
-            name="교사인증"
-            borderLeft
-            icon={<UserInformationIcon color="red" icon="Exclamation" />}
-          >
-            인증필요
+
+          <UserInformation>
+            <UserInformation.SubTitle>
+              <UserInformation.Label>교사인증</UserInformation.Label>
+              <UserInformation.Icon
+                type={AUTHENTICATED_STATUS[userData.isAuthenticated].iconType}
+                color={AUTHENTICATED_STATUS[userData.isAuthenticated].iconColor}
+              />
+            </UserInformation.SubTitle>
+            <UserInformation.Status>
+              {AUTHENTICATED_STATUS[userData.isAuthenticated].status}
+            </UserInformation.Status>
           </UserInformation>
-          <UserInformation
-            name="SNS 연동"
-            borderLeft
-            icon={<UserInformationIcon color="green" icon="Check" />}
-          >
-            연동완료
+
+          <UserInformation>
+            <UserInformation.SubTitle>
+              <UserInformation.Label>SNS 연동</UserInformation.Label>
+              <UserInformation.Icon
+                type={CONNECTED_STATUS[userData.isConnected].iconType}
+                color={CONNECTED_STATUS[userData.isConnected].iconColor}
+              />
+            </UserInformation.SubTitle>
+            <UserInformation.Status>
+              {CONNECTED_STATUS[userData.isConnected].status}
+            </UserInformation.Status>
           </UserInformation>
         </div>
       </div>
@@ -146,10 +135,13 @@ const UserPage: React.FC = () => {
           나의 활동
         </h2>
         <div className="border-y-2 border-black">
-          <UserAction title="내가 쓴 글" count="254" borderBottom />
-          <UserAction title="내가 쓴 댓글" count="254" borderBottom />
-          <UserAction title="내가 찜한 글" count="254" borderBottom />
-          <UserAction title="내가 좋아요 한 글" count="254" />
+          <UserAction title="내가 쓴 글" count={userData.postCount} />
+          <UserAction title="내가 쓴 댓글" count={userData.commentCount} />
+          <UserAction title="내가 찜한 글" count={userData.heartPostCount} />
+          <UserAction
+            title="내가 좋아요 한 글"
+            count={userData.likePostCount}
+          />
         </div>
       </div>
 

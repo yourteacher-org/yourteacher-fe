@@ -102,12 +102,12 @@ const UserPage: React.FC = () => {
             <UserInformation.SubTitle>
               <UserInformation.Label>교사인증</UserInformation.Label>
               <UserInformation.Icon
-                type={AUTHENTICATED_STATUS[userData.isAuthenticated].iconType}
-                color={AUTHENTICATED_STATUS[userData.isAuthenticated].iconColor}
+                type={AUTHENTICATED_STATUS[userData.isTeacher].iconType}
+                color={AUTHENTICATED_STATUS[userData.isTeacher].iconColor}
               />
             </UserInformation.SubTitle>
             <UserInformation.Status>
-              {AUTHENTICATED_STATUS[userData.isAuthenticated].status}
+              {AUTHENTICATED_STATUS[userData.isTeacher].status}
             </UserInformation.Status>
           </UserInformation>
 

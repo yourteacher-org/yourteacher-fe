@@ -70,7 +70,10 @@ const UserInformationIcon = ({
       <SVGIcon
         type={type}
         className="xl:w-4 lg:w-3 sm:w-2
-          xl:h-4 lg:h-3 sm:h-2"
+          group-hover:xl:w-5 group-hover:lg:w-4
+          xl:h-4 lg:h-3 sm:h-2
+          group-hover:xl:h-5 group-hover:lg:h-4
+          transition-all duration-200"
       />
     </i>
   );
@@ -89,7 +92,7 @@ const UserInformationLabel = ({
     <span
       className={`xl:text-[1vw] lg:text-[0.875rem] sm:text-[0.675rem]
         group-hover:font-bold
-        transition-all duration-300
+        transition-all duration-200
         ${className}`}
     >
       {children}

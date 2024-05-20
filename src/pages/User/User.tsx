@@ -79,7 +79,7 @@ const UserPage: React.FC = () => {
                 color="gray"
                 className="group-hover:bg-green
                 stroke-gray-1 group-hover:stroke-white
-                  transition-all duration-300"
+                  transition-all duration-100"
               />
             </UserInformation.SubTitle>
             <UserInformation.Status>{userData.nickname}</UserInformation.Status>

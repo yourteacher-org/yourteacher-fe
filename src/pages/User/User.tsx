@@ -9,7 +9,7 @@ import {
 } from '@data/User';
 import Section from '@layouts/Section';
 import PageNav from '@components/PageNav';
-import useModalContext from '@components/Modal/ModalContext';
+import { useModalContext } from '@components/Modal';
 import { UserInformationStatusType, UserModalActionType } from '@/types/user';
 
 import UserAction from './UserAction';

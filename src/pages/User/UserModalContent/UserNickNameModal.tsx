@@ -1,12 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 
-import Modal from '@components/Modal/Modal';
-import useModalContext from '@components/Modal/ModalContext';
+import { Modal, useModalContext } from '@components/Modal';
 import { UserModalActionType } from '@/types/user';
-
-interface UserNickNameModalProps {
-  children?: UserModalActionType;
-}
 
 const DUPLICATE_STATUS = {
   DEFAULT: 'DEFAULT',
@@ -28,6 +23,10 @@ const DUPLICATE_STATUS_OPTIONS = {
     MESSAGE: '사용가능한 닉네임입니다.',
   },
 };
+
+interface UserNickNameModalProps {
+  children?: UserModalActionType;
+}
 
 const UserNickNameModal = ({ children }: UserNickNameModalProps) => {
   const { handleIsShow } = useModalContext();

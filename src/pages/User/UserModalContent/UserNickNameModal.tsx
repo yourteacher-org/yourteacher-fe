@@ -68,7 +68,11 @@ const UserNickNameModal = ({ children }: UserNickNameModalProps) => {
             value={nickname}
           />
           <button
-            className="rounded-full px-3 py-1 text-white m-0 bg-gray-1 disabled:bg-gray-5"
+            className="px-3 py-1 ml-2
+              bg-gray-1 disabled:bg-gray-5 hover:bg-green
+              text-white
+              rounded-full
+              transition-colors "
             disabled={!nickname.length}
             onClick={checkDuplicate}
           >

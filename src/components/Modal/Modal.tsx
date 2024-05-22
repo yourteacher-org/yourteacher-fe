@@ -16,9 +16,13 @@ const Modal = ({ children }: PropsWithChildren) => {
 
     if (target) {
       target.addEventListener('click', handler);
+      document.body.style.overflow = 'hidden';
     }
 
-    return () => target?.removeEventListener('click', handler);
+    return () => {
+      target?.removeEventListener('click', handler);
+      document.body.style.overflow = 'auto';
+    };
   }, [handleIsShow]);
 
   return (

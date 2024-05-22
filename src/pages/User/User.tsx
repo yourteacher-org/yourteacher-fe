@@ -5,18 +5,43 @@ import {
   AUTHENTICATED_STATUS,
   CONNECTED_STATUS,
   MOCK_DATA_USER,
+  USER_MODAL_STATUS,
 } from '@data/User';
 import Section from '@layouts/Section';
 import PageNav from '@components/PageNav';
+import useModalContext from '@components/Modal/ModalContext';
+import { UserInformationStatusType, UserModalActionType } from '@/types/user';
 
 import UserAction from './UserAction';
-import UserInformation from './UserInformation';
 import UserProfile from './UserProfile';
+import UserInformation from './UserInformation';
+import UserNickNameModal from './UserModalContent/UserNickNameModal';
+
+const USER_MODAL: {
+  [key in UserInformationStatusType]: (props: {
+    children: UserModalActionType;
+  }) => JSX.Element;
+} = {
+  NICKNAME: UserNickNameModal,
+  AUTHENTICATION: UserNickNameModal,
+  TEACHER_AUTHENTICATION: UserNickNameModal,
+  SNS_CONNECT: UserNickNameModal,
+};
 
 const UserPage: React.FC = () => {
-  const [userData] = useState(MOCK_DATA_USER);
-
   const navigate = useNavigate();
+  const { isShow, handleIsShow } = useModalContext();
+  const [userData] = useState(MOCK_DATA_USER);
+  const [modalState, setModalState] = useState<UserInformationStatusType>(
+    USER_MODAL_STATUS.NICKNAME,
+  );
+
+  const UserModal = USER_MODAL[modalState];
+
+  const changeModalStatus = (status: UserInformationStatusType) => {
+    handleIsShow(true);
+    setModalState(status);
+  };
 
   const handleWithdraw = () => {
     // eslint-disable-next-line no-restricted-globals, no-alert
@@ -72,7 +97,10 @@ const UserPage: React.FC = () => {
             shadow-[6px_6px_20px_1px_rgba(0,0,0,0.15)]"
         >
           <UserInformation>
-            <UserInformation.SubTitle>
+            <UserInformation.SubTitle
+              modalStatus={USER_MODAL_STATUS.NICKNAME}
+              onClick={changeModalStatus}
+            >
               <UserInformation.Label>닉네임</UserInformation.Label>
               <UserInformation.Icon
                 type="Pencil"
@@ -86,41 +114,52 @@ const UserPage: React.FC = () => {
           </UserInformation>
 
           <UserInformation>
-            <UserInformation.SubTitle>
+            <UserInformation.SubTitle
+              modalStatus={USER_MODAL_STATUS.AUTHENTICATION}
+              onClick={changeModalStatus}
+            >
               <UserInformation.Label>본인인증</UserInformation.Label>
               <UserInformation.Icon
-                type={AUTHENTICATED_STATUS[userData.isAuthenticated].iconType}
-                color={AUTHENTICATED_STATUS[userData.isAuthenticated].iconColor}
+                type={AUTHENTICATED_STATUS[userData.isAuthenticated].ICON_TYPE}
+                color={
+                  AUTHENTICATED_STATUS[userData.isAuthenticated].ICON_COLOR
+                }
               />
             </UserInformation.SubTitle>
             <UserInformation.Status>
-              {AUTHENTICATED_STATUS[userData.isAuthenticated].status}
+              {AUTHENTICATED_STATUS[userData.isAuthenticated].STATUS}
             </UserInformation.Status>
           </UserInformation>
 
           <UserInformation>
-            <UserInformation.SubTitle>
+            <UserInformation.SubTitle
+              modalStatus={USER_MODAL_STATUS.TEACHER_AUTHENTICATION}
+              onClick={changeModalStatus}
+            >
               <UserInformation.Label>교사인증</UserInformation.Label>
               <UserInformation.Icon
-                type={AUTHENTICATED_STATUS[userData.isTeacher].iconType}
-                color={AUTHENTICATED_STATUS[userData.isTeacher].iconColor}
+                type={AUTHENTICATED_STATUS[userData.isTeacher].ICON_TYPE}
+                color={AUTHENTICATED_STATUS[userData.isTeacher].ICON_COLOR}
               />
             </UserInformation.SubTitle>
             <UserInformation.Status>
-              {AUTHENTICATED_STATUS[userData.isTeacher].status}
+              {AUTHENTICATED_STATUS[userData.isTeacher].STATUS}
             </UserInformation.Status>
           </UserInformation>
 
           <UserInformation>
-            <UserInformation.SubTitle>
+            <UserInformation.SubTitle
+              modalStatus={USER_MODAL_STATUS.SNS_CONNECT}
+              onClick={changeModalStatus}
+            >
               <UserInformation.Label>SNS 연동</UserInformation.Label>
               <UserInformation.Icon
-                type={CONNECTED_STATUS[userData.isConnected].iconType}
-                color={CONNECTED_STATUS[userData.isConnected].iconColor}
+                type={CONNECTED_STATUS[userData.isConnected].ICON_TYPE}
+                color={CONNECTED_STATUS[userData.isConnected].ICON_COLOR}
               />
             </UserInformation.SubTitle>
             <UserInformation.Status>
-              {CONNECTED_STATUS[userData.isConnected].status}
+              {CONNECTED_STATUS[userData.isConnected].STATUS}
             </UserInformation.Status>
           </UserInformation>
         </div>
@@ -161,6 +200,25 @@ const UserPage: React.FC = () => {
           <u>탈퇴하기</u> {'>'}
         </button>
       </div>
+
+      {isShow && (
+        <UserModal>
+          {({ cancel, confirm, disabled }) => (
+            <div className="flex h-[7.5rem] border-t-[1px] border-gray-300 text-xl">
+              <button className="flex-1 text-gray-400" onClick={cancel}>
+                취소하기
+              </button>
+              <button
+                className="flex-1 text-white bg-green disabled:bg-gray-300"
+                onClick={confirm}
+                disabled={disabled}
+              >
+                저장하기
+              </button>
+            </div>
+          )}
+        </UserModal>
+      )}
     </Section>
   );
 };

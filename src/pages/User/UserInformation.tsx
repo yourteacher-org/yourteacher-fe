@@ -1,7 +1,13 @@
-import { ReactNode, SVGProps } from 'react';
+import { HTMLAttributes, ReactNode, SVGProps } from 'react';
 
 import SVGIcon, { IconType } from '@components/SVGIcon';
+import { UserInformationStatusType } from '@/types/user';
 
+const ICON_COLOR_SET = {
+  red: 'bg-red',
+  gray: 'bg-gray-7',
+  green: 'bg-green',
+};
 interface UserInformationProps {
   children: ReactNode;
 }
@@ -22,30 +28,38 @@ const UserInformationWrapper = ({ children }: UserInformationProps) => {
   );
 };
 
-interface UserInformationSubProps {
+interface UserInformationSubProps
+  extends Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
   children?: ReactNode;
   className?: string;
+  modalStatus: UserInformationStatusType;
+  onClick?: (value: UserInformationStatusType) => void;
 }
-
-const ICON_COLOR_SET = {
-  red: 'bg-red',
-  gray: 'bg-gray-7',
-  green: 'bg-green',
-};
 
 export const UserInformationSub = ({
   children,
   className = '',
+  onClick,
+  modalStatus,
+  ...props
 }: UserInformationSubProps) => {
+  const clickHandler = () => {
+    if (onClick) {
+      onClick(modalStatus);
+    }
+  };
+
   return (
-    <p
+    <button
+      {...props}
+      onClick={clickHandler}
       className={`group flex items-center
         lg:gap-2 sm:gap-1
         xl:mb-[1.5vw] lg:mb-3 sm:mb-0.5
         cursor-pointer ${className}`}
     >
       {children}
-    </p>
+    </button>
   );
 };
 
@@ -87,9 +101,11 @@ interface UserInformationLabelProps {
 const UserInformationLabel = ({
   children,
   className = '',
+  ...props
 }: UserInformationLabelProps) => {
   return (
     <span
+      {...props}
       className={`xl:text-[1vw] lg:text-[0.875rem] sm:text-[0.675rem]
         group-hover:font-bold
         transition-all duration-200

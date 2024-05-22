@@ -16,6 +16,7 @@ import UserAction from './UserAction';
 import UserProfile from './UserProfile';
 import UserInformation from './UserInformation';
 import UserNickNameModal from './UserModalContent/UserNickNameModal';
+import UserTeacherModal from './UserModalContent/UserTeacherModal';
 
 const USER_MODAL: {
   [key in UserInformationStatusType]: (props: {
@@ -24,7 +25,7 @@ const USER_MODAL: {
 } = {
   NICKNAME: UserNickNameModal,
   AUTHENTICATION: UserNickNameModal,
-  TEACHER_AUTHENTICATION: UserNickNameModal,
+  TEACHER_AUTHENTICATION: UserTeacherModal,
   SNS_CONNECT: UserNickNameModal,
 };
 

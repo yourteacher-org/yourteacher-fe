@@ -31,7 +31,7 @@ const Modal = ({ children }: PropsWithChildren) => {
         <div
           className="fixed left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%]
             flex flex-col
-            min-w-[56.25rem] h-[28.75rem]
+            min-w-[56.25rem] min-h-[28.75rem]
             rounded-[2.5rem] overflow-hidden
             bg-white"
         >

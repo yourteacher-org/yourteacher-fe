@@ -26,6 +26,7 @@ const Login = () => {
           <LoginComma
             key={type}
             type={type}
+            hover
             className="2xl:w-[100%] xl:w-[18rem] lg:w-[12.5rem] sm:w-[7rem]"
           />
         ))}

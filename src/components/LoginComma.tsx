@@ -7,6 +7,7 @@ import { HTMLAttributes, ReactNode } from 'react';
 interface LoginCommaProps {
   type: 'kakao' | 'google' | 'naver';
   className?: HTMLAttributes<HTMLElement>['className'];
+  hover?: boolean;
   children?: ReactNode;
 }
 
@@ -16,29 +17,36 @@ const LOGIN_ICON = {
   naver: { icon: Naver, color: 'fill-naver-green' },
 };
 
-const LoginComma = ({ type, className, children }: LoginCommaProps) => {
+const LoginComma = ({ type, className, children, hover }: LoginCommaProps) => {
   const { icon: Icon, color } = LOGIN_ICON[type];
 
   return (
-    <div className={`group relative cursor-pointer ${className}`}>
-      <Comma
-        className={`
-          ${color}
-          w-[100%] h-[100%]
-          group-hover:drop-shadow-[10px_10px_10px_rgba(0,0,0,0.1)]
-          transition-[filter] duration-[0.4s]
+    <div className="relative">
+      <div className={`group relative cursor-pointer ${className}`}>
+        <Comma
+          className={`w-[100%] h-[100%] ${color}
+          ${
+            hover
+              ? `transition-[filter] duration-[0.4s]
+            group-hover:drop-shadow-[10px_10px_10px_rgba(0,0,0,0.1)]`
+              : 'grayscale cursor-default'
+          }
         `}
-      />
-      <Icon
-        className="
-          absolute
-          top-[45%] left-1/2
-          -translate-x-1/2 -translate-y-1/2
-          2xl:[100%] sm:w-[45%]
-          group-hover:scale-[1.2]
-          transition-transform ease-in-out duration-[0.4s]
-        "
-      />
+        />
+        <Icon
+          className={`absolute
+            top-[45%] left-1/2
+            -translate-x-1/2 -translate-y-1/2
+            2xl:[100%] sm:w-[45%]
+            ${
+              hover
+                ? `group-hover:scale-[1.2]
+              transition-transform ease-in-out duration-[0.4s]`
+                : 'grayscale cursor-default'
+            }
+        `}
+        />
+      </div>
       {children}
     </div>
   );

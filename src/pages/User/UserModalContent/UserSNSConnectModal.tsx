@@ -1,13 +1,8 @@
 import SVGIcon from '@components/SVGIcon';
 import LoginComma from '@components/LoginComma';
 import { Modal, useModalContext } from '@components/Modal';
+import { SNS_CONNECT_LIST } from '@data/User';
 import { UserModalActionType } from '@/types/user';
-
-const LoginCommaList = [
-  { type: 'kakao', isConnected: false },
-  { type: 'google', isConnected: true },
-  { type: 'naver', isConnected: true },
-] as const;
 
 interface UserSNSConnectModalProps {
   children?: UserModalActionType;
@@ -29,7 +24,7 @@ const UserSNSConnectModal = ({ children }: UserSNSConnectModalProps) => {
           인증하기를 눌러주세요.
         </p>
         <div className="flex justify-center 2xl:gap-16 xl:gap-[4vw] lg:gap-10 sm:gap-3">
-          {LoginCommaList.map(({ type, isConnected }) => (
+          {SNS_CONNECT_LIST.map(({ type, isConnected }) => (
             <LoginComma
               key={type}
               type={type}

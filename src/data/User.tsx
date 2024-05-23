@@ -47,6 +47,12 @@ const CONNECTED_STATUS: AuthenticateType<ConnectedStatusType> = {
   },
 };
 
+const SNS_CONNECT_LIST = [
+  { type: 'kakao', isConnected: false },
+  { type: 'google', isConnected: true },
+  { type: 'naver', isConnected: true },
+] as const;
+
 const MOCK_DATA_USER: UserDataType = {
   nickname: '유어티처',
   username: '김유어',
@@ -62,8 +68,9 @@ const MOCK_DATA_USER: UserDataType = {
 };
 
 export {
-  MOCK_DATA_USER,
+  USER_MODAL_STATUS,
   AUTHENTICATED_STATUS,
   CONNECTED_STATUS,
-  USER_MODAL_STATUS,
+  SNS_CONNECT_LIST,
+  MOCK_DATA_USER,
 };

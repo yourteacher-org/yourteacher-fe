@@ -69,7 +69,7 @@ const UserProfileNameAndJob = ({
   job,
 }: UserProfileNameAndJobProps) => {
   return (
-    <div
+    <section
       className="flex gap-4
           lg:text-[1.25rem] sm:text-[1rem]
           text-black-2"
@@ -77,7 +77,7 @@ const UserProfileNameAndJob = ({
       <span>{username}</span>
       <span className="text-gray-5">|</span>
       <span>{job}</span>
-    </div>
+    </section>
   );
 };
 

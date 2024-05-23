@@ -29,7 +29,7 @@ const UserSNSConnectModal = ({ children }: UserSNSConnectModalProps) => {
               key={type}
               type={type}
               hover={!isConnected}
-              className="2xl:w-[100%] xl:w-[18rem] lg:w-[12.5rem] sm:w-[7rem]"
+              className="2xl:w-[100%] xl:w-[12rem] lg:w-[12.5rem] sm:w-[7rem]"
             >
               {isConnected && (
                 <div

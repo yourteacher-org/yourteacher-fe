@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -10,7 +10,11 @@ import {
 import Section from '@layouts/Section';
 import PageNav from '@components/PageNav';
 import { useModalContext } from '@components/Modal';
-import { UserInformationStatusType, UserModalActionType } from '@/types/user';
+import {
+  UserDataType,
+  UserInformationStatusType,
+  UserModalActionType,
+} from '@/types/user';
 
 import UserAction from './UserAction';
 import UserProfile from './UserProfile';
@@ -33,12 +37,10 @@ const USER_MODAL: {
 const UserPage: React.FC = () => {
   const navigate = useNavigate();
   const { isShow, handleIsShow } = useModalContext();
-  const [userData] = useState(MOCK_DATA_USER);
+  const [userData, setUserData] = useState<UserDataType>();
   const [modalState, setModalState] = useState<UserInformationStatusType>(
     USER_MODAL_STATUS.NICKNAME,
   );
-
-  const UserModal = USER_MODAL[modalState];
 
   const changeModalStatus = (status: UserInformationStatusType) => {
     handleIsShow(true);
@@ -52,6 +54,40 @@ const UserPage: React.FC = () => {
       navigate('/withdraw');
     }
   };
+
+  useEffect(() => {
+    (async function fetchUserData() {
+      setUserData(MOCK_DATA_USER);
+    })();
+  }, []);
+
+  if (!userData) {
+    return (
+      <div className="w-full h-[50vh] mx-auto">
+        <h1 className="mt-48 text-5xl font-bold text-center">로딩 중...</h1>
+      </div>
+    );
+  }
+
+  const userStatus = [
+    {
+      informationTitle: '본인인증',
+      modalStatus: USER_MODAL_STATUS.AUTHENTICATION,
+      informationStatus: AUTHENTICATED_STATUS[userData.isAuthenticated],
+    },
+    {
+      informationTitle: '교사인증',
+      modalStatus: USER_MODAL_STATUS.TEACHER_AUTHENTICATION,
+      informationStatus: AUTHENTICATED_STATUS[userData.isTeacher],
+    },
+    {
+      informationTitle: 'SNS 연동',
+      modalStatus: USER_MODAL_STATUS.SNS_CONNECT,
+      informationStatus: CONNECTED_STATUS[userData.isConnected],
+    },
+  ];
+
+  const UserModal = USER_MODAL[modalState];
 
   return (
     <Section
@@ -83,7 +119,7 @@ const UserPage: React.FC = () => {
         </div>
       </UserProfile>
 
-      <div className="lg:mb-[3.75rem] sm:mb-12">
+      <section className="lg:mb-[3.75rem] sm:mb-12">
         <h2
           className="lg:mb-5 sm:mb-2
             xl:text-4xl lg:text-3xl sm:text-2xl
@@ -115,59 +151,31 @@ const UserPage: React.FC = () => {
             <UserInformation.Status>{userData.nickname}</UserInformation.Status>
           </UserInformation>
 
-          <UserInformation>
-            <UserInformation.SubTitle
-              modalStatus={USER_MODAL_STATUS.AUTHENTICATION}
-              onClick={changeModalStatus}
-            >
-              <UserInformation.Label>본인인증</UserInformation.Label>
-              <UserInformation.Icon
-                type={AUTHENTICATED_STATUS[userData.isAuthenticated].ICON_TYPE}
-                color={
-                  AUTHENTICATED_STATUS[userData.isAuthenticated].ICON_COLOR
-                }
-              />
-            </UserInformation.SubTitle>
-            <UserInformation.Status>
-              {AUTHENTICATED_STATUS[userData.isAuthenticated].STATUS}
-            </UserInformation.Status>
-          </UserInformation>
-
-          <UserInformation>
-            <UserInformation.SubTitle
-              modalStatus={USER_MODAL_STATUS.TEACHER_AUTHENTICATION}
-              onClick={changeModalStatus}
-            >
-              <UserInformation.Label>교사인증</UserInformation.Label>
-              <UserInformation.Icon
-                type={AUTHENTICATED_STATUS[userData.isTeacher].ICON_TYPE}
-                color={AUTHENTICATED_STATUS[userData.isTeacher].ICON_COLOR}
-              />
-            </UserInformation.SubTitle>
-            <UserInformation.Status>
-              {AUTHENTICATED_STATUS[userData.isTeacher].STATUS}
-            </UserInformation.Status>
-          </UserInformation>
-
-          <UserInformation>
-            <UserInformation.SubTitle
-              modalStatus={USER_MODAL_STATUS.SNS_CONNECT}
-              onClick={changeModalStatus}
-            >
-              <UserInformation.Label>SNS 연동</UserInformation.Label>
-              <UserInformation.Icon
-                type={CONNECTED_STATUS[userData.isConnected].ICON_TYPE}
-                color={CONNECTED_STATUS[userData.isConnected].ICON_COLOR}
-              />
-            </UserInformation.SubTitle>
-            <UserInformation.Status>
-              {CONNECTED_STATUS[userData.isConnected].STATUS}
-            </UserInformation.Status>
-          </UserInformation>
+          {userStatus.map(
+            ({ informationTitle, modalStatus, informationStatus }) => (
+              <UserInformation key={informationTitle}>
+                <UserInformation.SubTitle
+                  modalStatus={modalStatus}
+                  onClick={changeModalStatus}
+                >
+                  <UserInformation.Label>
+                    {informationTitle}
+                  </UserInformation.Label>
+                  <UserInformation.Icon
+                    type={informationStatus.ICON_TYPE}
+                    color={informationStatus.ICON_COLOR}
+                  />
+                </UserInformation.SubTitle>
+                <UserInformation.Status>
+                  {informationStatus.STATUS}
+                </UserInformation.Status>
+              </UserInformation>
+            ),
+          )}
         </div>
-      </div>
+      </section>
 
-      <div className="mb-20">
+      <section className="mb-20">
         <h2
           className="lg:mb-5 sm:mb-2
             xl:text-4xl lg:text-3xl sm:text-2xl
@@ -184,7 +192,7 @@ const UserPage: React.FC = () => {
             count={userData.likePostCount}
           />
         </div>
-      </div>
+      </section>
 
       <div
         className="flex

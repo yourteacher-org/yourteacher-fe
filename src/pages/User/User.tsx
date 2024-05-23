@@ -17,6 +17,7 @@ import UserProfile from './UserProfile';
 import UserInformation from './UserInformation';
 import UserNickNameModal from './UserModalContent/UserNickNameModal';
 import UserTeacherModal from './UserModalContent/UserTeacherModal';
+import UserSNSConnectModal from './UserModalContent/UserSNSConnectModal';
 
 const USER_MODAL: {
   [key in UserInformationStatusType]: (props: {
@@ -26,7 +27,7 @@ const USER_MODAL: {
   NICKNAME: UserNickNameModal,
   AUTHENTICATION: UserNickNameModal,
   TEACHER_AUTHENTICATION: UserTeacherModal,
-  SNS_CONNECT: UserNickNameModal,
+  SNS_CONNECT: UserSNSConnectModal,
 };
 
 const UserPage: React.FC = () => {

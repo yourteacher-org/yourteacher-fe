@@ -2,16 +2,9 @@ import { ChangeEvent, useRef, useState } from 'react';
 
 import SVGIcon from '@components/SVGIcon';
 import { Modal, useModalContext } from '@components/Modal';
+import { makeDisplayFileName } from '@utils/formatter';
 import { UserModalActionType } from '@/types/user';
 import UserCircleQuestionIcon from './UserCircleQuestionIcon';
-
-const makeFileName = (str: string, range: number) => {
-  const forward = str.slice(0, range);
-  const backward =
-    str.length > range ? ` ... ${str.slice(str.length - 10)}` : '';
-
-  return forward + backward;
-};
 
 const MAX_FILE_SIZE = 1_024 * 100 * 100;
 
@@ -48,7 +41,7 @@ const UserTeacherModal = ({ children }: UserTeacherModalProps) => {
   };
 
   const fileName = file
-    ? makeFileName(file.name, 40)
+    ? makeDisplayFileName(file.name, 40)
     : '파일은 최대 10MB까지 업로드 가능합니다.';
 
   return (

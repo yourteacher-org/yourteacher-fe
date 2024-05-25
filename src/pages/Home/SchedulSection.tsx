@@ -93,9 +93,9 @@ const SchedulSection = () => {
 
   const excuteSlide = (distance: number) => {
     setRenderingData([
-      ...renderingData.slice(-4),
+      ...renderingData.slice(-3),
       ...renderingData,
-      ...renderingData.slice(0, 4),
+      ...renderingData.slice(0, 3),
     ]);
 
     const slider = sliderRef.current!;

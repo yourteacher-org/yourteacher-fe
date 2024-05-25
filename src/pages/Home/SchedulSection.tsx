@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
+import { MOCKAG_SCHEDUL_DATA } from '@data/Schedul';
 import Section from '@layouts/Section';
-import ChevronButton from '@components/ChevronButton';
-import schedule from '@assets/img/schedule.png';
 import Button from '@components/Button';
+import ChevronButton from '@components/ChevronButton';
+import { checkCurrentDisplayWidth } from '@utils/mediaQuery';
+
 import Edu from '@assets/icon/edu.svg?react';
 import Dot from '@assets/img/dot.svg?react';
 import Date from '@assets/icon/date.svg?react';
 import Logo from '@assets/img/schedul-logo.svg?react';
-import { MOCKAG_SCHEDUL_DATA } from '@data/Schedul';
+import schedule from '@assets/img/schedule.png';
+import { ScheduleDataType } from './types/schedule';
 
 interface ScheduleDateProps {
   title: string;
@@ -70,57 +74,83 @@ const ScheduleDate = ({
   );
 };
 
-const ANIMATION_DURATION = 700;
+const ANIMATION_DURATION = 500;
 
-const ANIMATION_DIRECTION = {
-  DEFAULT: '',
-  NEXT: `xl:-translate-x-[calc(50%+62.9rem)] lg:-translate-x-[calc(50%+39.7rem)] sm:-translate-x-[calc(50%+21.402rem)] transition-transform duration-${ANIMATION_DURATION} ease-in-out`,
-  PREV: `xl:-translate-x-[calc(50%-62.9rem)] lg:-translate-x-[calc(50%+39.7rem)] sm:-translate-x-[calc(50%+21.402rem)] transition-transform duration-${ANIMATION_DURATION} ease-in-out`,
+const DISTANCE_TABLE = {
+  mobile: 21.375,
+  tablet: 39.675,
+  desktop: 62.75,
 };
-const SchedulSection = () => {
-  const [startIdx, setStartIdx] = useState(0);
 
-  const [triggerSlide, setTrigger] = useState(ANIMATION_DIRECTION.DEFAULT);
-  const [renderingData, setRenderingData] = useState([
+const SchedulSection = () => {
+  const [startIdx, setStartIdx] = useState<number>(0);
+  const [renderingData, setRenderingData] = useState<ScheduleDataType[]>([
     ...MOCKAG_SCHEDUL_DATA.slice(3),
     ...MOCKAG_SCHEDUL_DATA.slice(0, 3),
   ]);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const debounceRef = useRef<boolean>(false);
 
-  const updateDataAfterAnimation = (newIdx: number, direction: string) => {
-    setTrigger(direction);
+  const excuteSlide = (distance: number) => {
+    setRenderingData([
+      ...renderingData.slice(-4),
+      ...renderingData,
+      ...renderingData.slice(0, 4),
+    ]);
+
+    const slider = sliderRef.current!;
+    slider.style.transition = `transform ${ANIMATION_DURATION}ms ease-in-out`;
+    slider.style.transform = `translateX(calc(-50% - ${distance}rem))`;
+
+    debounceRef.current = true;
+  };
+
+  const optimizeSlide = (step: number) => {
+    setRenderingData([
+      ...renderingData.slice(step),
+      ...renderingData.slice(0, step),
+    ]);
+
+    const slider = sliderRef.current!;
+    slider.style.transition = '';
+    slider.style.transform = `translateX(-50%)`;
+
+    debounceRef.current = false;
+  };
+
+  const moveSlide = (nextIndex: number, step: number) => {
+    if (debounceRef.current) return;
+    setStartIdx(nextIndex);
+
+    const distance = checkCurrentDisplayWidth();
+    excuteSlide(step * DISTANCE_TABLE[distance]);
+
     setTimeout(() => {
-      setTrigger(ANIMATION_DIRECTION.DEFAULT);
-      if (direction === ANIMATION_DIRECTION.NEXT) {
-        setRenderingData([...renderingData.slice(1), renderingData[0]]);
-      } else {
-        setRenderingData([
-          renderingData[renderingData.length - 1],
-          ...renderingData.slice(0, renderingData.length - 1),
-        ]);
-      }
-      setStartIdx(newIdx);
+      optimizeSlide(step);
     }, ANIMATION_DURATION);
   };
 
   const prevButton = () => {
-    const newIdx =
-      startIdx === 0 ? MOCKAG_SCHEDUL_DATA.length - 1 : startIdx - 1;
-    updateDataAfterAnimation(newIdx, ANIMATION_DIRECTION.PREV);
+    const index = startIdx === 0 ? renderingData.length - 1 : startIdx - 1;
+    moveSlide(index, -1);
   };
 
   const nextButton = () => {
-    const newIdx =
-      startIdx === MOCKAG_SCHEDUL_DATA.length - 1 ? 0 : startIdx + 1;
-    updateDataAfterAnimation(newIdx, ANIMATION_DIRECTION.NEXT);
+    const index = startIdx >= renderingData.length - 1 ? 0 : startIdx + 1;
+    moveSlide(index, 1);
+  };
+
+  const dotButton = (index: number) => {
+    const step = index - startIdx;
+    moveSlide(index, step);
   };
 
   return (
     <Section
       as="section"
       className="w-full lg:flex-col sm:flex-col
-     xl:items-center sm:items-center
-    xl:mx-w-[80rem] lg:mx-w-[64rem] sm:mx-w-[24.375rem]
-   "
+        xl:items-center sm:items-center
+        xl:mx-w-[80rem] lg:mx-w-[64rem] sm:mx-w-[24.375rem]"
     >
       <div className="relative">
         <img
@@ -136,12 +166,12 @@ const SchedulSection = () => {
         </p>
         <div className="relative w-[100%] h-[34rem] left-0 xl:bottom-[4rem] lg:bottom-[5rem] sm:bottom-[3rem] overflow-hidden">
           <div
+            ref={sliderRef}
             className={`absolute top-0 left-1/2 -translate-x-1/2
-             flex xl:gap-[3.3rem] lg:gap-[0.8rem] sm:gap-[0.5rem]
-             ${triggerSlide}`}
+              flex xl:gap-[3.3rem] lg:gap-[0.8rem] sm:gap-[0.5rem]`}
           >
             {renderingData.map((scheduleData) => (
-              <div key={scheduleData.id} className="slide">
+              <div key={Math.random()}>
                 <ScheduleDate {...scheduleData} />
               </div>
             ))}
@@ -164,9 +194,16 @@ const SchedulSection = () => {
             </Button>
             <div className="flex justify-center xl:translate-y-[20.5rem] lg:translate-y-[18.5rem] sm:translate-y-[14rem]">
               {MOCKAG_SCHEDUL_DATA.map((data, index) => (
-                <div
+                <button
                   key={data.id}
-                  className={`rounded-full mx-1 ${startIdx === index ? 'bg-green' : 'bg-gray-200'} ${startIdx === index ? 'xl:w-[0.813rem] lg:w-[0.438rem] sm:w-[0.438rem] xl:h-[0.813rem] lg:h-[0.438rem] sm:h-[0.438rem]' : 'xl:w-[0.563rem] lg:w-[0.303rem] sm:w-[0.303rem] xl:h-[0.563rem] lg:h-[0.303rem] sm:h-[0.303rem]'}`}
+                  onClick={() => dotButton(index)} // 동그라미 버튼 클릭 핸들러 설정
+                  aria-label={`Go to slide ${index + 1}`}
+                  className={`rounded-full mx-1 ${startIdx === index ? 'bg-green' : 'bg-gray-200'}
+                    ${
+                      startIdx === index
+                        ? 'xl:w-[0.813rem] lg:w-[0.438rem] sm:w-[0.438rem] xl:h-[0.813rem] lg:h-[0.438rem] sm:h-[0.438rem]'
+                        : 'xl:w-[0.563rem] lg:w-[0.303rem] sm:w-[0.303rem] xl:h-[0.563rem] lg:h-[0.303rem] sm:h-[0.303rem]'
+                    }`}
                 />
               ))}
             </div>

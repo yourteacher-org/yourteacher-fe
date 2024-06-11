@@ -36,7 +36,7 @@ const Modal = ({ children }: PropsWithChildren) => {
           className="fixed left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%]
             flex flex-col
             min-w-[56.25rem] min-h-[28.75rem]
-            rounded-[2.5rem] overflow-hidden
+            rounded-[2.5rem]
             bg-white"
         >
           {children}

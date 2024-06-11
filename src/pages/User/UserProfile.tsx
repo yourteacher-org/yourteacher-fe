@@ -60,30 +60,24 @@ const UserProfileNickname = ({ children }: PropsWithChildren) => {
 };
 
 interface UserProfileNameAndJobProps {
-  job?: string;
-  username: string;
+  children?: ReactNode;
 }
 
-const UserProfileNameAndJob = ({
-  username,
-  job,
-}: UserProfileNameAndJobProps) => {
+const UserProfileName = ({ children }: UserProfileNameAndJobProps) => {
   return (
-    <section
-      className="flex gap-4
-          lg:text-[1.25rem] sm:text-[1rem]
-          text-black-2"
+    <p
+      className="
+      lg:text-[1.25rem] sm:text-[1rem]
+      text-black-2"
     >
-      <span>{username}</span>
-      <span className="text-gray-5">|</span>
-      <span>{job}</span>
-    </section>
+      {children}
+    </p>
   );
 };
 
 const UserProfile = Object.assign(UserProfileWrapper, {
   Image: UserProfileImage,
-  NameAndJob: UserProfileNameAndJob,
+  Name: UserProfileName,
   Nickname: UserProfileNickname,
 });
 

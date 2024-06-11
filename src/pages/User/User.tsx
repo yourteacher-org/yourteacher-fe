@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import {
   AUTHENTICATED_STATUS,
-  CONNECTED_STATUS,
+  // CONNECTED_STATUS,
   MOCK_DATA_USER,
   USER_MODAL_STATUS,
 } from '@data/User';
@@ -80,11 +80,11 @@ const UserPage: React.FC = () => {
       modalStatus: USER_MODAL_STATUS.TEACHER_AUTHENTICATION,
       informationStatus: AUTHENTICATED_STATUS[userData.isTeacher],
     },
-    {
-      informationTitle: 'SNS 연동',
-      modalStatus: USER_MODAL_STATUS.SNS_CONNECT,
-      informationStatus: CONNECTED_STATUS[userData.isConnected],
-    },
+    // {
+    //   informationTitle: 'SNS 연동',
+    //   modalStatus: USER_MODAL_STATUS.SNS_CONNECT,
+    //   informationStatus: CONNECTED_STATUS[userData.isConnected],
+    // },
   ];
 
   const UserModal = USER_MODAL[modalState];
@@ -99,7 +99,7 @@ const UserPage: React.FC = () => {
         <span>마이페이지</span>
       </PageNav>
       <h1
-        className="xl:mb-[7.5rem] lg:mb-[3.5rem] sm:mb-[2rem]
+        className="xl:mb-[5rem] lg:mb-[3.5rem] sm:mb-[2rem]
           xl:text-[4.375rem] lg:text-[3.75rem] sm:text-[3rem]
           font-bold"
       >
@@ -110,12 +110,9 @@ const UserPage: React.FC = () => {
         <UserProfile.Image>
           <img src={userData.profileSrc} alt="profile" />
         </UserProfile.Image>
-        <div>
+        <div className="flex flex-col mt-4">
+          <UserProfile.Name>{userData.username}</UserProfile.Name>
           <UserProfile.Nickname>{userData.nickname}</UserProfile.Nickname>
-          <UserProfile.NameAndJob
-            username={userData.username}
-            job={userData.job}
-          />
         </div>
       </UserProfile>
 
@@ -214,7 +211,7 @@ const UserPage: React.FC = () => {
       {isShow && (
         <UserModal>
           {({ cancel, confirm, disabled }) => (
-            <div className="flex h-[7.5rem] border-t-[1px] border-gray-300 text-xl">
+            <div className="flex h-[7.5rem] border-t-[1px] border-gray-300 text-xl rounded-b-[2.5rem] overflow-hidden">
               <button className="flex-1 text-gray-400" onClick={cancel}>
                 취소하기
               </button>

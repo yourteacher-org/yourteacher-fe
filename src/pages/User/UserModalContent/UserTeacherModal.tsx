@@ -4,9 +4,19 @@ import SVGIcon from '@components/SVGIcon';
 import { Modal, useModalContext } from '@components/Modal';
 import { makeDisplayFileName } from '@utils/formatter';
 import { UserModalActionType } from '@/types/user';
+
+import Example from '@assets/img/certificate_example.png';
 import UserCircleQuestionIcon from './UserCircleQuestionIcon';
 
 const MAX_FILE_SIZE = 1_024 * 100 * 100;
+const CAN_UPLOAD_FILE_TYPES_FOR_TEACHER_CERTIFICATE = [
+  'png',
+  'jpg',
+  'jpeg',
+  'webp',
+  'avif',
+  'pdf',
+];
 
 interface UserTeacherModalProps {
   children?: UserModalActionType;
@@ -24,13 +34,27 @@ const UserTeacherModal = ({ children }: UserTeacherModalProps) => {
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.target.files;
+    const target = e.target.files || [];
 
-    if (target?.length && target[0].size <= MAX_FILE_SIZE) {
-      setFile(target[0]);
-    } else {
+    if (!target.length) return;
+
+    if (target[0].size > MAX_FILE_SIZE) {
       alert('해당 파일은 10MB를 초과합니다.');
+      return;
     }
+
+    if (
+      !CAN_UPLOAD_FILE_TYPES_FOR_TEACHER_CERTIFICATE.some((type) =>
+        target[0].type.includes(type),
+      )
+    ) {
+      alert(
+        `해당 파일 유형은 업로드 할 수 없습니다.\n(png, jpg, jpeg, webp, avif, pdf 확장자 파일만 가능합니다.)`,
+      );
+      return;
+    }
+
+    setFile(target[0]);
   };
 
   const cancel = () => handleIsShow(false);
@@ -47,29 +71,58 @@ const UserTeacherModal = ({ children }: UserTeacherModalProps) => {
   return (
     <Modal>
       <div className="flex flex-col flex-1 items-center justify-center mt-20 mb-12">
-        <div className="flex gap-3 items-center mb-12">
+        <div className="relative flex gap-3 items-center mb-12">
           <h1 className="text-4xl font-bold">교사인증</h1>
-          <UserCircleQuestionIcon />
+          <UserCircleQuestionIcon>
+            <div
+              className="absolute -top-[20px] -right-[808px]
+                hidden
+                group-hover:flex flex-col gap-2
+                transition-all duration-500"
+            >
+              <img
+                className="w-[390px] aspect-[1/1.375]"
+                src={Example}
+                alt="certificate_example"
+              />
+              <p>※ 타 교육자격증 확인 사항 동일</p>
+            </div>
+            <div
+              className="absolute top-[10px] left-[24px]
+                w-[440px] hidden
+                group-hover:flex items-center justify-end 
+                bg-green h-0.5"
+            >
+              <div className="w-3 h-3 bg-green rounded-full" />
+            </div>
+          </UserCircleQuestionIcon>
         </div>
+
         <p className="text-[1.625rem] mb-5 text-center">
           교사인증은 교사자격증으로 인증하고 있습니다.
           <br />
           교사인증을 하시려면 본인의 교사 자격증을 업로드해주세요.
         </p>
+
         <button
           className={`flex items-center justify-center gap-3
             min-w-[34rem]
             mb-10 py-3 px-6
-            text-lg text-gray-1
+            text-lg 
             border rounded-full cursor-pointer
-            ${file && 'border-green border-2'}`}
+            ${file ? 'border-green border-2' : 'text-gray-1'}`}
           onClick={handleFileUpload}
         >
           <SVGIcon type="Clip" />
-          <p className="line-clamp-1 text-ellipsis">{fileName}</p>
+          <p
+            className={`line-clamp-1 text-ellipsis ${file && 'text-gray-700'}`}
+          >
+            {fileName}
+          </p>
           <SVGIcon type="Upload" />
           <input ref={fileRef} type="file" onChange={handleFileChange} hidden />
         </button>
+
         <div className="flex flex-col gap-1 items-center text-gray-400">
           <SVGIcon type="CircleExclamation" />
           <p className="text-center leading-6">

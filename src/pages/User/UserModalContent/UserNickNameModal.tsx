@@ -85,7 +85,7 @@ const UserNickNameModal = ({ children }: UserNickNameModalProps) => {
     setDuplicateStatus(DUPLICATE_STATUS.DEFAULT);
 
   const checkDuplicate = async (nickname: string) => {
-    if (nickname === 'nickname') {
+    if (nickname === '유어티처') {
       setDuplicateStatus(DUPLICATE_STATUS.DUPLICATE);
     } else {
       setDuplicateStatus(DUPLICATE_STATUS.NOT_DUPLICATE);
@@ -131,7 +131,7 @@ const UserNickNameModal = ({ children }: UserNickNameModalProps) => {
             </i>
           )}
           <p
-            className={`text-sm ${DUPLICATE_STATUS_OPTIONS[duplicateStatus].COLOR}`}
+            className={`h-8 text-sm ${DUPLICATE_STATUS_OPTIONS[duplicateStatus].COLOR}`}
           >
             {DUPLICATE_STATUS_OPTIONS[duplicateStatus].MESSAGE}
           </p>

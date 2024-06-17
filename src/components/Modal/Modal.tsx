@@ -1,8 +1,8 @@
-import { PropsWithChildren, useEffect, useRef } from 'react';
+import { PropsWithChildren, ReactNode, useEffect, useRef } from 'react';
 import Portal from '@components/Portal';
 import useModalContext from './ModalContext';
 
-const Modal = ({ children }: PropsWithChildren) => {
+const ModalCore = ({ children }: PropsWithChildren) => {
   const { handleIsShow } = useModalContext();
   const backdropRef = useRef<HTMLDivElement>(null);
 
@@ -45,5 +45,26 @@ const Modal = ({ children }: PropsWithChildren) => {
     </Portal>
   );
 };
+
+interface ModalBottomProps {
+  className?: string;
+  left: ReactNode;
+  right: ReactNode;
+}
+
+const ModalBottom = ({ className = '', left, right }: ModalBottomProps) => {
+  return (
+    <div
+      className={`flex h-[7.5rem] border-t-[1px] border-gray-300 text-xl rounded-b-[2.5rem] overflow-hidden ${className}`}
+    >
+      {left}
+      {right}
+    </div>
+  );
+};
+
+const Modal = Object.assign(ModalCore, {
+  Bottom: ModalBottom,
+});
 
 export default Modal;

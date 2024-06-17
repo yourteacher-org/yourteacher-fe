@@ -1,5 +1,4 @@
 import { IconType } from '@components/SVGIcon';
-import { ReactNode } from 'react';
 
 type UserInformationStatusType =
   | 'NICKNAME'
@@ -7,31 +6,28 @@ type UserInformationStatusType =
   | 'TEACHER_AUTHENTICATION'
   | 'SNS_CONNECT';
 
-type UserModalActionType = ({
-  cancel,
-  confirm,
-  disabled,
-}: {
-  cancel: () => void;
-  confirm: () => void;
-  disabled: boolean;
-}) => ReactNode;
-
 type AuthenticateStatusType =
   | 'NOT_AUTHENTICATED'
   | 'IN_PROGRESS'
   | 'COMPLETED_AUTHENTICATION';
 
-type ConnectedStatusType = 'NOT_CONNECTED' | 'COMPLTED_CONNECTED';
+type ConnectStatusType = 'NOT_CONNECTED' | 'COMPLTED_CONNECTED';
 
-type AuthenticateType<T extends AuthenticateStatusType | ConnectedStatusType> =
-  {
-    [key in T]: {
-      ICON_COLOR: 'red' | 'gray' | 'green';
-      ICON_TYPE: IconType;
-      STATUS: string;
-    };
+type UserAuthenticateStatusType = {
+  [key in AuthenticateStatusType]: {
+    ICON_COLOR: 'red' | 'gray' | 'green';
+    ICON_TYPE: IconType;
+    STATUS: string;
   };
+};
+
+type UserConnectType = {
+  [key in ConnectStatusType]: {
+    ICON_COLOR: 'red' | 'gray' | 'green';
+    ICON_TYPE: IconType;
+    STATUS: string;
+  };
+};
 
 interface UserDataType {
   nickname: string;
@@ -40,7 +36,7 @@ interface UserDataType {
   job: string;
   isAuthenticated: AuthenticateStatusType;
   isTeacher: AuthenticateStatusType;
-  isConnected: ConnectedStatusType;
+  isConnected: ConnectStatusType;
   postCount: number;
   commentCount: number;
   heartPostCount: number;
@@ -48,10 +44,8 @@ interface UserDataType {
 }
 
 export type {
-  UserDataType,
-  AuthenticateType,
-  UserModalActionType,
-  ConnectedStatusType,
-  AuthenticateStatusType,
   UserInformationStatusType,
+  UserAuthenticateStatusType,
+  UserConnectType,
+  UserDataType,
 };

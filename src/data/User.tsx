@@ -1,11 +1,24 @@
 import ProfileExample from '@assets/img/profile-example.png';
 import {
-  AuthenticateStatusType,
-  AuthenticateType,
-  ConnectedStatusType,
+  UserAuthenticateStatusType,
+  UserConnectType,
   UserDataType,
   UserInformationStatusType,
 } from '@/types/user';
+
+const MOCK_DATA_USER: UserDataType = {
+  nickname: '유어티처',
+  username: '김유어',
+  profileSrc: ProfileExample,
+  job: '유아어린이집 교사',
+  isAuthenticated: 'NOT_AUTHENTICATED',
+  isTeacher: 'IN_PROGRESS',
+  isConnected: 'COMPLTED_CONNECTED',
+  postCount: 124,
+  commentCount: 141,
+  heartPostCount: 654,
+  likePostCount: 264,
+};
 
 const USER_MODAL_STATUS: {
   [key in UserInformationStatusType]: UserInformationStatusType;
@@ -16,7 +29,34 @@ const USER_MODAL_STATUS: {
   TEACHER_AUTHENTICATION: 'TEACHER_AUTHENTICATION',
 };
 
-const AUTHENTICATED_STATUS: AuthenticateType<AuthenticateStatusType> = {
+const NICKNAME_DUPLICATE_STATUS = {
+  DEFAULT: 'DEFAULT',
+  DUPLICATE: 'DUPLICATE',
+  NOT_DUPLICATE: 'NOT_DUPLICATE',
+} as const;
+
+const NICKNAME_DUPLICATE_STATUS_OPTIONS = {
+  DEFAULT: {
+    BORDER_COLOR: 'focus-within:border-green',
+    COLOR: '',
+    MESSAGE: '',
+    BUTTON: '중복확인',
+  },
+  DUPLICATE: {
+    BORDER_COLOR: 'border-rose-400',
+    COLOR: 'text-rose-400',
+    MESSAGE: '중복된 닉네임입니다. 새로운 닉네임을 입력해주세요.',
+    BUTTON: '중복확인',
+  },
+  NOT_DUPLICATE: {
+    BORDER_COLOR: 'border-green',
+    COLOR: 'text-green',
+    MESSAGE: '사용가능한 닉네임입니다.',
+    BUTTON: '확인완료',
+  },
+};
+
+const AUTHENTICATED_STATUS: UserAuthenticateStatusType = {
   NOT_AUTHENTICATED: {
     ICON_COLOR: 'red',
     ICON_TYPE: 'Exclamation',
@@ -34,7 +74,7 @@ const AUTHENTICATED_STATUS: AuthenticateType<AuthenticateStatusType> = {
   },
 };
 
-const CONNECTED_STATUS: AuthenticateType<ConnectedStatusType> = {
+const CONNECTED_STATUS: UserConnectType = {
   NOT_CONNECTED: {
     ICON_COLOR: 'red',
     ICON_TYPE: 'Exclamation',
@@ -53,24 +93,12 @@ const SNS_CONNECT_LIST = [
   { type: 'naver', isConnected: true },
 ] as const;
 
-const MOCK_DATA_USER: UserDataType = {
-  nickname: '유어티처',
-  username: '김유어',
-  profileSrc: ProfileExample,
-  job: '유아어린이집 교사',
-  isAuthenticated: 'NOT_AUTHENTICATED',
-  isTeacher: 'IN_PROGRESS',
-  isConnected: 'COMPLTED_CONNECTED',
-  postCount: 124,
-  commentCount: 141,
-  heartPostCount: 654,
-  likePostCount: 264,
-};
-
 export {
+  MOCK_DATA_USER,
   USER_MODAL_STATUS,
+  NICKNAME_DUPLICATE_STATUS,
+  NICKNAME_DUPLICATE_STATUS_OPTIONS,
   AUTHENTICATED_STATUS,
   CONNECTED_STATUS,
   SNS_CONNECT_LIST,
-  MOCK_DATA_USER,
 };

@@ -3,13 +3,12 @@ import { ChangeEvent, useRef, useState } from 'react';
 import SVGIcon from '@components/SVGIcon';
 import { Modal, useModalContext } from '@components/Modal';
 import { makeDisplayFileName } from '@utils/formatter';
-import { UserModalActionType } from '@/types/user';
 
 import Example from '@assets/img/certificate_example.png';
 import UserCircleQuestionIcon from './UserCircleQuestionIcon';
 
 const MAX_FILE_SIZE = 1_024 * 100 * 100;
-const CAN_UPLOAD_FILE_TYPES_FOR_TEACHER_CERTIFICATE = [
+const ALLOWED_FILE_TYPES_FOR_TEACHER_AUTHENTICATION = [
   'png',
   'jpg',
   'jpeg',
@@ -18,19 +17,19 @@ const CAN_UPLOAD_FILE_TYPES_FOR_TEACHER_CERTIFICATE = [
   'pdf',
 ];
 
-interface UserTeacherModalProps {
-  children?: UserModalActionType;
-}
+const FILE_UPLOAD_ERRORS = {
+  OVER_FILE_SIZE: '해당 파일은 10MB를 초과합니다.',
+  DISALLOWD_FILE_TYPE:
+    '해당 파일 유형은 업로드 할 수 없습니다.\n(png, jpg, jpeg, webp, avif, pdf 확장자 파일만 가능합니다.)',
+};
 
-const UserTeacherModal = ({ children }: UserTeacherModalProps) => {
+const UserTeacherModal = () => {
   const { handleIsShow } = useModalContext();
   const [file, setFile] = useState<File | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = () => {
-    if (fileRef.current) {
-      fileRef.current.click();
-    }
+  const triggerFileUpload = () => {
+    fileRef.current!.click();
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,18 +38,16 @@ const UserTeacherModal = ({ children }: UserTeacherModalProps) => {
     if (!target.length) return;
 
     if (target[0].size > MAX_FILE_SIZE) {
-      alert('해당 파일은 10MB를 초과합니다.');
+      alert(FILE_UPLOAD_ERRORS.OVER_FILE_SIZE);
       return;
     }
 
     if (
-      !CAN_UPLOAD_FILE_TYPES_FOR_TEACHER_CERTIFICATE.some((type) =>
+      !ALLOWED_FILE_TYPES_FOR_TEACHER_AUTHENTICATION.some((type) =>
         target[0].type.includes(type),
       )
     ) {
-      alert(
-        `해당 파일 유형은 업로드 할 수 없습니다.\n(png, jpg, jpeg, webp, avif, pdf 확장자 파일만 가능합니다.)`,
-      );
+      alert(FILE_UPLOAD_ERRORS.DISALLOWD_FILE_TYPE);
       return;
     }
 
@@ -111,7 +108,7 @@ const UserTeacherModal = ({ children }: UserTeacherModalProps) => {
             text-lg 
             border rounded-full cursor-pointer
             ${file ? 'border-green border-2' : 'text-gray-1'}`}
-          onClick={handleFileUpload}
+          onClick={triggerFileUpload}
         >
           <SVGIcon type="Clip" />
           <p
@@ -136,7 +133,23 @@ const UserTeacherModal = ({ children }: UserTeacherModalProps) => {
           </p>
         </div>
       </div>
-      {children && children({ cancel, confirm, disabled: !file })}
+
+      <Modal.Bottom
+        left={
+          <button className="flex-1 text-gray-400" onClick={cancel}>
+            취소하기
+          </button>
+        }
+        right={
+          <button
+            className="flex-1 text-white bg-green disabled:bg-gray-300"
+            onClick={confirm}
+            disabled={!file}
+          >
+            인증하기
+          </button>
+        }
+      />
     </Modal>
   );
 };

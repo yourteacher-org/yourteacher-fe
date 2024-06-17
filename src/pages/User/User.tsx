@@ -10,29 +10,12 @@ import {
 import Section from '@layouts/Section';
 import PageNav from '@components/PageNav';
 import { useModalContext } from '@components/Modal';
-import {
-  UserDataType,
-  UserInformationStatusType,
-  UserModalActionType,
-} from '@/types/user';
+import { UserDataType, UserInformationStatusType } from '@/types/user';
 
 import UserAction from './UserAction';
 import UserProfile from './UserProfile';
 import UserInformation from './UserInformation';
-import UserNickNameModal from './UserModalContent/UserNickNameModal';
-import UserTeacherModal from './UserModalContent/UserTeacherModal';
-import UserSNSConnectModal from './UserModalContent/UserSNSConnectModal';
-
-const USER_MODAL: {
-  [key in UserInformationStatusType]: (props: {
-    children: UserModalActionType;
-  }) => JSX.Element;
-} = {
-  NICKNAME: UserNickNameModal,
-  AUTHENTICATION: UserNickNameModal,
-  TEACHER_AUTHENTICATION: UserTeacherModal,
-  SNS_CONNECT: UserSNSConnectModal,
-};
+import userModals from './UserModalContent';
 
 const UserPage: React.FC = () => {
   const navigate = useNavigate();
@@ -87,7 +70,7 @@ const UserPage: React.FC = () => {
     // },
   ];
 
-  const UserModal = USER_MODAL[modalState];
+  const UserModal = userModals[modalState];
 
   return (
     <Section
@@ -208,24 +191,7 @@ const UserPage: React.FC = () => {
         </button>
       </div>
 
-      {isShow && (
-        <UserModal>
-          {({ cancel, confirm, disabled }) => (
-            <div className="flex h-[7.5rem] border-t-[1px] border-gray-300 text-xl rounded-b-[2.5rem] overflow-hidden">
-              <button className="flex-1 text-gray-400" onClick={cancel}>
-                취소하기
-              </button>
-              <button
-                className="flex-1 text-white bg-green disabled:bg-gray-300"
-                onClick={confirm}
-                disabled={disabled}
-              >
-                저장하기
-              </button>
-            </div>
-          )}
-        </UserModal>
-      )}
+      {isShow && <UserModal />}
     </Section>
   );
 };

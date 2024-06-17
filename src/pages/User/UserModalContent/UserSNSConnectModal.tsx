@@ -2,13 +2,8 @@ import SVGIcon from '@components/SVGIcon';
 import LoginComma from '@components/LoginComma';
 import { Modal, useModalContext } from '@components/Modal';
 import { SNS_CONNECT_LIST } from '@data/User';
-import { UserModalActionType } from '@/types/user';
 
-interface UserSNSConnectModalProps {
-  children?: UserModalActionType;
-}
-
-const UserSNSConnectModal = ({ children }: UserSNSConnectModalProps) => {
+const UserSNSConnectModal = () => {
   const { handleIsShow } = useModalContext();
 
   const cancel = () => handleIsShow(false);
@@ -43,7 +38,22 @@ const UserSNSConnectModal = ({ children }: UserSNSConnectModalProps) => {
           ))}
         </div>
       </div>
-      {children && children({ cancel, confirm, disabled: false })}
+      <Modal.Bottom
+        left={
+          <button className="flex-1 text-gray-400" onClick={cancel}>
+            취소하기
+          </button>
+        }
+        right={
+          <button
+            className="flex-1 text-white bg-green disabled:bg-gray-300"
+            onClick={confirm}
+            disabled={false}
+          >
+            저장하기
+          </button>
+        }
+      />
     </Modal>
   );
 };

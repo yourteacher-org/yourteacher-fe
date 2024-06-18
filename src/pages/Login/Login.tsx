@@ -1,48 +1,6 @@
-import Comma from '@assets/icon/login_comma.svg?react';
-import Kakao from '@assets/icon/kakao.svg?react';
-import Google from '@assets/icon/google.svg?react';
-import Naver from '@assets/icon/naver.svg?react';
+import LoginComma from '@components/LoginComma';
 
-interface LoginCommaProps {
-  type: 'kakao' | 'google' | 'naver';
-}
-
-const LOGIN_ICON = {
-  kakao: { icon: Kakao, color: 'fill-kakao-yellow' },
-  google: { icon: Google, color: 'fill-google-gray' },
-  naver: { icon: Naver, color: 'fill-naver-green' },
-};
-
-const LoginComma = ({ type }: LoginCommaProps) => {
-  const { icon: Icon, color } = LOGIN_ICON[type];
-
-  return (
-    <span className="group inline-block relative cursor-pointer">
-      <Comma
-        className={`
-          ${color}
-          2xl:w-[20.125rem] xl:w-[15.75vw] lg:w-[12.5rem] sm:w-[7rem]
-          2xl:h-[22.5rem] xl:h-[17.5vw] lg:h-[12.5rem] sm:h-[7rem]
-          group-hover:drop-shadow-[10px_10px_10px_rgba(0,0,0,0.1)]
-          transition-[filter]
-          duration-[0.4s]
-        `}
-      />
-      <Icon
-        className="
-          absolute
-          2xl:w-[9.5rem] xl:w-[7.25vw] lg:w-[5rem] sm:w-[2.75rem]
-          2xl:h-[9,5rem] xl:h-[7.25vw] lg:h-[5rem] sm:h-[2.75rem]
-          2xl:top-[10.375rem] xl:top-[8.125vw] lg:top-[5.75rem] sm:top-[3.25rem]
-          left-1/2
-          -translate-x-1/2 -translate-y-1/2
-          group-hover:scale-[1.2]
-          transition-transform ease-in-out duration-[0.4s]
-        "
-      />
-    </span>
-  );
-};
+const LoginTypes = ['kakao', 'google', 'naver'] as const;
 
 const Login = () => {
   return (
@@ -63,13 +21,15 @@ const Login = () => {
       >
         유어티처로 로그인하여 더 많은 서비스를 만나보세요.
       </p>
-      <div
-        className="flex justify-center
-        2xl:gap-20 xl:gap-[4vw] lg:gap-10 sm:gap-3"
-      >
-        <LoginComma type="kakao" />
-        <LoginComma type="google" />
-        <LoginComma type="naver" />
+      <div className="flex justify-center 2xl:gap-14 xl:gap-[4vw] lg:gap-10 sm:gap-3">
+        {LoginTypes.map((type) => (
+          <LoginComma
+            key={type}
+            type={type}
+            hover
+            className="2xl:w-[100%] xl:w-[18rem] lg:w-[12.5rem] sm:w-[7rem]"
+          />
+        ))}
       </div>
     </div>
   );

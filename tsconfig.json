@@ -24,6 +24,8 @@
     "paths": {
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
+      "@/types/*": ["./src/types/*"],
+      "@hooks/*": ["./src/hooks/*"],
       "@constants/*": ["./src/constants/*"],
       "@data/*": ["./src/data/*"],
       "@styles/*": ["./src/styles/*"],
@@ -32,6 +34,12 @@
       "@utils/*": ["./src/utils/*"]
     }
   },
-  "include": ["src", "postcss.config.js", "tailwind.config.js", "images.d.ts"],
+  "include": [
+    "src",
+    "src/types",
+    "postcss.config.js",
+    "tailwind.config.js",
+    "images.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

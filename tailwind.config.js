@@ -57,6 +57,7 @@ export default {
         pretendard: ['Pretendard', 'sans-serif'],
       },
       colors: {
+        'black-2': '#2C2C2C',
         'gray-1': '#909090',
         'gray-2': '#494949',
         'gray-3': '#585858',
@@ -69,6 +70,7 @@ export default {
         'green-2': '#2B413A',
         'green-3': '#788E88',
         yellow: '#FFD72E',
+        red: '#E93D3D',
         'kakao-yellow': '#FAE100',
         'google-gray': '#F3F3F3',
         'naver-green': '#1EC800',

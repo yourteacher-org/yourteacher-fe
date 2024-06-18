@@ -20,6 +20,8 @@ import Notify from '@pages/Front/Notify';
 import Login from '@pages/Login/Login';
 import SignUp from '@pages/SignUp/SignUp';
 import Search from '@pages/Search/Search';
+import User from '@pages/User/User';
+import Withdraw from '@pages/Withdraw/Withdraw';
 import MainLayout from '@layouts/MainLayout';
 
 const Page: React.FC = () => {
@@ -47,6 +49,8 @@ const Page: React.FC = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/withdraw" element={<Withdraw />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

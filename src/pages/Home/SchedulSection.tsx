@@ -60,12 +60,12 @@ const ScheduleDate = ({
 
       <Dot className="xl:ml-[30rem] lg:ml-[20rem] sm:ml-[10rem] xl:mb-[1rem] sm:mb-[1rem] sm:mt-[1rem]" />
       <div className="xl:text-[1.25rem] lg:text-[0.875rem] sm:text-[0.625rem]">
-        <p className="xl:mb-[0.8rem] lg:mb-[0.7rem] sm:mb-[0.6rem]">
-          <Date className="absolute xl:w-[1.25rem] lg:w-[1.00375rem] sm:w-[0.908125rem] xl:h-[1.27rem] lg:h-[1.02rem] sm:h-[0.895rem] xl:ml-[14.1rem] lg:ml-[8.25rem] sm:ml-[2rem] xl:mt-[0.1rem] lg:mt-[0.2rem] sm:mt-[0.1rem] " />
+        <p className="flex items-center justify-center xl:gap-4 lg:gap-2 sm:gap-1 xl:mb-[0.75rem] lg:mb-[0.5rem]">
+          <Date className="xl:w-[1.25rem] lg:w-[1rem] sm:w-[0.675rem] mb-0.5" />
           신청일자: {formatDate(applyStartDate)} ~ {formatDate(applyEndDate)}
         </p>
-        <p>
-          <Edu className="absolute xl:w-[1.5rem] lg:w-[1.1195rem] sm:w-[0.989375rem] xl:h-[1.2775rem] lg:h-[1.02rem] sm:h-[0.875rem] xl:ml-[14.1rem] lg:ml-[8.25rem] sm:ml-[2rem] xl:mt-[0.3rem] lg:mt-[0.2rem] sm:mt-[0.1rem]" />
+        <p className="flex items-center justify-center xl:gap-4 lg:gap-2 sm:gap-1">
+          <Edu className="xl:w-[1.25rem] lg:w-[1rem] sm:w-[0.675rem] mb-0.5" />
           교육일자: {formatDate(eduStartDate)} ~{' '}
           {eduEndDate ? formatDate(eduEndDate) : formatDate(eduStartDate)}
         </p>

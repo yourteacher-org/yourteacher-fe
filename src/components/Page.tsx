@@ -1,19 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from '@pages/Home/Home';
-import Share from '@pages/Share/Share';
 import Collection from '@pages/Share/Collection';
 import News from '@pages/Share/News';
-import Qna from '@pages/Qna/Qna';
 import Communication from '@pages/Qna/Communication';
 import Sharing from '@pages/Qna/Sharing';
 import Teacher from '@pages/Qna/Teacher';
-import Edu from '@pages/Edu/Edu';
 import Date from '@pages/Edu/Date';
 import Program from '@pages/Edu/Program';
-import Notice from '@pages/Notice/Notice';
 import Hire from '@pages/Notice/Hire';
-import Front from '@pages/Front/Front';
 import Faq from '@pages/Front/Faq';
 import Inquiry from '@pages/Front/Inquiry';
 import Notify from '@pages/Front/Notify';
@@ -23,34 +18,97 @@ import Search from '@pages/Search/Search';
 import User from '@pages/User/User';
 import Withdraw from '@pages/Withdraw/Withdraw';
 import MainLayout from '@layouts/MainLayout';
+import ProtectGuard from './ProtectGuard';
+import NavigateWithOutlet from './NavigateWithOutlet';
 
 const Page: React.FC = () => {
+  const isLogin = true;
+  const isTeacher = true;
+
   return (
     <BrowserRouter>
       <MainLayout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/share" element={<Share />} />
-          <Route path="/collection" element={<Collection />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/qna" element={<Qna />} />
-          <Route path="/communication" element={<Communication />} />
-          <Route path="/sharing" element={<Sharing />} />
-          <Route path="/teacher" element={<Teacher />} />
-          <Route path="/edu" element={<Edu />} />
-          <Route path="/date" element={<Date />} />
-          <Route path="/program" element={<Program />} />
-          <Route path="/notice" element={<Notice />} />
-          <Route path="/hire" element={<Hire />} />
-          <Route path="/front" element={<Front />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/inquiry" element={<Inquiry />} />
-          <Route path="/notify" element={<Notify />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/share"
+            element={<NavigateWithOutlet to="/share/collection" />}
+          >
+            <Route path="collection" element={<Collection />} />
+            <Route path="news" element={<News />} />
+          </Route>
+
+          <Route
+            path="/qna"
+            element={<NavigateWithOutlet to="/qna/communication" />}
+          >
+            <Route path="communication" element={<Communication />} />
+            <Route path="sharing" element={<Sharing />} />
+            <Route
+              path="teacher"
+              element={
+                <ProtectGuard isAuthenticated={isLogin && isTeacher}>
+                  <Teacher />
+                </ProtectGuard>
+              }
+            />
+          </Route>
+
+          <Route path="/edu" element={<NavigateWithOutlet to="/edu/date" />}>
+            <Route path="date" element={<Date />} />
+            <Route path="program" element={<Program />} />
+          </Route>
+
+          <Route
+            path="/notice"
+            element={<NavigateWithOutlet to="/notice/hire" />}
+          >
+            <Route path="hire" element={<Hire />} />
+          </Route>
+
+          <Route
+            path="/front"
+            element={<NavigateWithOutlet to="/front/notify" />}
+          >
+            <Route path="notify" element={<Notify />} />
+            <Route path="inquiry" element={<Inquiry />} />
+            <Route path="faq" element={<Faq />} />
+          </Route>
+
+          <Route
+            path="/login"
+            element={
+              <ProtectGuard isAuthenticated={!isLogin} replace>
+                <Login />
+              </ProtectGuard>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <ProtectGuard isAuthenticated={!isLogin} replace>
+                <SignUp />
+              </ProtectGuard>
+            }
+          />
           <Route path="/search" element={<Search />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/withdraw" element={<Withdraw />} />
+          <Route
+            path="/user"
+            element={
+              <ProtectGuard isAuthenticated={isLogin} replace>
+                <User />
+              </ProtectGuard>
+            }
+          />
+          <Route
+            path="/withdraw"
+            element={
+              <ProtectGuard isAuthenticated={isLogin} replace>
+                <Withdraw />
+              </ProtectGuard>
+            }
+          />
+          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

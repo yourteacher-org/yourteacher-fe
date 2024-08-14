@@ -1,4 +1,4 @@
-import CommaSVG from '@assets/comma.svg';
+// import CommaSVG from '@assets/comma.svg';
 
 const FOOTER_MENUS = ['개인정보처리방침', '이용약관', '버그제보', '광고문의'];
 
@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="w-full fixed bottom-0">
       <div className=" relative h-80 bg-gray-2">
-        <img className="absolute -top-40 ml-16" src={CommaSVG} alt="comma" />
+        {/* <img className="absolute -top-40 ml-16" src={CommaSVG} alt="comma" /> */}
         <div className="ml-[27rem] pt-10 text-white">
           <ul className="flex gap-20 mb-20">
             {FOOTER_MENUS.map((menu) => (

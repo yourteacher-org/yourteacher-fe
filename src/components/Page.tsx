@@ -18,8 +18,10 @@ import Search from '@pages/Search/Search';
 import User from '@pages/User/User';
 import Withdraw from '@pages/Withdraw/Withdraw';
 import MainLayout from '@layouts/MainLayout';
+import Share from '@pages/Share/Share';
+import Notice from '@pages/Notice/Notice';
+import Front from '@pages/Front/Front';
 import ProtectGuard from './ProtectGuard';
-import NavigateWithOutlet from './NavigateWithOutlet';
 
 const Page: React.FC = () => {
   const isLogin = true;
@@ -29,20 +31,14 @@ const Page: React.FC = () => {
     <BrowserRouter>
       <MainLayout>
         <Routes>
-          <Route
-            path="/share"
-            element={<NavigateWithOutlet to="/share/collection" />}
-          >
-            <Route path="collection" element={<Collection />} />
+          <Route path="/:category" element={<Share />}>
             <Route path="news" element={<News />} />
+            <Route path="collection" element={<Collection />} />
           </Route>
 
-          <Route
-            path="/qna"
-            element={<NavigateWithOutlet to="/qna/communication" />}
-          >
-            <Route path="communication" element={<Communication />} />
+          <Route path="/:category" element={<Share />}>
             <Route path="sharing" element={<Sharing />} />
+            <Route path="communication" element={<Communication />} />
             <Route
               path="teacher"
               element={
@@ -53,22 +49,16 @@ const Page: React.FC = () => {
             />
           </Route>
 
-          <Route path="/edu" element={<NavigateWithOutlet to="/edu/date" />}>
+          <Route path="/:category" element={<Share />}>
             <Route path="date" element={<Date />} />
             <Route path="program" element={<Program />} />
           </Route>
 
-          <Route
-            path="/notice"
-            element={<NavigateWithOutlet to="/notice/hire" />}
-          >
+          <Route path="/notice" element={<Notice />}>
             <Route path="hire" element={<Hire />} />
           </Route>
 
-          <Route
-            path="/front"
-            element={<NavigateWithOutlet to="/front/notify" />}
-          >
+          <Route path="/front" element={<Front />}>
             <Route path="notify" element={<Notify />} />
             <Route path="inquiry" element={<Inquiry />} />
             <Route path="faq" element={<Faq />} />
@@ -90,7 +80,6 @@ const Page: React.FC = () => {
               </ProtectGuard>
             }
           />
-          <Route path="/search" element={<Search />} />
           <Route
             path="/user"
             element={
@@ -107,6 +96,7 @@ const Page: React.FC = () => {
               </ProtectGuard>
             }
           />
+          <Route path="/search" element={<Search />} />
           <Route path="/" element={<Home />} />
           <Route path="/*" element={<Navigate to="/" />} />
         </Routes>

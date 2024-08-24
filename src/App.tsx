@@ -8,8 +8,8 @@ const App: React.FC = () => {
   return (
     <div className="font-pretendard h-screen">
       <Page />
-      {/* <Footer />
-      <Navbar /> */}
+      {/* <Footer /> */}
+      {/* <Navbar /> */}
     </div>
   );
 };

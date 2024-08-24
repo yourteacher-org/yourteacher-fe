@@ -8,31 +8,15 @@ import Bg from '@assets/img/submenu-bg.svg';
 import Ham from '@assets/icon/menu-ham.svg';
 import Close from '@assets/icon/ham-close.svg';
 import Circle from '@assets/icon/click-circle.svg';
-import Lock from '@assets/icon/submenu-lock.svg';
-import HoverLock from '@assets/icon/hovered-lock.svg';
+import Lock from '@assets/icon/header-lock.svg';
+import White from '@assets/icon/menu-lock.svg';
 import { SUB_MENUS, MENU_PAGE, MENUS, SUB_PAGE } from './Data';
 
 interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-
-  const handleHover = () => {
-    setIsHovered(true);
-  };
-
-  const handleLeave = () => {
-    setIsHovered(false);
-  };
-  const handleMenuHover = (menu: string) => {
-    setHoveredMenu(menu);
-  };
-  const handleMenuLeave = () => {
-    setHoveredMenu(null);
-  };
 
   const toggleMenu = () => {
     if (isMenuOpen) {
@@ -41,22 +25,11 @@ const Navbar: React.FC<NavbarProps> = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const isBackgroundImagePresent = true;
-
   return (
-    <header
-      className={`fixed{ ${isHovered ? 'xl:border-b border-gray-200' : ''} `}
-    >
-      <div className="xl:mt-[1.4375rem] lg:mt-[0.5rem] sm:mt-[0.5rem]" />
-      <nav
-        className="flex items-center justify-center"
-        onMouseEnter={handleHover}
-        onMouseLeave={handleLeave}
-      >
-        <div
-          className={`${isHovered ? 'absolute xl:bottom-0 xl:left-0 xl:w-full xl:h-[11.7rem] xl:bg-white xl:top-[5.9rem] xl:border-b xl:shadow-lg xl:transition-all duration-400 ease-in-out' : ''}`}
-        />
-
+    <header className="group/header relative xl:mt-[1.4375rem] lg:mt-[0.5rem] sm:mt-[0.5rem]">
+      <div className="absolute xl:bottom-0 xl:left-0 xl:w-full xl:h-[11.7rem] xl:bg-white xl:top-[4.5rem] xl:border-b xl:shadow-lg xl:transition-all duration-400 ease-in-out opacity-100 invisible group-hover/header:visible" />
+      <div className="absolute top-full left-0 w-full bg-white border-b shadow-lg transition-opacity duration-300 ease-in-out opacity-0 group-hover/header:opacity-100" />
+      <nav className="flex items-center justify-center relative bg-white">
         <Link to="/">
           <img
             src={Logo}
@@ -66,58 +39,52 @@ const Navbar: React.FC<NavbarProps> = () => {
         </Link>
         <ul className="xl:flex lg:hidden sm:hidden">
           {MENUS.map((menu) => (
-            <li
-              key={menu}
-              className="relative"
-              onMouseEnter={() => handleMenuHover(menu)}
-              onMouseLeave={handleMenuLeave}
-            >
+            <li key={menu} className="relative group/menu">
               {MENU_PAGE[menu] && (
                 <Link
                   to={`/${MENU_PAGE[menu]}`}
-                  className={`block w-[8.75rem] text-[1rem] text-center mb-[1.2rem] ${hoveredMenu === menu ? 'font-bold' : 'font-meduim'} ${isHovered || isBackgroundImagePresent ? 'text-black' : 'text-white mix-blend-difference'}`}
+                  className="block w-[8.75rem] text-[1rem] text-center mb-[1.2rem] text-white mix-blend-difference group-hover/menu:font-bold"
                 >
                   {menu}
                 </Link>
               )}
-              {isHovered && (
-                <ul
-                  className="absolute w-[100%] pt-[3.3rem] space-y-[1.5rem] text-[1rem] text-center"
-                  style={
-                    hoveredMenu === menu
-                      ? {
-                          backgroundImage: `url(${Bg})`,
-                          width: '100%',
-                          height: '13.125rem',
-                          backgroundPosition: 'center',
-                          backgroundRepeat: 'no-repeat',
-                        }
-                      : {}
-                  }
-                >
-                  {SUB_MENUS[MENU_PAGE[menu]] &&
-                    SUB_MENUS[MENU_PAGE[menu]].map((subMenuItem) => (
-                      <li
-                        key={subMenuItem}
-                        className="flex items-center justify-center"
+
+              <ul className="absolute hidden group-hover/header:block w-full pt-[1.9rem] space-y-[1.5rem] text-[1rem] text-center">
+                <img
+                  className="w-full h-[13.125rem] hidden group-hover/menu:block absolute left-0 top-1.5 z-0"
+                  src={Bg}
+                  alt="menu-background"
+                />
+                {SUB_MENUS[MENU_PAGE[menu]] &&
+                  SUB_MENUS[MENU_PAGE[menu]].map((subMenuItem) => (
+                    <li
+                      key={subMenuItem}
+                      className="relative flex items-center justify-center z-1"
+                    >
+                      <Link
+                        to={`/${SUB_PAGE[subMenuItem]}`}
+                        className="font-meduim group-hover/menu:text-white group-hover/menu:font-bold"
                       >
-                        <Link
-                          to={`/${SUB_PAGE[subMenuItem]}`}
-                          className={`${hoveredMenu === menu ? 'font-bold text-white' : 'font-meduim'}`}
-                        >
-                          {subMenuItem}
-                          {subMenuItem === '교사방' && (
+                        {subMenuItem}
+                        {subMenuItem === '교사방' && (
+                          <div className="relative">
                             <img
-                              src={hoveredMenu === menu ? HoverLock : Lock}
+                              src={Lock}
                               alt="자물쇠"
-                              className="ml-[4.5rem] w-[1.01rem] h-[1.24rem] -translate-y-5 group-hover:hidden"
+                              className="ml-[4.5rem] w-[1.01rem] h-[1.24rem] -translate-y-5 group-hover/menu:block group-hover/menu:hidden"
                             />
-                          )}
-                        </Link>
-                      </li>
-                    ))}
-                </ul>
-              )}
+
+                            <img
+                              src={White}
+                              alt="자물쇠"
+                              className="ml-[4.5rem] w-[1.01rem] h-[1.24rem] -translate-y-5 hidden group-hover/menu:block"
+                            />
+                          </div>
+                        )}
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
             </li>
           ))}
         </ul>
@@ -132,7 +99,10 @@ const Navbar: React.FC<NavbarProps> = () => {
             </Link>
           </li>
           <li className="xl:flex lg:hidden sm:hidden">
-            <Link to="/login" className="text-[0.875rem]">
+            <Link
+              to="/login"
+              className="black text-[0.875rem] text-white mix-blend-difference"
+            >
               로그인 및 회원가입
             </Link>
           </li>
@@ -148,7 +118,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           </li>
 
           <li>
-            <Link to="/search" className="x">
+            <Link to="/search">
               <img
                 src={Search}
                 alt="검색 아이콘"
@@ -160,12 +130,12 @@ const Navbar: React.FC<NavbarProps> = () => {
         <div className="xl:hidden">
           <button
             type="button"
-            className="lg:w-[2.9375rem] sm:w-[1.875rem] lg:h-[3.3125rem] sm:[2.114375rem]"
+            className="ham-button lg:w-[2.9375rem] sm:w-[1.875rem] lg:h-[3.3125rem] sm:[2.114375rem]"
             onClick={toggleMenu}
           >
             <img
               src={isMenuOpen ? Close : Ham}
-              alt="메뉴아이콘"
+              alt="햄버거 메뉴 아이콘"
               className="lg:mt-[0.4rem]"
             />
           </button>
@@ -184,16 +154,11 @@ const Navbar: React.FC<NavbarProps> = () => {
             </button>
             <ul className="lg:space-y-[1rem] sm:space-y-[1.5rem]">
               {MENUS.map((menu) => (
-                <li
-                  key={menu}
-                  className="relative"
-                  onMouseEnter={() => handleMenuHover(menu)}
-                  onMouseLeave={handleMenuLeave}
-                >
+                <li key={menu} className="relative group">
                   {MENU_PAGE[menu] && (
                     <button
                       type="button"
-                      className="lg:text-[2.5rem] sm:text-[2rem] font-medium w-full text-left font-extrabold lg:pl-[7.7rem] sm:pl-[4rem] lg:py-[0.8rem] sm:py-[0.5rem]"
+                      className="menu-button lg:text-[2.5rem] sm:text-[2rem] font-medium w-full text-left font-extrabold lg:pl-[7.7rem] sm:pl-[4rem] lg:py-[0.8rem] sm:py-[0.5rem]"
                       onClick={() =>
                         setOpenMenu(openMenu === menu ? null : menu)
                       }

@@ -34,9 +34,6 @@ const Page: React.FC = () => {
           <Route path="/:category" element={<Share />}>
             <Route path="news" element={<News />} />
             <Route path="collection" element={<Collection />} />
-          </Route>
-
-          <Route path="/:category" element={<Share />}>
             <Route path="sharing" element={<Sharing />} />
             <Route path="communication" element={<Communication />} />
             <Route
@@ -65,37 +62,15 @@ const Page: React.FC = () => {
           </Route>
 
           <Route
-            path="/login"
-            element={
-              <ProtectGuard isAuthenticated={!isLogin} replace>
-                <Login />
-              </ProtectGuard>
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <ProtectGuard isAuthenticated={!isLogin} replace>
-                <SignUp />
-              </ProtectGuard>
-            }
-          />
-          <Route
-            path="/user"
-            element={
-              <ProtectGuard isAuthenticated={isLogin} replace>
-                <User />
-              </ProtectGuard>
-            }
-          />
-          <Route
-            path="/withdraw"
-            element={
-              <ProtectGuard isAuthenticated={isLogin} replace>
-                <Withdraw />
-              </ProtectGuard>
-            }
-          />
+            path="/auth"
+            element={<ProtectGuard isAuthenticated={isLogin} />}
+          >
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="user" element={<User />} />
+            <Route path="withdraw" element={<Withdraw />} />
+          </Route>
+
           <Route path="/search" element={<Search />} />
           <Route path="/" element={<Home />} />
           <Route path="/*" element={<Navigate to="/" />} />

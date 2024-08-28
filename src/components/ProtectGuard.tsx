@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 interface ProtectGaurdProps {
   isAuthenticated: boolean;
@@ -15,7 +15,7 @@ const ProtectGuard = ({
   replace,
 }: ProtectGaurdProps) => {
   return isAuthenticated ? (
-    children
+    children || <Outlet />
   ) : (
     <Navigate to={redirect} replace={replace} />
   );

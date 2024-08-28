@@ -1,15 +1,25 @@
-import React from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 import { CategoryType } from '@/types/board';
 
 const Collection: React.FC = () => {
-  const { category, subclass } = useOutletContext<CategoryType>();
-
+  const { category, subclass, data } = useOutletContext<CategoryType>();
   console.log(category, subclass);
+
   return (
     <div>
-      <h2>Collection</h2>
+      {data.length === 0 && <div>It is loading...</div>}
+      {data.map(({ id, title, author, created_at, like_count, view_count }) => (
+        <div key={id}>
+          <div>{id}</div>
+          <div>{title}</div>
+          <div>{author}</div>
+          <div>{created_at}</div>
+          <div>{like_count}</div>
+          <div>{view_count}</div>
+          <br />
+        </div>
+      ))}
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import PageNav from '@components/PageNav';
 import BoardLayout from '@layouts/BoardLayout';
 import { CategoryType } from '@/types/board';
 import { categoryInfo, subclassInfo } from '@data/board';
+import useBoardSearchParams from '@hooks/useBoardSearchParams';
 
 const BOARD_MOCK_DATA = Array.from({ length: 10 }, (_, i) => ({
   id: i + 1,
@@ -20,15 +21,10 @@ const getBoardMockData: () => Promise<CategoryType['data']> = async () =>
     setTimeout(() => resolve(BOARD_MOCK_DATA), 500);
   });
 
-const Share = () => {
+const BoardWrapper = () => {
   const [boardData, setBoardData] = useState<CategoryType['data']>([]);
-
-  const location = useLocation();
-  const [category, subclass] = location.pathname.split('/').slice(1);
-  const categoryTitle = categoryInfo[category];
-  const { title, description } = subclassInfo[category][subclass];
-  const sort = new URLSearchParams(location.search).get('sort');
-  console.log(sort);
+  const { category, categoryTitle, subclass, subclassTitle, description } =
+    useBoardSearchParams();
 
   useEffect(() => {
     (async function () {
@@ -45,10 +41,10 @@ const Share = () => {
     <BoardLayout>
       <PageNav>
         <span>{categoryTitle}</span>
-        <span>{title}</span>
+        <span>{subclassTitle}</span>
       </PageNav>
 
-      <h1>{title}</h1>
+      <h1>{subclassTitle}</h1>
       <p>{description}</p>
 
       <Outlet context={{ category, subclass, data: boardData }} />
@@ -56,4 +52,4 @@ const Share = () => {
   );
 };
 
-export default Share;
+export default BoardWrapper;

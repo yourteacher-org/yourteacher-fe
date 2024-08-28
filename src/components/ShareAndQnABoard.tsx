@@ -2,7 +2,7 @@ import { useOutletContext } from 'react-router-dom';
 
 import { CategoryType } from '@/types/board';
 
-const Collection: React.FC = () => {
+const ShareAndQnABoard: React.FC = () => {
   const { category, subclass, data } = useOutletContext<CategoryType>();
   console.log(category, subclass);
 
@@ -24,4 +24,4 @@ const Collection: React.FC = () => {
   );
 };
 
-export default Collection;
+export default ShareAndQnABoard;

@@ -1,10 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from '@pages/Home/Home';
-import Collection from '@pages/Share/Collection';
-import News from '@pages/Share/News';
-import Communication from '@pages/Qna/Communication';
-import Sharing from '@pages/Qna/Sharing';
 import Teacher from '@pages/Qna/Teacher';
 import Date from '@pages/Edu/Date';
 import Program from '@pages/Edu/Program';
@@ -18,10 +14,11 @@ import Search from '@pages/Search/Search';
 import User from '@pages/User/User';
 import Withdraw from '@pages/Withdraw/Withdraw';
 import MainLayout from '@layouts/MainLayout';
-import Share from '@pages/Share/Share';
 import Notice from '@pages/Notice/Notice';
 import Front from '@pages/Front/Front';
 import ProtectGuard from './ProtectGuard';
+import BoardWrapper from './BoardWrapper';
+import ShareAndQnABoard from './ShareAndQnABoard';
 
 const Page: React.FC = () => {
   const isLogin = true;
@@ -31,11 +28,14 @@ const Page: React.FC = () => {
     <BrowserRouter>
       <MainLayout>
         <Routes>
-          <Route path="/:category" element={<Share />}>
-            <Route path="news" element={<News />} />
-            <Route path="collection" element={<Collection />} />
-            <Route path="sharing" element={<Sharing />} />
-            <Route path="communication" element={<Communication />} />
+          <Route path="/:category" element={<BoardWrapper />}>
+            {/* /share */}
+            <Route path="news" element={<ShareAndQnABoard />} />
+            <Route path="collection" element={<ShareAndQnABoard />} />
+
+            {/* /qna */}
+            <Route path="sharing" element={<ShareAndQnABoard />} />
+            <Route path="communication" element={<ShareAndQnABoard />} />
             <Route
               path="teacher"
               element={
@@ -44,9 +44,8 @@ const Page: React.FC = () => {
                 </ProtectGuard>
               }
             />
-          </Route>
 
-          <Route path="/:category" element={<Share />}>
+            {/* /edu */}
             <Route path="date" element={<Date />} />
             <Route path="program" element={<Program />} />
           </Route>

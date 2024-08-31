@@ -27,8 +27,8 @@ const Navbar: React.FC<NavbarProps> = () => {
 
   return (
     <header className="group/header relative">
-      <nav className="flex items-center justify-center group-hover/header:xl:border-b border-gray-200 opacity-100 group-hover/header:bg-white xl:h-[5.75rem] lg:h-[5rem] sm:h-[5rem]">
-        <div className="absolute top-[5.7rem] group-hover/header:w-full h-[12rem] group-hover/header:bg-white shadow-lg" />
+      <nav className="flex items-center justify-center xl:group-hover/header:border-b border-gray-200 opacity-100 group-hover/header:bg-white xl:h-[5.75rem] lg:h-[5.625rem] sm:h-[3.75rem] lg:group-hover/header:shadow-lg sm:group-hover/header:shadow-lg">
+        <div className="absolute top-[5.7rem] group-hover/header:xl:w-full xl:h-[12rem] group-hover/header:xl:bg-white shadow-lg" />
         <Link to="/">
           <img
             src={Logo}
@@ -122,7 +122,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <img
                 src={Search}
                 alt="검색 아이콘"
-                className="xl:w-[2.8125rem] lg:w-[2.9375rem] sm:w-[1.875rem] xl:h-[2.8125rem] lg:h-[2.9375rem] sm:h-[1.875rem] xl:mt-[0.15rem] lg:mt-[0.15rem] sm:mt-[0.5rem] xl:mr-[2.8rem] lg:mr-[0.4rem] sm:mr-[0.5rem]"
+                className="xl:w-[2.8125rem] lg:w-[2.9375rem] sm:w-[1.875rem] xl:h-[2.8125rem] lg:h-[2.9375rem] sm:h-[1.875rem] xl:mt-[0.15rem] xl:mr-[2.8rem] lg:mr-[0.45rem] sm:mr-[0.4rem]"
               />
             </Link>
           </li>
@@ -136,7 +136,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             <img
               src={isMenuOpen ? Close : Ham}
               alt="햄버거 메뉴 아이콘"
-              className="lg:mt-[0.5rem] sm:mt-[1rem]"
+              className="lg:mt-[0.4rem] sm:mt-[0.7rem]"
             />
           </button>
         </div>

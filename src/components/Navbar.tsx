@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '@assets/img/header-logo.svg';
 import Jong from '@assets/icon/alert.svg';
@@ -17,6 +17,7 @@ interface NavbarProps {}
 const Navbar: React.FC<NavbarProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const toggleMenu = () => {
     if (isMenuOpen) {
@@ -25,10 +26,25 @@ const Navbar: React.FC<NavbarProps> = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+        setOpenMenu(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuRef]);
+
   return (
     <header className="group/header relative">
-      <nav className="flex items-center justify-center xl:group-hover/header:border-b border-gray-200 opacity-100 group-hover/header:bg-white xl:h-[5.75rem] lg:h-[5.625rem] sm:h-[3.75rem] lg:group-hover/header:shadow-lg sm:group-hover/header:shadow-lg">
-        <div className="absolute top-[5.7rem] group-hover/header:xl:w-full xl:h-[12rem] group-hover/header:xl:bg-white shadow-lg" />
+      <nav className="flex items-center justify-center xl:group-hover/header:border-b border-gray-200 opacity-100 group-hover/header:bg-white xl:h-[5.75rem] lg:h-[5.625rem] sm:h-[3.75rem] lg:group-hover/header:shadow-lg sm:group-hover/header:shadow-lg relative group">
+        <div className="absolute top-[5.75rem] group-hover/header:xl:w-full xl:h-[12rem] group-hover/header:xl:bg-white shadow-lg" />
         <Link to="/">
           <img
             src={Logo}
@@ -49,9 +65,9 @@ const Navbar: React.FC<NavbarProps> = () => {
                 </Link>
               )}
 
-              <ul className="absolute hidden group-hover/header:block w-full pt-[3.3rem] space-y-[1.5rem] text-[1rem] text-center">
+              <ul className="absolute hidden group-hover/header:block w-full pt-[3.3rem] space-y-[1.5rem] text-[1rem] text-center z-10">
                 <img
-                  className="w-full h-[13.125rem] hidden group-hover/menu:block absolute left-0 top-[1.6rem] z-0"
+                  className="w-full h-[13.125rem] hidden group-hover/menu:block absolute left-0 top-[1.6rem] z-1"
                   src={Bg}
                   alt="menu-background"
                 />
@@ -59,7 +75,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                   SUB_MENUS[MENU_PAGE[menu]].map((subMenuItem) => (
                     <li
                       key={subMenuItem}
-                      className="relative flex items-center justify-center z-1"
+                      className="relative flex items-center justify-center"
                     >
                       <Link
                         to={`/${SUB_PAGE[subMenuItem]}`}
@@ -112,7 +128,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <img
                 src={Jong}
                 alt="알림"
-                className="w-[1.875rem] h-[1.875rem] ml-[0.8rem] mr-[0.8rem]"
+                className="w-[1.875rem] h-[1.875rem] ml-[0.8rem] mr-[0.8rem] invert mix-blend-difference"
               />
             </Link>
           </li>
@@ -130,24 +146,23 @@ const Navbar: React.FC<NavbarProps> = () => {
         <div className="xl:hidden">
           <button
             type="button"
-            className="ham-button lg:w-[2.9375rem] sm:w-[1.875rem] lg:h-[3.3125rem] sm:[2.114375rem]"
+            className="ham-button lg:w-[2.9375rem] sm:w-[1.875rem] lg:h-[3.3125rem] sm:[2.114375rem] lg:mt-[0.4rem] lg:mr-[1.5rem] sm:mt-[0.4rem] sm:mr-[1.3rem]"
             onClick={toggleMenu}
           >
-            <img
-              src={isMenuOpen ? Close : Ham}
-              alt="햄버거 메뉴 아이콘"
-              className="lg:mt-[0.4rem] sm:mt-[0.7rem]"
-            />
+            <img src={isMenuOpen ? Close : Ham} alt="햄버거 메뉴 아이콘" />
           </button>
         </div>
       </nav>
 
       {isMenuOpen && (
         <div className="xl:hidden fixed inset-0 bg-black bg-opacity-50 z-40">
-          <div className="xl:hidden fixed top-0 right-0 z-50 lg:w-[32rem] sm:w-[21.25rem] lg:h-[43.625rem] sm:w-[21.25rem] sm:h-[38.5rem] bg-white shadow-lg transition-transform duration-300 transform translate-x-0 lg:rounded-tl-[3rem] sm:rounded-tl-[1.5rem] lg:rounded-bl-[3rem] sm:rounded-bl-[1.5rem]">
+          <div
+            ref={menuRef}
+            className="xl:hidden fixed top-0 right-0 z-50 lg:w-[32rem] sm:w-[21.25rem] lg:h-[43.625rem] sm:w-[21.25rem] sm:h-[38.5rem] bg-white shadow-lg transition-transform duration-300 transform translate-x-0 lg:rounded-tl-[3rem] sm:rounded-tl-[1.5rem] lg:rounded-bl-[3rem] sm:rounded-bl-[1.5rem]"
+          >
             <button
               type="button"
-              className="lg:ml-[1.5rem] sm:ml-[1rem] lg:mt-[1.6rem] sm:mt-[2.25rem] lg:w-[2.9375rem] sm:w-[1.875rem] lg:h-[3.3125rem] sm:h-[2.114375rem] sm:mb-[1rem]"
+              className="lg:ml-[1.5rem] sm:ml-[1rem] lg:mt-[1.6rem] sm:mt-[2.25rem] lg:w-[2.9375rem] sm:w-[1.875rem] lg:h-[3.3125rem] sm:h-[2.114375rem]"
               onClick={toggleMenu}
             >
               <img src={Close} alt="메뉴닫기" />
@@ -158,7 +173,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                   {MENU_PAGE[menu] && (
                     <button
                       type="button"
-                      className="menu-button lg:text-[2.5rem] sm:text-[2rem] font-medium w-full text-left font-extrabold lg:pl-[7.7rem] sm:pl-[4rem] lg:py-[0.8rem] sm:py-[0.5rem]"
+                      className="menu-button lg:text-[2.5rem] sm:text-[2rem] w-full text-left font-bold lg:pl-[7.7rem] sm:pl-[4rem] lg:py-[0.8rem] sm:py-[0.5rem]"
                       onClick={() =>
                         setOpenMenu(openMenu === menu ? null : menu)
                       }
@@ -179,7 +194,13 @@ const Navbar: React.FC<NavbarProps> = () => {
                         SUB_MENUS[MENU_PAGE[menu]].map((subMenuItem) => (
                           <li key={subMenuItem} className="flex items-center">
                             <span className="inline-block w-[0.13rem] h-[0.13rem] bg-black rounded-full mr-1" />
-                            <Link to={`/${SUB_PAGE[subMenuItem]}`}>
+                            <Link
+                              to={`/${SUB_PAGE[subMenuItem]}`}
+                              onClick={() => {
+                                setIsMenuOpen(false);
+                                setOpenMenu(null);
+                              }}
+                            >
                               {subMenuItem}
                             </Link>
                           </li>

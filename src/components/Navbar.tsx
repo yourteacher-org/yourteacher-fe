@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Logo from '@assets/img/header-logo.svg';
 import Jong from '@assets/icon/alert.svg';
 import Search from '@assets/icon/search.svg';
-import Arrow from '@assets/icon/allow-user.svg';
+import Arrow from '@assets/icon/arrow-user.svg';
 import User from '@assets/icon/login-tablet.svg';
 import Bg from '@assets/img/submenu-bg.svg';
 import Ham from '@assets/icon/menu-ham.svg';
@@ -111,7 +111,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <img
                 src={Arrow}
                 alt="사용자"
-                className="w-[2.9375rem] h-[2.9375rem] right-[0.5rem] transform transition-transform duration-300 hover:rotate-90"
+                className="w-[2.3rem] h-[2.3rem] right-[0.5rem] transform transition-transform duration-300 hover:rotate-90"
               />
             </Link>
           </li>
@@ -129,7 +129,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <img
                 src={Jong}
                 alt="알림"
-                className="w-[1.875rem] h-[1.875rem] ml-[0.8rem] mr-[0.8rem] invert mix-blend-difference"
+                className="w-[1.7rem] h-[1.7rem] ml-[0.8rem] mr-[0.8rem] invert mix-blend-difference"
               />
             </Link>
           </li>
@@ -139,7 +139,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <img
                 src={Search}
                 alt="검색 아이콘"
-                className="xl:w-[2.8125rem] lg:w-[2.9375rem] sm:w-[1.875rem] xl:h-[2.8125rem] lg:h-[2.9375rem] sm:h-[1.875rem] xl:mt-[0.15rem] xl:mr-[2.8rem] lg:mr-[0.45rem] sm:mr-[0.4rem]"
+                className="xl:w-[2.3rem] lg:w-[2.9375rem] sm:w-[1.875rem] xl:h-[2.3rem] lg:h-[2.9375rem] sm:h-[1.875rem] xl:mt-[0.15rem] xl:mr-[2.8rem] lg:mr-[0.45rem] sm:mr-[0.4rem]"
               />
             </Link>
           </li>

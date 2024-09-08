@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import Logo from '@assets/img/header-logo.svg';
 import Jong from '@assets/icon/alert.svg';
 import Search from '@assets/icon/search.svg';
-import User from '@assets/icon/user.svg';
+import Arrow from '@assets/icon/allow-user.svg';
+import User from '@assets/icon/login-tablet.svg';
 import Bg from '@assets/img/submenu-bg.svg';
 import Ham from '@assets/icon/menu-ham.svg';
 import Close from '@assets/icon/ham-close.svg';
@@ -44,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = () => {
   return (
     <header className="group/header relative">
       <nav className="flex items-center justify-center xl:group-hover/header:border-b border-gray-200 opacity-100 group-hover/header:bg-white xl:h-[5.75rem] lg:h-[5.625rem] sm:h-[3.75rem] lg:group-hover/header:shadow-lg sm:group-hover/header:shadow-lg relative group">
-        <div className="absolute top-[5.75rem] group-hover/header:xl:w-full xl:h-[12rem] group-hover/header:xl:bg-white shadow-lg" />
+        <div className="absolute top-[5.75rem] group-hover/header:xl:w-full xl:h-[11.8rem] group-hover/header:xl:bg-white shadow-lg" />
         <Link to="/">
           <img
             src={Logo}
@@ -65,9 +66,9 @@ const Navbar: React.FC<NavbarProps> = () => {
                 </Link>
               )}
 
-              <ul className="absolute hidden group-hover/header:block w-full pt-[3.3rem] space-y-[1.5rem] text-[1rem] text-center z-10">
+              <ul className="absolute hidden group-hover/header:block w-full pt-[3.1rem] space-y-[1.5rem] text-[1rem] text-center z-10">
                 <img
-                  className="w-full h-[13.125rem] hidden group-hover/menu:block absolute left-0 top-[1.6rem] z-1"
+                  className="w-full h-[13.125rem] hidden group-hover/menu:block absolute left-0 top-[1.4rem] z-1"
                   src={Bg}
                   alt="menu-background"
                 />
@@ -108,18 +109,18 @@ const Navbar: React.FC<NavbarProps> = () => {
           <li className="xl:flex lg:hidden sm:hidden">
             <Link to="/user">
               <img
-                src={User}
+                src={Arrow}
                 alt="사용자"
-                className="mr-[0.7rem] w-[1.875rem] h-[1.88125rem]"
+                className="w-[2.9375rem] h-[2.9375rem] right-[0.5rem] transform transition-transform duration-300 hover:rotate-90"
               />
             </Link>
           </li>
           <li className="xl:flex lg:hidden sm:hidden">
-            <Link
-              to="/login"
-              className="black text-[0.875rem] text-white mix-blend-difference"
-            >
-              로그인 및 회원가입
+            <Link to="/login" className="mr-[0.7rem]">
+              <div className="absolute w-[8.8125rem] -translate-y-[0.7rem] h-[2.9375rem] border rounded-full bg-white opacity-50 shadow-xl" />
+              <span className="items-center justify-center black text-[0.875rem] pl-[0.88rem] text-white mix-blend-difference">
+                로그인 / 회원가입
+              </span>
             </Link>
           </li>
 
@@ -146,7 +147,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         <div className="xl:hidden">
           <button
             type="button"
-            className="ham-button lg:w-[2.9375rem] sm:w-[1.875rem] lg:h-[3.3125rem] sm:[2.114375rem] lg:mt-[0.4rem] lg:mr-[1.5rem] sm:mt-[0.4rem] sm:mr-[1.3rem]"
+            className="ham-button lg:w-[2.9375rem] sm:w-[1.875rem] lg:h-[3.3125rem] sm:[2.114375rem] lg:mt-[0.76rem] lg:mr-[1.5rem] lg:mt-[0.9rem] sm:mt-[0.7rem] sm:mr-[1.3rem]"
             onClick={toggleMenu}
           >
             <img src={isMenuOpen ? Close : Ham} alt="햄버거 메뉴 아이콘" />
@@ -155,10 +156,10 @@ const Navbar: React.FC<NavbarProps> = () => {
       </nav>
 
       {isMenuOpen && (
-        <div className="xl:hidden fixed inset-0 bg-black bg-opacity-50 z-40">
+        <div className="relative xl:hidden lg:fixed inset-0 bg-black bg-opacity-50 z-30 sm:fixed inset-0 bg-black bg-opacity-50 z-30">
           <div
             ref={menuRef}
-            className="xl:hidden fixed top-0 right-0 z-50 lg:w-[32rem] sm:w-[21.25rem] lg:h-[43.625rem] sm:w-[21.25rem] sm:h-[38.5rem] bg-white shadow-lg transition-transform duration-300 transform translate-x-0 lg:rounded-tl-[3rem] sm:rounded-tl-[1.5rem] lg:rounded-bl-[3rem] sm:rounded-bl-[1.5rem]"
+            className="xl:hidden fixed top-0 right-0 z-40 lg:w-[32rem] sm:w-[21.25rem] lg:h-[43.625rem] sm:w-[21.25rem] sm:h-[38.5rem] bg-white shadow-lg transition-transform duration-300 transform translate-x-0 lg:rounded-tl-[3rem] sm:rounded-tl-[1.5rem] lg:rounded-bl-[3rem] sm:rounded-bl-[1.5rem]"
           >
             <button
               type="button"
@@ -167,6 +168,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             >
               <img src={Close} alt="메뉴닫기" />
             </button>
+
             <ul className="lg:space-y-[1rem] sm:space-y-[1.5rem]">
               {MENUS.map((menu) => (
                 <li key={menu} className="relative group">
@@ -209,6 +211,17 @@ const Navbar: React.FC<NavbarProps> = () => {
                   )}
                 </li>
               ))}
+              <li>
+                <Link to="/login">
+                  <button
+                    type="button"
+                    className="absolute lg:w-[5.5rem] sm:w-[5.8125rem] lg:h-[2.9375rem] sm:h-[3.125rem] lg:top-[39rem] lg:right-2 sm:top-[33.9rem] sm:right-2 z-50"
+                    onClick={toggleMenu}
+                  >
+                    <img src={User} alt="로그인 및 회원가입" />
+                  </button>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

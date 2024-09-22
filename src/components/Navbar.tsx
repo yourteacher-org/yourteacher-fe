@@ -76,11 +76,11 @@ const Navbar: React.FC<NavbarProps> = () => {
                   SUB_MENUS[MENU_PAGE[menu]].map((subMenuItem) => (
                     <li
                       key={subMenuItem}
-                      className="relative flex items-center justify-center"
+                      className="relative flex items-center justify-center "
                     >
                       <Link
                         to={`/${SUB_PAGE[subMenuItem]}`}
-                        className="font-meduim group-hover/menu:text-white group-hover/menu:font-bold"
+                        className={`font-meduim group-hover/menu:text-white hover:font-bold ${subMenuItem === '교사방' ? 'mr-[1.6rem]' : ''}`}
                       >
                         {subMenuItem}
                         {subMenuItem === '교사방' && (
@@ -88,13 +88,13 @@ const Navbar: React.FC<NavbarProps> = () => {
                             <img
                               src={Lock}
                               alt="자물쇠"
-                              className="ml-[4.5rem] w-[1.01rem] h-[1.24rem] -translate-y-5 group-hover/menu:block group-hover/menu:hidden"
+                              className="ml-[4.7rem] w-[1.01rem] h-[1.24rem] -translate-y-5 group-hover/menu:block group-hover/menu:hidden"
                             />
 
                             <img
                               src={White}
                               alt="자물쇠"
-                              className="ml-[4.5rem] w-[1.01rem] h-[1.24rem] -translate-y-5 hidden group-hover/menu:block"
+                              className="ml-[4.7rem] w-[1.01rem] h-[1.24rem] -translate-y-5 hidden group-hover/menu:block"
                             />
                           </div>
                         )}
@@ -106,12 +106,12 @@ const Navbar: React.FC<NavbarProps> = () => {
           ))}
         </ul>
         <ul className="flex items-center ml-auto">
-          <li className="xl:flex lg:hidden sm:hidden">
+          <li className="xl:flex lg:hidden sm:hidden group">
             <Link to="/user">
               <img
                 src={Arrow}
                 alt="사용자"
-                className="w-[2.3rem] h-[2.3rem] right-[0.5rem] transform transition-transform duration-300 hover:rotate-90"
+                className="w-[2.3rem] h-[2.3rem] right-[0.5rem] transform transition-transform duration-300 group-hover:rotate-90"
               />
             </Link>
           </li>

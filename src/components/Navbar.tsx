@@ -80,21 +80,21 @@ const Navbar: React.FC<NavbarProps> = () => {
                     >
                       <Link
                         to={`/${SUB_PAGE[subMenuItem]}`}
-                        className={`font-meduim group-hover/menu:text-white hover:font-bold ${subMenuItem === '교사방' ? 'mr-[1.6rem]' : ''}`}
+                        className="flex gap-[0.3rem] font-meduim group-hover/menu:text-white hover:font-bold"
                       >
-                        {subMenuItem}
+                        <span>{subMenuItem}</span>
                         {subMenuItem === '교사방' && (
-                          <div className="relative">
+                          <div className="relative mt-[0.15rem]">
                             <img
                               src={Lock}
                               alt="자물쇠"
-                              className="ml-[4.7rem] w-[1.01rem] h-[1.24rem] -translate-y-5 group-hover/menu:block group-hover/menu:hidden"
+                              className="w-[1.01rem] h-[1.24rem] group-hover/menu:block group-hover/menu:hidden"
                             />
 
                             <img
                               src={White}
                               alt="자물쇠"
-                              className="ml-[4.7rem] w-[1.01rem] h-[1.24rem] -translate-y-5 hidden group-hover/menu:block"
+                              className="w-[1.01rem] h-[1.24rem] hidden group-hover/menu:block"
                             />
                           </div>
                         )}
@@ -106,23 +106,25 @@ const Navbar: React.FC<NavbarProps> = () => {
           ))}
         </ul>
         <ul className="flex items-center ml-auto">
-          <li className="xl:flex lg:hidden sm:hidden group">
-            <Link to="/user">
-              <img
-                src={Arrow}
-                alt="사용자"
-                className="w-[2.3rem] h-[2.3rem] right-[0.5rem] transform transition-transform duration-300 group-hover:rotate-90"
-              />
-            </Link>
-          </li>
-          <li className="xl:flex lg:hidden sm:hidden">
-            <Link to="/login" className="mr-[0.7rem]">
-              <div className="absolute w-[8.8125rem] -translate-y-[0.7rem] h-[2.9375rem] border rounded-full bg-white opacity-50 shadow-xl" />
-              <span className="items-center justify-center black text-[0.875rem] pl-[0.88rem] text-white mix-blend-difference">
-                로그인 / 회원가입
-              </span>
-            </Link>
-          </li>
+          <div className="group/item flex">
+            <li className="xl:flex lg:hidden sm:hidden">
+              <Link to="/user">
+                <img
+                  src={Arrow}
+                  alt="사용자"
+                  className="w-[2.3rem] h-[2.3rem] right-[0.5rem] transform transition-transform duration-300 group-hover/item:rotate-90"
+                />
+              </Link>
+            </li>
+            <li className="xl:flex lg:hidden sm:hidden">
+              <Link to="/login" className="mr-[0.7rem]">
+                <div className="absolute top-[1.5rem] w-[8.8125rem] h-[2.9375rem] border rounded-full bg-white opacity-50 shadow-xl group/item" />
+                <span className="flex items-center justify-center black text-[0.875rem] pl-[0.88rem] pt-[0.55rem] text-white mix-blend-difference">
+                  로그인 / 회원가입
+                </span>
+              </Link>
+            </li>
+          </div>
 
           <li className="xl:flex lg:hidden sm:hidden">
             <Link to="/">

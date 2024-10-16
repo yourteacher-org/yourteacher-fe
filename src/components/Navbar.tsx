@@ -79,7 +79,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                       className="relative flex items-center justify-center "
                     >
                       <Link
-                        to={`/${SUB_PAGE[subMenuItem]}`}
+                        to={`/${MENU_PAGE[menu]}/${SUB_PAGE[subMenuItem]}`}
                         className="flex gap-[0.3rem] font-meduim group-hover/menu:text-white hover:font-bold"
                       >
                         <span>{subMenuItem}</span>
@@ -117,7 +117,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               </Link>
             </li>
             <li className="xl:flex lg:hidden sm:hidden">
-              <Link to="/login" className="mr-[0.7rem]">
+              <Link to="/auth/login" className="mr-[0.7rem]">
                 <div className="absolute top-[1.5rem] w-[8.8125rem] h-[2.9375rem] border rounded-full bg-white opacity-50 shadow-xl group/item" />
                 <span className="flex items-center justify-center black text-[0.875rem] pl-[0.88rem] pt-[0.55rem] text-white mix-blend-difference">
                   로그인 / 회원가입

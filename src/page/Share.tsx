@@ -3,7 +3,7 @@ import React from 'react';
 const Share: React.FC = () => {
   return (
     <div>
-      <h2>Share</h2>
+      <h2>share</h2>
     </div>
   );
 };

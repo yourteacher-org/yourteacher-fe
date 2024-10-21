@@ -42,7 +42,8 @@ const ChevronButton = ({
       className={`
         ${className} ${borderColorSet[borderColor]}
         group border border-gray-6 rounded-full
-        lg:w-12 sm:w-[2.125rem] aspect-square
+        lg:w-12 sm:w-[2.125rem]
+        lg:h-12 sm:h-[2.125rem]
         grid place-content-center
         transition duration-300 hover:bg-green hover:border-green
       `}

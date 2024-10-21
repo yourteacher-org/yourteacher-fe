@@ -75,6 +75,7 @@ const NoticeSection = () => {
       as="section"
       className="
         flex flex-col
+        xl:max-w-[1920px] mx-auto
         xl:items-stretch sm:items-center
         xl:px-[16.25rem] lg:px-[1.875rem]
         py-32 mb-[5rem]"

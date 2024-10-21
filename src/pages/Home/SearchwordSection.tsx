@@ -39,7 +39,7 @@ const SearchwordSection = () => {
   return (
     <Section
       as="section"
-      className="w-full flex xl:flex-row sm:flex-col
+      className="xl:max-w-[1920px] mx-auto flex xl:flex-row sm:flex-col
         xl:items-center sm:items-center
         xl:px-[16.25rem] lg:mx-w-[80rem] sm:mx-w-[24.375rem]
         py-[6.25rem]

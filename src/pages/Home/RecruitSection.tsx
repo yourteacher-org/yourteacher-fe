@@ -78,6 +78,7 @@ const RecruitSection = () => {
     <Section
       as="section"
       className="flex xl:flex-row sm:flex-col
+        xl:max-w-[1920px] mx-auto
         xl:items-start sm:items-center
         xl:px-[16.25rem] lg:px-[1.875rem] sm:px-[1.125rem]
         py-[6.25rem]

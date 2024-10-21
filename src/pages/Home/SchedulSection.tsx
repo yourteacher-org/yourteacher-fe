@@ -148,9 +148,8 @@ const SchedulSection = () => {
   return (
     <Section
       as="section"
-      className="w-full lg:flex-col sm:flex-col
-        xl:items-center sm:items-center
-        xl:mx-w-[80rem] lg:mx-w-[64rem] sm:mx-w-[24.375rem]"
+      className="lg:flex-col sm:flex-col
+        xl:items-center sm:items-center"
     >
       <div className="relative">
         <img

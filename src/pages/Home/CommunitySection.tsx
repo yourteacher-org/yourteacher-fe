@@ -35,7 +35,7 @@ const CommunitySection = () => {
   };
 
   return (
-    <Section as="section" className="relative">
+    <Section as="section" className="relative xl:max-w-[1920px] mx-auto">
       <div
         className={`
         flex xl:flex-row sm:flex-col

@@ -9,15 +9,11 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <>
+    <div className="xl:max-w-full lg:max-w-[1024px] sm:max-w-[390px] xl:min-h-[70vh] mx-auto overflow-hidden">
       <Navbar />
-
-      <main className="xl:max-w-[1920px] lg:max-w-[1024px] sm:max-w-[390px] xl:min-h-[70vh] mx-auto">
-        {children}
-      </main>
+      <main>{children}</main>
       <Footer />
-
-    </>
+    </div>
   );
 };
 

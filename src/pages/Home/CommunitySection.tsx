@@ -39,8 +39,9 @@ const CommunitySection = () => {
       <div
         className={`
         flex xl:flex-row sm:flex-col
-        xl:px-[16.25rem] lg:px-[1.875rem] py-32
+        xl:px-[16.25rem] lg:px-[1.875rem] py-36
         xl:gap-[3.25rem]
+        xl:mb-40 lg:mb-32 sm:mb-20
         ${trigger}`}
       >
         {index === 0 && (

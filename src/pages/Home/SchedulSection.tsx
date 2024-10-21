@@ -149,7 +149,8 @@ const SchedulSection = () => {
     <Section
       as="section"
       className="lg:flex-col sm:flex-col
-        xl:items-center sm:items-center"
+        xl:items-center sm:items-center
+        xl:mb-40 lg:mb-32 sm:mb-20"
     >
       <div className="relative">
         <img

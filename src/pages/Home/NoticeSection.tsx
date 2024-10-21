@@ -78,7 +78,8 @@ const NoticeSection = () => {
         xl:max-w-[1920px] mx-auto
         xl:items-stretch sm:items-center
         xl:px-[16.25rem] lg:px-[1.875rem]
-        py-32 mb-[5rem]"
+        xl:mb-40 lg:mb-32 sm:mb-20
+        py-32"
     >
       <div className="flex items-center xl:justify-between justify-center xl:mb-5 lg:mb-[3.75rem] sm:mb-[2.25rem]">
         <div>

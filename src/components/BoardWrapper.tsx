@@ -37,6 +37,18 @@ const BoardWrapper = () => {
     return <Navigate to="/" replace />;
   }
 
+  const convertedDescription =
+    typeof description === 'string'
+      ? description
+      : description.map((str) => (
+          <>
+            {str}
+            <br />
+          </>
+        ));
+
+  console.log(categoryTitle, subclassTitle);
+
   return (
     <BoardLayout>
       <PageNav>
@@ -44,8 +56,10 @@ const BoardWrapper = () => {
         <span>{subclassTitle}</span>
       </PageNav>
 
-      <h1>{subclassTitle}</h1>
-      <p>{description}</p>
+      <h1 className="xl:mb-10 xl:text-7xl font-bold">{subclassTitle}</h1>
+      <p className="xl:mb-[7.5rem] xl:text-[1.25rem] leading-9">
+        {convertedDescription}
+      </p>
 
       <Outlet context={{ category, subclass, data: boardData }} />
     </BoardLayout>

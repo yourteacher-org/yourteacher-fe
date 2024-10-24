@@ -20,7 +20,7 @@ const HeroSection = () => {
       className="relative
         xl:max-w-[1920px] mx-auto
         xl:px-0 lg:px-[1.875rem] sm:px-[1.125rem]
-        xl:mb-40 lg:mb-32 sm:mb-20"
+        xl:mb-40 lg:mb-32 sm:mb-24"
     >
       <div
         className="absolute

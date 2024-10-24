@@ -68,13 +68,13 @@ const CommunityContent = ({
                   cursor-pointer"
             >
               <p
-                className="2xl:mr-[5.625rem] xl:mr-[4.25vw] lg:mr-[6.25rem] sm:mr-[0.625rem]
+                className="2xl:mr-[5.625rem] xl:mr-[7.5%] lg:mr-[6.25rem] sm:mr-[0.625rem]
                     lg:group-hover:mr-[3.75rem]
                     transition-[margin-right] duration-200"
               >
                 {type}
               </p>
-              <p className="flex-1 xl:pr-12 sm:pr-2 line-clamp-1">{title}</p>
+              <p className="flex-1 xl:pr-[8%] sm:pr-2 line-clamp-1">{title}</p>
               <p
                 className="2xl:w-[8.25rem] xl:w-[6.5vw] lg:w-[6.25rem] sm:w-[4.25rem]
                     2xl:mr-[2.625rem] xl:mr-[2vw] lg:mr-[3.75rem] sm:mr-[0.625rem]

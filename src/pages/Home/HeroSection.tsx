@@ -18,8 +18,9 @@ const HeroSection = () => {
     <Section
       as="section"
       className="relative
+        xl:max-w-[1920px] mx-auto
         xl:px-0 lg:px-[1.875rem] sm:px-[1.125rem]
-        xl:mb-60 lg:mb-40 sm:mb-32"
+        xl:mb-40 lg:mb-32 sm:mb-24"
     >
       <div
         className="absolute
@@ -35,7 +36,8 @@ const HeroSection = () => {
       </div>
       <div
         className="relative lg:w-auto sm:min-w-[440px]
-          xl:pl-[16.25rem] xl:pt-[23.25rem] lg:pt-[12rem]"
+          xl:pl-[16.25rem] xl:pt-[23.25rem] lg:pt-[12rem]
+          xl:pb-60"
       >
         <Slide duration={3000}>
           {({ index, changeIndex }) => (

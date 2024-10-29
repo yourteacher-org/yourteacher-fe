@@ -6,6 +6,7 @@ import RenderItems from '@data/Render';
 import ChevronButton from '@components/ChevronButton';
 
 import Zoom from '@assets/img/zoom.svg?react';
+import TwoCircle from '@assets/icon/two-circles.svg?react';
 
 const SearchwordSection = () => {
   const [activeItem, setActiveItem] = useState(1);
@@ -39,16 +40,18 @@ const SearchwordSection = () => {
   return (
     <Section
       as="section"
-      className="w-full flex xl:flex-row sm:flex-col
+      className="xl:max-w-[1920px] mx-auto flex xl:flex-row sm:flex-col
         xl:items-center sm:items-center
         xl:px-[16.25rem] lg:mx-w-[80rem] sm:mx-w-[24.375rem]
-        py-[6.25rem]
-        xl:mb-40 lg:mb-32 sm:mb-20"
+        lg:py-40 sm:py-24"
     >
-      <div className="flex flex-col justify-center items-center min-w-[25rem]">
-        <span className="xl:text-[1.25rem] lg:text-[1rem] text-green font-bold">
-          Popular Searches
-        </span>
+      <div className="flex flex-col justify-center xl:items-start sm:items-center min-w-[25rem]">
+        <div className="flex items-center lg:mb-2 sm:mb-1 gap-2 ">
+          <span className="xl:text-[1.25rem] lg:text-[1rem] sm:text-[0.75rem] text-green font-bold">
+            Popular Searches
+          </span>
+          <TwoCircle />
+        </div>
         <div className="flex gap-[10px]">
           <h1 className="xl:text-[3.3rem] lg:text-[2.5rem] sm:text-[2rem] font-bold">
             인기 검색어

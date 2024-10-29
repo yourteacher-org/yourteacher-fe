@@ -35,11 +35,12 @@ const CommunitySection = () => {
   };
 
   return (
-    <Section as="section" className="relative">
+    <Section as="section" className="relative xl:max-w-[1920px] mx-auto">
       <div
         className={`
         flex xl:flex-row sm:flex-col
-        xl:px-[16.25rem] lg:px-[1.875rem] py-32
+        xl:px-[16.25rem] lg:px-[1.875rem]
+        lg:py-40 sm:py-24
         xl:gap-[3.25rem]
         ${trigger}`}
       >
@@ -73,8 +74,8 @@ const CommunitySection = () => {
       <ChevronButton
         direction="left"
         className="absolute
-          xl:top-[50%] lg:top-[10.5rem] sm:top-[9.675rem]
-          xl:left-[7.5rem] lg:left-[calc(50%-10rem)] sm:left-[calc(50%-7.5rem)]
+          xl:top-[50%] lg:top-[12.5rem] sm:top-[7.75rem]
+          xl:left-[7.5rem] lg:left-[calc(50%-8.75rem)] sm:left-[calc(50%-6.875rem)]
           xl:-translate-y-[50%]
         "
         onClick={handleClickPrevPage}
@@ -82,8 +83,8 @@ const CommunitySection = () => {
       <ChevronButton
         direction="right"
         className="absolute
-          xl:top-[50%] lg:top-[10.5rem] sm:top-[9.675rem]
-          xl:right-[7.5rem] xl:left-auto lg:left-[calc(50%+6.675rem)]  sm:left-[calc(50%+5.25rem)]
+          xl:top-[50%] lg:top-[12.5rem] sm:top-[7.75rem]
+          xl:right-[7.5rem] xl:left-auto lg:left-[calc(50%+5.675rem)]  sm:left-[calc(50%+4.675rem)]
           xl:-translate-y-[50%]"
         onClick={handleClickNextPage}
       />

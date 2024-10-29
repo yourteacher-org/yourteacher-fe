@@ -42,7 +42,7 @@ const RecruitCard = ({ id, isStart, title, period, src }: RecruitCardProps) => {
         </p>
         <p
           className="lg:flex-auto sm:flex-1
-            2xl:mb-[4rem] xl:mb-[30.5%] lg:mb-[3.125rem]
+            2xl:mb-[4rem] xl:mb-[30%] lg:mb-[3.125rem]
             lg:ml-auto sm:ml-3
             lg:mr-auto sm:mr-3
             2xl:text-[1.25rem] xl:text-[1.25em] lg:text-sm sm:text-[0.625rem]
@@ -64,7 +64,7 @@ const RecruitCard = ({ id, isStart, title, period, src }: RecruitCardProps) => {
         </p>
         <Comma
           className="lg:block sm:hidden
-            xl:w-auto lg:w-16 absolute -top-10 right-[1.875rem]
+            xl:w-[40%] lg:w-16 absolute -top-10 right-[1.875rem]
           fill-yellow opacity-0 group-hover:opacity-100
             transition-opacity duration-300"
         />
@@ -78,20 +78,20 @@ const RecruitSection = () => {
     <Section
       as="section"
       className="flex xl:flex-row sm:flex-col
+        xl:max-w-[1920px] mx-auto
         xl:items-start sm:items-center
         xl:px-[16.25rem] lg:px-[1.875rem] sm:px-[1.125rem]
-        py-[6.25rem]
-        xl:mb-40 lg:mb-32 sm:mb-20"
+        lg:py-40 sm:py-24"
     >
       <div
         className="lg:flex-1
-          xl:w-[25rem] xl:text-left sm:text-center xl:mb-0 lg:mb-10"
+          xl:min-w-[21rem] xl:text-left sm:text-center xl:mb-0 lg:mb-10"
       >
         <div
           className="flex items-center xl:justify-start sm:justify-center
             lg:mb-2 sm:mb-1 gap-2 "
         >
-          <p className="xl:text-[1.25rem] lg:text-[1rem] text-green font-bold">
+          <p className="xl:text-[1.25rem] lg:text-[1rem] sm:text-[0.75rem] text-green font-bold">
             Recruitment
           </p>
           <TwoCircle />

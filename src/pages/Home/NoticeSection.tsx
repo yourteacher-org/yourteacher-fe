@@ -75,9 +75,11 @@ const NoticeSection = () => {
       as="section"
       className="
         flex flex-col
+        xl:max-w-[1920px] mx-auto
         xl:items-stretch sm:items-center
-        xl:px-[16.25rem] lg:px-[1.875rem]
-        py-32 mb-[5rem]"
+        xl:px-[16.25rem] lg:px-[1.875rem] sm:px-[1.125rem]
+        xl:mb-40 lg:mb-32 sm:mb-20
+        lg:py-40 sm:py-24"
     >
       <div className="flex items-center xl:justify-between justify-center xl:mb-5 lg:mb-[3.75rem] sm:mb-[2.25rem]">
         <div>
@@ -99,6 +101,7 @@ const NoticeSection = () => {
         className="lg:w-full sm:w-72
           flex
           lg:justify-normal sm:justify-center
+          xl:flex-nowrap sm:flex-wrap
           xl:gap-[5rem] lg:gap-[3.125rem] sm:[1.875rem]
           xl:text-lg"
       >

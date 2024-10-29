@@ -11,7 +11,7 @@ import Close from '@assets/icon/ham-close.svg';
 import Circle from '@assets/icon/click-circle.svg';
 import Lock from '@assets/icon/header-lock.svg';
 import White from '@assets/icon/menu-lock.svg';
-import { SUB_MENUS, MENU_PAGE, MENUS, SUB_PAGE } from '../component/Data';
+import { SUB_MENUS, MENU_PAGE, MENUS, SUB_PAGE } from '@data/header';
 
 interface NavbarProps {}
 
@@ -199,7 +199,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                           <li key={subMenuItem} className="flex items-center">
                             <span className="inline-block w-[0.13rem] h-[0.13rem] bg-black rounded-full mr-1" />
                             <Link
-                              to={`/${SUB_PAGE[subMenuItem]}`}
+                              to={`/${MENU_PAGE[menu]}/${SUB_PAGE[subMenuItem]}`}
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 setOpenMenu(null);

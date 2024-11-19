@@ -31,7 +31,6 @@
       "@styles/*": ["./src/styles/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@pages/*": ["./src/pages/*"],
-      "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"]
     }
   },

@@ -6,25 +6,15 @@ import Daum from '@assets/icon/daum.svg';
 import Next from '@assets/icon/next.svg';
 import LookPage from '@assets/icon/look-page.svg';
 
-interface Item {
-  id: number;
-  title: string;
-}
-
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 
-const mockData: Item[] = Array.from({ length: 100 }, (_, i) => ({
-  id: i + 1,
-  title: `${i + 1}`,
-}));
-
 const Pagination: React.FC = () => {
   const [visiblePageNumbers, setVisiblePageNumbers] = useState<number[]>([]);
   const itemsPerPage = 5;
-  const totalITems = 100;
-  const totalPages = Math.ceil(totalITems / itemsPerPage);
+  const totalItems = 100;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const query = useQuery();
   const navigate = useNavigate();
@@ -45,7 +35,9 @@ const Pagination: React.FC = () => {
   };
   const gotoNextGroup = () => {
     const nextGroupPage = visiblePageNumbers[0] + itemsPerPage;
-    gotoPage(nextGroupPage);
+    if (nextGroupPage <= totalPages) {
+      gotoPage(nextGroupPage);
+    }
   };
 
   const gotoPrevGroup = () => {
@@ -67,14 +59,14 @@ const Pagination: React.FC = () => {
         disabled={currentPage === 1}
         aria-label="1개씩 이전으로 이동"
       >
-        <img src={Prev} alt="1개씩 이전으로" className="mr-[1rem]" />
+        <img src={Prev} alt="1개씩 이전으로" className="mr-[1.2rem]" />
       </button>
 
       {visiblePageNumbers.map((pageNum) => (
         <button
           key={pageNum}
           onClick={() => gotoPage(pageNum)}
-          className="relative w-[2.5rem] h-[2.6875rem] text-[1.125rem] text-gray-500"
+          className="relative w-[2.5rem] h-[2.6875rem] text-[1.125rem] text-gray-500 top-0.5"
         >
           {currentPage === pageNum && (
             <>
@@ -91,16 +83,15 @@ const Pagination: React.FC = () => {
       ))}
       <button
         onClick={() => gotoPage(currentPage + 1)}
-        disabled={currentPage >= mockData.length / itemsPerPage}
+        disabled={currentPage >= totalPages}
         aria-label="1개씩 이후로 이동"
       >
-        <img src={Daum} alt="1개씩 이후로" className="ml-[0.8rem]" />
+        <img src={Daum} alt="1개씩 이후로" className="ml-[0.6rem]" />
       </button>
       <button
         onClick={gotoNextGroup}
         disabled={
-          visiblePageNumbers[visiblePageNumbers.length - 1] >=
-          mockData.length / itemsPerPage
+          visiblePageNumbers[visiblePageNumbers.length - 1] >= totalPages
         }
         aria-label="5개씩 이후로 이동"
       >

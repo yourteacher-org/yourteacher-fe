@@ -17,6 +17,7 @@ import MainLayout from '@layouts/MainLayout';
 import Notice from '@pages/Notice/Notice';
 import Front from '@pages/Front/Front';
 import Board from '@pages/Board/Board';
+import WriteBoard from '@pages/Board/WriteBoard';
 import ProtectGuard from './ProtectGuard';
 import BoardWrapper from './BoardWrapper';
 import ShareAndQnABoard from './ShareAndQnABoard';
@@ -52,6 +53,7 @@ const Page: React.FC = () => {
 
             {/* 게시판 */}
             <Route path="/:category/:subclass/:postId" element={<Board />} />
+            <Route path="/:category/:subclass/write" element={<WriteBoard />} />
           </Route>
 
           <Route path="/notice" element={<Notice />}>

@@ -48,29 +48,29 @@ const BoardList: React.FC = () => {
 
               <div className="grid grid-cols-6 text-[0.625rem] text-gray-600">
                 <span className="text-left col-span-1">{item.author}</span>
-                <div className="flex col-span-1">
+                <div className="flex col-span-1 w-[2.875rem]">
                   <img
                     src={Calendar}
                     alt="신청일자"
-                    className="w-[0.875rem] h-[0.875rem] mr-[0.2rem] ml-[0.6rem]"
+                    className="w-[0.875rem] h-[0.875rem] ml-[0.6rem] mr-[0.25rem]"
                   />
                   <span>{item.view_count}</span>
                 </div>
-                <div className="flex items-center col-span-1 gap-1">
+                <div className="flex items-center col-span-1 w-[2.875rem]">
                   <img
                     src={Calendar}
                     alt="신청일자"
-                    className="w-[0.875rem] h-[0.875rem] mr-[0.1rem] ml-[0.3rem]"
+                    className="w-[0.875rem] h-[0.875rem] ml-[0.3rem] mr-[0.25rem]"
                   />
                   <span>{item.like_count}</span>
                 </div>
-                <div className="flex items-center col-span-3 ml-[4.6rem]">
+                <div className="flex items-center col-span-3 ml-[4.6rem] w-[4.6875rem]">
                   <img
                     src={Calendar}
                     alt="신청일자"
-                    className="w-[0.875rem] h-[0.875rem] mr-[0.3rem]"
+                    className="w-[0.875rem] h-[0.875rem] mr-[0.25rem]"
                   />
-                  <span className="col-span-3 flex relative text-right">
+                  <span className="col-span-3 text-right">
                     {item.created_at}
                   </span>
                 </div>

@@ -199,7 +199,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                           <li key={subMenuItem} className="flex items-center">
                             <span className="inline-block w-[0.13rem] h-[0.13rem] bg-black rounded-full mr-1" />
                             <Link
-                              to={`/${MENU_PAGE[menu]}/${SUB_PAGE[subMenuItem]}`}
+                              to={`/${SUB_PAGE[subMenuItem]}`}
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 setOpenMenu(null);

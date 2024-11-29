@@ -53,5 +53,6 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    camelcase: ['off', { ignoreDestructuring: true }],
   },
 };

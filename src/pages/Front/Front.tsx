@@ -1,11 +1,5 @@
-import React from 'react';
-
-const Front: React.FC = () => {
-  return (
-    <div>
-      <h2>Front</h2>
-    </div>
-  );
+const Front = () => {
+  return <div>Front</div>;
 };
 
 export default Front;

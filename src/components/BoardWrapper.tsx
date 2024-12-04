@@ -56,8 +56,10 @@ const BoardWrapper = () => {
         <span>{subclassTitle}</span>
       </PageNav>
 
-      <h1 className="xl:mb-10 xl:text-7xl font-bold">{subclassTitle}</h1>
-      <p className="xl:mb-[7.5rem] xl:text-[1.25rem] leading-9">
+      <h1 className="xl:mb-10 lg:mb-5 xl:text-7xl lg:text-[2.5rem] font-bold">
+        {subclassTitle}
+      </h1>
+      <p className="xl:mb-[7.5rem] lg:mb-[3.75rem] xl:text-[1.25rem] lg:text-[1.125rem] xl:leading-9 lg:leading-7">
         {convertedDescription}
       </p>
 

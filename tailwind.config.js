@@ -79,6 +79,7 @@ export default {
       },
       dropShadow: {
         green: '5px 5px 10px #3ECE9E',
+        gray: '5px 5px 10px #909090',
       },
     },
   },

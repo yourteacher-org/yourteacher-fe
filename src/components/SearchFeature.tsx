@@ -41,7 +41,7 @@ const SearchFeature: React.FC = () => {
   }, []);
 
   const handleSearch = () => {
-    const filter = selectedOption === '제목' ? '제목' : '제목 + 내용';
+    const filter = selectedOption === '제목' ? 'title' : 'title_content';
 
     const query = new URLSearchParams({
       filter,
@@ -84,7 +84,7 @@ const SearchFeature: React.FC = () => {
           <ul className="absolute xl:w-[12.5rem] lg:w-[12.5rem] sm:w-[7.0625rem] xl:h-[11rem] lg:h-[8.9375rem] sm:h-[7.25rem] xl:text-[1.125rem] lg:text-[1rem] sm:text-[0.75rem] border shadow-xl xl:rounded-[2rem] lg:rounded-[1.2rem] sm:rounded-[0.8rem] xl:top-0 lg:top-0 sm:top-0 bg-gray-100 z-30">
             <li>
               <button
-                className="xl:py-3 lg:py-3 sm:py-2.5 xl:mt-[3.9rem] lg:mt-[2.7rem] sm:mt-[2rem] xl:ml-[5rem] lg:ml-[4.5rem] sm:ml-[2.5rem]"
+                className="w-full h-full xl:py-3 lg:py-3 sm:py-2.5 xl:mt-[3.9rem] lg:mt-[2.7rem] sm:mt-[2rem] text-left xl:pl-[2.5rem] lg:pl-[2.7rem] sm:ml-[2.5rem]"
                 onClick={() => handleOptionSelect('제목')}
               >
                 제목
@@ -92,7 +92,7 @@ const SearchFeature: React.FC = () => {
             </li>
             <li className="border-t border-gray-200">
               <button
-                className="xl:py-4 lg:py-3 sm:py-3 xl:pl-1 lg:ml-[3rem] sm:ml-[1.5rem]"
+                className="w-full h-full xl:py-4 lg:py-3 sm:py-3 text-left xl:ml-[3.3rem] lg:ml-[3.5rem] sm:ml-[1.5rem]"
                 onClick={() => handleOptionSelect('제목+내용')}
               >
                 제목 + 내용
@@ -105,7 +105,7 @@ const SearchFeature: React.FC = () => {
       <div className="relative xl:ml-[1.2rem] lg:ml-[1rem] sm:ml-[0.8rem]">
         <input
           type="text"
-          className="xl:w-[31.25rem] lg:w-[28.5rem] sm:w-[14.5rem] xl:h-[3.75rem] lg:h-[2.9375rem] sm:h-[2rem] border border-black rounded-[2rem] xl:text-[1.25rem] lg:text-[1rem] sm:text-[0.75rem] xl:px-[1.5rem] xl:px-[1.5rem] sm:px-[0.8rem]"
+          className="xl:w-[31.25rem] lg:w-[28.5rem] sm:w-[14.5rem] xl:h-[3.75rem] lg:h-[2.9375rem] sm:h-[2rem] border border-black rounded-[2rem] xl:text-[1.25rem] lg:text-[1rem] sm:text-[0.75rem] xl:px-[1.5rem] xl:px-[1.5rem] sm:px-[0.8rem] focus:outline-green-200"
           placeholder="검색어를 입력하세요"
           value={searchTerm}
           onChange={handleInputChange}

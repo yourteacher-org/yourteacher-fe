@@ -105,7 +105,7 @@ const SearchFeature: React.FC = () => {
       <div className="relative xl:ml-[1.2rem] lg:ml-[1rem] sm:ml-[0.8rem]">
         <input
           type="text"
-          className="xl:w-[31.25rem] lg:w-[28.5rem] sm:w-[14.5rem] xl:h-[3.75rem] lg:h-[2.9375rem] sm:h-[2rem] border border-black rounded-[2rem] xl:text-[1.25rem] lg:text-[1rem] sm:text-[0.75rem] xl:px-[1.5rem] xl:px-[1.5rem] sm:px-[0.8rem] focus:outline-green-200"
+          className="xl:w-[31.25rem] lg:w-[28.5rem] sm:w-[14.5rem] xl:h-[3.75rem] lg:h-[2.9375rem] sm:h-[2rem] border border-black rounded-[2rem] xl:text-[1.25rem] lg:text-[1rem] sm:text-[0.75rem] xl:px-[1.5rem] lg:px-[1.5rem] sm:px-[0.8rem] focus:outline-green"
           placeholder="검색어를 입력하세요"
           value={searchTerm}
           onChange={handleInputChange}

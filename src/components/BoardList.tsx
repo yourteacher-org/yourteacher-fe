@@ -34,6 +34,7 @@ const BoardList: React.FC<BoardListProps> = ({ data }) => {
       </thead>
       <tbody>
         {data.map((item) => (
+
           <tr
             key={item.id}
             className="w-full flex xl:py-[2rem] lg:py-[1.5rem] xl:text-[1.25rem] lg:text-[1rem] border-b border-gray-200 text-center group/item relative"
@@ -49,6 +50,7 @@ const BoardList: React.FC<BoardListProps> = ({ data }) => {
                   <img
                     src={Hits}
                     alt="조회수"
+
                     className="w-[0.875rem] h-[0.875rem] ml-[0.6rem] mr-[0.25rem]"
                   />
                   <span>{item.view_count}</span>
@@ -82,6 +84,7 @@ const BoardList: React.FC<BoardListProps> = ({ data }) => {
             <td className="flex-[47%] px-5 text-left hidden lg:block">
               {item.title}
             </td>
+
             <td className="flex-1 xl:px-[0.8rem] lg:px-[0.1rem] hidden lg:block xl:group-hover/item:-translate-x-4 transition-transform">
               {item.author}
             </td>

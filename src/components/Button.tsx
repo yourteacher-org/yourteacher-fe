@@ -2,11 +2,21 @@ import { HTMLAttributes } from 'react';
 import Comma from '@assets/img/button_comma.svg?react';
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  fillColor?: 'green' | 'gray';
   size?: 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+  iconDirection?: 'left' | 'right';
 }
 
 type ButtonFontSizeType = {
   [key in Exclude<ButtonProps['size'], undefined>]: string;
+};
+
+type ButtonFillColorType = {
+  [key in Exclude<ButtonProps['fillColor'], undefined>]: string;
+};
+
+type ButtonIconDirectionType = {
+  [key in Exclude<ButtonProps['iconDirection'], undefined>]: string;
 };
 
 const buttonSize: ButtonFontSizeType = {
@@ -19,9 +29,22 @@ const buttonSize: ButtonFontSizeType = {
   xs: 'text-lg px-6 py-3',
 };
 
+const fillColorSet: ButtonFillColorType = {
+  gray: 'fill-gray-1 group-hover:drop-shadow-gray',
+  green: 'fill-green group-hover:drop-shadow-green',
+};
+
+const iconDirectionSet: ButtonIconDirectionType = {
+  left: 'lg:-left-8 sm:-left-6 xl:group-hover:-translate-x-6 lg:group-hover:-translate-x-3 sm:group-hover:-translate-x-2',
+  right:
+    'lg:-right-8 sm:-right-6 xl:group-hover:translate-x-6 lg:group-hover:translate-x-3 sm:group-hover:translate-x-2',
+};
+
 const Button = ({
   children,
   size = 'lg',
+  fillColor = 'green',
+  iconDirection = 'right',
   className,
   ...props
 }: ButtonProps) => {
@@ -33,12 +56,10 @@ const Button = ({
     >
       {children}
       <Comma
-        className="xl:w-[4.625rem] lg:w-[3.125rem] sm:w-[2.5rem]
+        className={`${fillColorSet[fillColor]} ${iconDirectionSet[iconDirection]}
+          xl:w-[4.625rem] lg:w-[3.125rem] sm:w-[2.5rem]
           absolute xl:top-0 lg:-top-[1rem] sm:-top-[1.375rem]
-          lg:-right-8 sm:-right-6
-          fill-green transition duration-300
-          xl:group-hover:translate-x-6 lg:group-hover:translate-x-3 sm:group-hover:translate-x-2
-          group-hover:drop-shadow-green"
+          transition duration-300`}
       />
     </button>
   );

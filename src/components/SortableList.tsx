@@ -25,7 +25,6 @@ const BOARD_MOCA_DATA: BoardItem[] = Array.from({ length: 10 }, (_, i) => ({
 const SortableList: React.FC = () => {
   const [searchParams, setSearchPramas] = useSearchParams();
   const [sortedData, setSortedData] = useState<BoardItem[]>([]);
-
   const sortBy = searchParams.get('sort') || 'like';
 
   useEffect(() => {
@@ -41,33 +40,33 @@ const SortableList: React.FC = () => {
     setSortedData(getSortedData());
   }, [sortBy]);
 
-  const handleSortChange = (sortOPtion: 'like' | 'recent') => {
-    setSearchPramas({ sort: sortOPtion });
+  const handleSortChange = (sortOption: 'like' | 'recent') => {
+    setSearchPramas((prev) => ({
+      ...Object.fromEntries(prev.entries()),
+      sort: sortOption,
+    }));
   };
 
   return (
-    <div>
-      <div className="relative xl:w-[64rem] lg:w-[59rem] sm:w-[22.5rem] mx-auto">
-        <div className="absolute xl:right-[-0.3rem] lg:right-1 sm:right-1 xl:top-[-2rem] lg:top-[-2rem] sm:top-2 xl:text-[1.25rem] lg:text-[0.875rem] sm:text-[0.625rem]">
-          <button
-            className={`xl:px-2 lg:px-3 sm:px-3 ${sortBy === 'like' ? 'text-black' : 'text-gray-200'}`}
-            onClick={() => handleSortChange('like')}
-          >
-            추천순
-          </button>
-          <span className="text-gray-300">|</span>
-          <button
-            className={`xl:px-2 lg:px-3 sm:px-3 ${sortBy === 'recent' ? 'text-black' : 'text-gray-200'}`}
-            onClick={() => handleSortChange('recent')}
-          >
-            최신순
-          </button>
-        </div>
-
-        <BoardList data={sortedData} />
+    <div className="xl:w-full lg:w-[59rem] sm:w-[22.5rem]">
+      <div className="text-right xl:text-[1.25rem] lg:text-[0.875rem] sm:text-[0.625rem] sm:mr-[0.5rem] xl:mb-3 lg:mb-0 sm:mb-[-1.2rem]">
+        <button
+          className={`xl:px-2 lg:px-3 sm:px-3 ${sortBy === 'like' ? 'text-black' : 'text-gray-200'}`}
+          onClick={() => handleSortChange('like')}
+        >
+          추천순
+        </button>
+        <span className="text-gray-300">|</span>
+        <button
+          className={`xl:px-2 lg:px-3 sm:px-3 ${sortBy === 'recent' ? 'text-black' : 'text-gray-200'}`}
+          onClick={() => handleSortChange('recent')}
+        >
+          최신순
+        </button>
       </div>
+
+      <BoardList data={sortedData} />
     </div>
-    // </div>
   );
 };
 export default SortableList;

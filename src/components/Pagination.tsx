@@ -81,7 +81,7 @@ const Pagination: React.FC = () => {
               <img
                 src={LookPage}
                 alt={`Page ${pageNum}`}
-                className="absolute top-[50%] -translate-y-[45%] left-[50%] -translate-x-[50%] xl:w-[2.5rem] lg:w-[2.5rem] sm:w-[1.3125rem] xl:h-[2.6875rem] lg:h-[2.6875rem] sm:h-[1.4375rem] z-10"
+                className="absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] xl:w-[2.5rem] lg:w-[2.5rem] sm:w-[1.3125rem] xl:h-[2.6875rem] lg:h-[2.6875rem] sm:h-[1.4375rem] z-10"
               />
               <span className="relative text-white z-20">{pageNum}</span>
             </>

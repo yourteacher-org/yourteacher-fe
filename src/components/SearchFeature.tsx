@@ -9,7 +9,7 @@ const HASHTAGS = ['유어티쳐', '유치원선생님', '어린이선생님', '�
 const SearchFeature: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectOption] = useState('제목');
-  const [searchTerm, setSearchTerm] = useState('');
+  const searchTermRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const currentOptionIcon = isOpen ? Options : Option;
@@ -21,7 +21,9 @@ const SearchFeature: React.FC = () => {
   };
 
   const handleHashtagClick = (hashtag: string) => {
-    setSearchTerm((prev) => `${prev} ${hashtag}`);
+    if (searchTermRef.current) {
+      searchTermRef.current.value += ` ${hashtag}`;
+    }
   };
 
   useEffect(() => {
@@ -41,24 +43,24 @@ const SearchFeature: React.FC = () => {
   }, []);
 
   const handleSearch = () => {
-    const filter = selectedOption === '제목' ? 'title' : 'title_content';
+    if (searchTermRef.current) {
+      const searchTerm = searchTermRef.current.value.trim();
 
-    const query = new URLSearchParams({
-      filter,
-      search: searchTerm.trim(),
-    }).toString();
+      const filter = selectedOption === '제목' ? 'title' : 'title_content';
 
-    navigate(`?${query}`);
+      const query = new URLSearchParams({
+        filter,
+        search: searchTerm,
+      }).toString();
+
+      navigate(`?${query}`);
+    }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSearch();
     }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
   };
 
   return (
@@ -105,10 +107,9 @@ const SearchFeature: React.FC = () => {
       <div className="relative xl:ml-[1.2rem] lg:ml-[1rem] sm:ml-[0.8rem]">
         <input
           type="text"
+          ref={searchTermRef}
           className="xl:w-[31.25rem] lg:w-[28.5rem] sm:w-[14.5rem] xl:h-[3.75rem] lg:h-[2.9375rem] sm:h-[2rem] border border-black rounded-[2rem] xl:text-[1.25rem] lg:text-[1rem] sm:text-[0.75rem] xl:px-[1.5rem] lg:px-[1.5rem] sm:px-[0.8rem] focus:outline-green"
           placeholder="검색어를 입력하세요"
-          value={searchTerm}
-          onChange={handleInputChange}
           onKeyDown={handleKeyPress}
         />
 
@@ -135,4 +136,5 @@ const SearchFeature: React.FC = () => {
     </div>
   );
 };
+
 export default SearchFeature;

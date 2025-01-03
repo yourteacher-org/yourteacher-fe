@@ -1,6 +1,8 @@
 import React from 'react';
 import HoverView from '@assets/icon/hover-view.svg';
 import Calendar from '@assets/icon/calendar.svg';
+import Hits from '@assets/icon/boardlist-hits.svg';
+import Good from '@assets/icon/boardlist-good.svg';
 import Details from '@assets/icon/board-details.svg';
 
 interface BoardItem {
@@ -12,37 +14,32 @@ interface BoardItem {
   view_count: number;
 }
 
-const BOARD_MOCA_DATA: BoardItem[] = Array.from({ length: 10 }, (_, i) => ({
-  id: i + 1,
-  title: `테스트 ${i + 1}`,
-  author: `작성자 ${i + 1}`,
-  created_at: `2024-08-${i + 1}`,
-  view_count: Math.floor(Math.random() * 10),
-  like_count: Math.floor(Math.random() * 10),
-}));
+interface BoardListProps {
+  data: BoardItem[];
+}
 
-const BoardList: React.FC = () => {
+const BoardList: React.FC<BoardListProps> = ({ data }) => {
   return (
-    <table className="border-b-2 border-black xl:w-full lg:w-[59rem] sm:w-[22.25rem]">
+    <table className="w-full border-b-2 border-black xl:w-full lg:w-[59rem] sm:w-[22.25rem]">
       <thead>
         <tr className="flex border-b-2 border-black py-4 xl:text-[1rem] lg:text-[0.875rem]">
-          <th className="flex-[50%] xl:px-[24rem] lg:px-[14rem] hidden lg:block">
+          <th className="flex-[4] xl:px-[0rem] lg:px-[0rem] xl:pl-5 hidden lg:block">
             제목
           </th>
-          <th className="flex-1 hidden lg:block lg:px-[2rem]">글쓴이</th>
-          <th className="flex-1 hidden lg:block lg:px-[2rem]">등록일</th>
-          <th className="flex-1 hidden lg:block lg:px-[2rem]">조회수</th>
-          <th className="flex-1 hidden lg:block lg:px-[2rem]">추천수</th>
+          <th className="flex-1 hidden lg:block lg:px-[0rem]">글쓴이</th>
+          <th className="flex-1 hidden lg:block lg:px-[0rem]">등록일</th>
+          <th className="flex-[0.75] hidden lg:block lg:px-[0rem]">조회수</th>
+          <th className="flex-[0.75] hidden lg:block lg:px-[0rem]">추천수</th>
         </tr>
       </thead>
       <tbody>
-        {BOARD_MOCA_DATA.map((item) => (
+        {data.map((item) => (
           <tr
             key={item.id}
-            className="w-full flex xl:py-[2rem] lg:py-[1.5rem] xl:text-[1.25rem] lg:text-[1rem] border-b border-gray-200 text-center group/item relative"
+            className="flex xl:py-[2rem] lg:py-[1.5rem] xl:text-[1.25rem] lg:text-[1rem] border-b border-gray-200 text-center group/item relative"
           >
             <td className="block lg:hidden px-4 py-[1rem]">
-              <div className="font-bold text-left text-[0.75rem] mb-[0.85rem]">
+              <div className="font-bold text-left text-[0.75rem] mb-[0.85rem] truncate max-w-[18rem] text-elllipsis overflow-hidden whitespace-nowrap">
                 {item.title}
               </div>
 
@@ -50,16 +47,16 @@ const BoardList: React.FC = () => {
                 <span className="text-left col-span-1">{item.author}</span>
                 <div className="flex col-span-1 w-[2.875rem]">
                   <img
-                    src={Calendar}
-                    alt="신청일자"
+                    src={Hits}
+                    alt="조회수"
                     className="w-[0.875rem] h-[0.875rem] ml-[0.6rem] mr-[0.25rem]"
                   />
                   <span>{item.view_count}</span>
                 </div>
                 <div className="flex items-center col-span-1 w-[2.875rem]">
                   <img
-                    src={Calendar}
-                    alt="신청일자"
+                    src={Good}
+                    alt="추천수"
                     className="w-[0.875rem] h-[0.875rem] ml-[0.3rem] mr-[0.25rem]"
                   />
                   <span>{item.like_count}</span>
@@ -82,19 +79,19 @@ const BoardList: React.FC = () => {
               </div>
             </td>
 
-            <td className="flex-[47%] px-5 text-left hidden lg:block">
+            <td className="flex-[4] pl-5 truncate text-left hidden lg:block">
               {item.title}
             </td>
-            <td className="flex-1 xl:px-[0.5rem] lg:px-[0.1rem] hidden lg:block xl:group-hover/item:-translate-x-4 transition-transform">
+            <td className="xl:flex-1 lg:flex-1 hidden lg:block xl:group-hover/item:-translate-x-4 transition-transform">
               {item.author}
             </td>
-            <td className="flex-1 xl:px-[0.1rem] lg:px-[0.9rem] hidden lg:block xl:group-hover/item:-translate-x-4 transition-transform">
+            <td className="xl:flex-1 lg:flex-1 hidden lg:block xl:group-hover/item:-translate-x-4 transition-transform">
               {item.created_at}
             </td>
-            <td className="flex-1 xl:px-[0.1rem] lg:px-[0.8rem] hidden lg:block xl:group-hover/item:-translate-x-4 transition-transform">
+            <td className="flex-[0.75] lg:flex-[0.75] hidden lg:block xl:group-hover/item:-translate-x-4 transition-transform">
               {item.view_count}
             </td>
-            <td className="flex-1 xl:px-[0.1rem] lg:px-[0.5rem] hidden lg:block xl:group-hover/item:-translate-x-4 transition-transform relative">
+            <td className="flex-[0.75] xl:px-[0rem] lg:flex-[0.75] hidden lg:block xl:group-hover/item:-translate-x-4 transition-transform relative">
               {item.like_count}
             </td>
             <td>

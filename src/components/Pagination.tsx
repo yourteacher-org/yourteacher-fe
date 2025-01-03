@@ -46,34 +46,42 @@ const Pagination: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center space-x-[0.4rem]">
+    <div className="flex items-center justify-center xl:space-x-[0.5rem] lg:space-x-[0.4rem] sm:space-x-[-0.5rem] xl:mt-[3rem] lg:mt-[3rem] sm:mt-[2.5rem]">
       <button
         onClick={gotoPrevGroup}
         disabled={visiblePageNumbers[0] === 1}
         aria-label="5개씩 이전으로 이동"
       >
-        <img src={Previous} alt="5개씩 이전으로" className="mr-[1rem]" />
+        <img
+          src={Previous}
+          alt="5개씩 이전으로"
+          className="xl:w-[0.625rem] lg:w-[0.625rem] sm:w-[0.409375rem] xl:h-[0.5625rem] lg:h-[0.5625rem] sm:h-[0.4375rem] xl:mr-[1.6rem] lg:mr-[1.2rem] sm:mr-[2rem]"
+        />
       </button>
       <button
         onClick={() => gotoPage(currentPage - 1)}
         disabled={currentPage === 1}
         aria-label="1개씩 이전으로 이동"
       >
-        <img src={Prev} alt="1개씩 이전으로" className="mr-[1.2rem]" />
+        <img
+          src={Prev}
+          alt="1개씩 이전으로"
+          className="xl:mr-[0.9rem] lg:mr-[1rem] sm:mr-[1.2rem] xl:w-[0.3125rem] lg:w-[0.3125rem] sm:w-[0.204375rem] xl:h-[0.5625rem] lg:h-[0.5625rem] sm:h-[0.4375rem]"
+        />
       </button>
 
       {visiblePageNumbers.map((pageNum) => (
         <button
           key={pageNum}
           onClick={() => gotoPage(pageNum)}
-          className="relative w-[2.5rem] h-[2.6875rem] text-[1.125rem] text-gray-500 top-0.5"
+          className="relative w-[2.5rem] h-[2.6875rem] xl:text-[1.125rem] lg:text-[1rem] sm:text-[0.625rem] text-gray-500"
         >
           {currentPage === pageNum && (
             <>
               <img
                 src={LookPage}
                 alt={`Page ${pageNum}`}
-                className="absolute z-10 right-[0.01rem] top-0.5"
+                className="absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] xl:w-[2.5rem] lg:w-[2.5rem] sm:w-[1.3125rem] xl:h-[2.6875rem] lg:h-[2.6875rem] sm:h-[1.4375rem] z-10"
               />
               <span className="relative text-white z-20">{pageNum}</span>
             </>
@@ -81,12 +89,17 @@ const Pagination: React.FC = () => {
           {currentPage !== pageNum && pageNum}
         </button>
       ))}
+
       <button
         onClick={() => gotoPage(currentPage + 1)}
         disabled={currentPage >= totalPages}
         aria-label="1개씩 이후로 이동"
       >
-        <img src={Daum} alt="1개씩 이후로" className="ml-[0.6rem]" />
+        <img
+          src={Daum}
+          alt="1개씩 이후로"
+          className="xl:ml-[0.7rem] lg:ml-[1rem] sm:ml-[1.2rem] xl:w-[0.3125rem] lg:w-[0.3125rem] sm:w-[0.204375rem] xl:h-[0.5625rem] lg:h-[0.5625rem] sm:h-[0.4375rem]"
+        />
       </button>
       <button
         onClick={gotoNextGroup}
@@ -95,7 +108,11 @@ const Pagination: React.FC = () => {
         }
         aria-label="5개씩 이후로 이동"
       >
-        <img src={Next} alt="5개씩 이후로" className="ml-[1rem]" />
+        <img
+          src={Next}
+          alt="5개씩 이후로"
+          className="xl:w-[0.625rem] lg:w-[0.625rem] sm:w-[0.409375rem] xl:h-[0.5625rem] lg:h-[0.5625rem] sm:h-[0.4375rem] xl:ml-[1.5rem] lg:ml-[1.2rem] sm:ml-[1.9rem]"
+        />
       </button>
     </div>
   );
